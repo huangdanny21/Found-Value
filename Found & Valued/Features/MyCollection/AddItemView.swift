@@ -10,7 +10,7 @@ struct AddItemView: View {
     @State private var itemTitle = ""
     @State private var itemDescription = ""
     @State private var selectedImage: UIImage?
-    @State private var isImagePickerPresented = false
+    @State var isImagePickerPresented = false
     @Environment(\.presentationMode) var presentationMode
 
     var myCollectionViewModel: MyCollectionViewModel // Your view model

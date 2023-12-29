@@ -18,10 +18,13 @@ class HomeViewController: UITabBarController {
         let cardCollectionVC = UIHostingController(rootView: MyCollectionView())
         cardCollectionVC.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "square.grid.2x2"), tag: 0)
         
+        let feedVC = UIHostingController(rootView: FeedView())
+        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 1)
+        
         let searchVC = UIHostingController(rootView: SearchView())
-        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
                 
-        viewControllers = [cardCollectionVC, searchVC]
+        viewControllers = [cardCollectionVC, feedVC, searchVC]
     }
 }
 

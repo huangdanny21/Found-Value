@@ -16,20 +16,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let user = Auth.auth().currentUser {
-//            let swiftUIView =  HomeView(remindersViewModel: RemindersViewModel())
-//
-//            // Create a UIHostingController to embed SwiftUI content in UIKit
-//            let hostingController = UIHostingController(rootView: swiftUIView)
-//
-//            // Add the SwiftUI view as a child view controller
-//            addChild(hostingController)
-            
+        if let _ = Auth.auth().currentUser {
             let homeView = HomeViewController()
             addChild(homeView)
-            // Add the SwiftUI view's view as a subview to your UIViewController's view
             view.addSubview(homeView.view)
-            
             
             
             // Setup constraints for the SwiftUI view

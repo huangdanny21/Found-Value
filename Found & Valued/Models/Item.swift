@@ -7,7 +7,14 @@
 
 import Foundation
 
-struct Item: Identifiable {
+protocol ItemData {
+    var id: UUID { get }
+    var name: String { get }
+    var description: String { get }
+    var imageURL: URL? { get set }
+}
+
+struct Item: Identifiable, ItemData {
     let id: UUID
     let name: String
     let description: String
