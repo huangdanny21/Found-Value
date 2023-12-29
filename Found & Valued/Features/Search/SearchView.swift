@@ -8,30 +8,29 @@
 import SwiftUI
 
 struct SearchView: View {
-    @StateObject private var searchViewModel = SearchViewModel()
-    @State private var searchQuery = ""
-    @State private var users: [User] = []
+    @State private var searchText = ""
+    @StateObject var searchViewModel = SearchViewModel()
 
     var body: some View {
-        VStack {
-            TextField("Search Username", text: $searchQuery, onCommit: {
-                searchViewModel.searchUser(withUsername: searchQuery)
-            })
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding()
+        NavigationView {
+            VStack {
+                TextField("Search", text: $searchText, onCommit: {
+                    searchViewModel.searchUser(withUsername: searchText)
+                })
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
 
-            List(searchViewModel.searchResults, id: \.self) { username in
-                Text(username)
+                List(searchViewModel.searchResults, id: \.self) { username in
+                    NavigationLink(destination: UserProfileView(userProfileViewModel: UserProfileViewModel(with: username))) {
+                        Text(username)
+                    }
+                    .onAppear {
+                        // Fetch user profile or additional details as needed
+                    }
+                }
             }
-        }
-        .onAppear {
-            // Additional setup if needed
+            .navigationTitle("Search")
         }
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
-    }
-}

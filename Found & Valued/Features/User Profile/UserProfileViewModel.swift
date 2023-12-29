@@ -15,7 +15,7 @@ class UserProfileViewModel: ObservableObject {
     private var db = Firestore.firestore()
     private var userListener: ListenerRegistration?
 
-    init() {
+    init(with username: String) {
         fetchUserProfile()
     }
 
