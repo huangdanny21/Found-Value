@@ -8,9 +8,11 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseStorage
+import SwiftUI
 
 class MyCollectionViewModel: ObservableObject {
     @Published var items: [Item] = []
+    @State var shouldRefresh = false // Add a state variable for refreshing
 
     private var db = Firestore.firestore()
 
@@ -72,12 +74,15 @@ class MyCollectionViewModel: ObservableObject {
                     ]
                     
                     let db = Firestore.firestore()
+                    var newItem = Item(id: item.id, name: item.name, description: item.description, imageURL: URL(string: imageUrl))
                     db.collection("items").addDocument(data: data) { error in
                         if let error = error {
                             print("Error adding document: \(error.localizedDescription)")
                         } else {
                             print("Item added to Firestore with image URL.")
                             // Item added successfully, perform any required actions
+                            
+                            self.items.append(newItem)
                         }
                     }
                 }

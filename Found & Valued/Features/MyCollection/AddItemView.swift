@@ -72,6 +72,7 @@ struct AddItemView: View {
                         let newItem = Item(id: UUID(), name: itemTitle, description: itemDescription)
                         self.myCollectionViewModel.uploadItemToFirestore(item: newItem, image: image)
                         presentationMode.wrappedValue.dismiss()
+                        self.myCollectionViewModel.shouldRefresh.toggle()
                     }
                     .disabled(isAddButtonDisabled)
             )

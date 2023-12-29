@@ -11,7 +11,6 @@ import UIKit
 struct MyCollectionView: View {
     @StateObject private var myCollectionViewModel = MyCollectionViewModel()
     @State private var isAddItemViewPresented = false
-    @State private var shouldRefresh = false // Add a state variable for refreshing
     @State private var imageCache = ImageCache.shared
     
     var body: some View {
@@ -50,13 +49,13 @@ struct MyCollectionView: View {
             .sheet(isPresented: $isAddItemViewPresented, content: {
                 AddItemView(myCollectionViewModel: myCollectionViewModel)
                     .onDisappear {
-                        shouldRefresh.toggle() // Toggle the state variable on dismiss of AddItemView
+                        self.myCollectionViewModel.shouldRefresh.toggle() // Toggle the state variable on dismiss of AddItemView
                     }
             })
             .onAppear {
                 myCollectionViewModel.fetchItemsFromFirebase() // Fetch items when the view appears
             }
-            .onChange(of: shouldRefresh) { _ in
+            .onChange(of: myCollectionViewModel.shouldRefresh) { _ in
                 myCollectionViewModel.fetchItemsFromFirebase() // Fetch items when shouldRefresh changes
             }
         }
