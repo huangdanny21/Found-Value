@@ -54,6 +54,8 @@
 		B5EEC6802B3E3DF7001D68F3 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */; };
 		B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */; };
 		B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6842B3E581C001D68F3 /* ImageCache.swift */; };
+		B5EEC6872B3E61E5001D68F3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6862B3E61E5001D68F3 /* User.swift */; };
+		B5EEC68A2B3E6303001D68F3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6892B3E6303001D68F3 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,8 @@
 		B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B5EEC6842B3E581C001D68F3 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		B5EEC6862B3E61E5001D68F3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B5EEC6892B3E6303001D68F3 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +214,7 @@
 		B5EEC62D2B3E2937001D68F3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				B5EEC6882B3E626B001D68F3 /* Search */,
 				B5EEC6712B3E3312001D68F3 /* HomeScreen */,
 				B5EEC66E2B3E3173001D68F3 /* MyCollection */,
 				B5EEC6302B3E294E001D68F3 /* SignUp */,
@@ -221,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				B5EEC67A2B3E391F001D68F3 /* Item.swift */,
+				B5EEC6862B3E61E5001D68F3 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,6 +266,14 @@
 				B5EEC6842B3E581C001D68F3 /* ImageCache.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		B5EEC6882B3E626B001D68F3 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B5EEC6892B3E6303001D68F3 /* SearchView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,9 +446,11 @@
 				B5EEC67D2B3E3A52001D68F3 /* MyCollectionViewModel.swift in Sources */,
 				B5EEC6702B3E3187001D68F3 /* MyCollectionView.swift in Sources */,
 				B5EEC66D2B3E2E38001D68F3 /* SignUpViewModel.swift in Sources */,
+				B5EEC6872B3E61E5001D68F3 /* User.swift in Sources */,
 				B5EEC6792B3E34C0001D68F3 /* HomeViewController.swift in Sources */,
 				B5EEC5FE2B3E1A31001D68F3 /* AppDelegate.swift in Sources */,
 				B5EEC6772B3E3459001D68F3 /* AuthView.swift in Sources */,
+				B5EEC68A2B3E6303001D68F3 /* SearchView.swift in Sources */,
 				B5EEC6802B3E3DF7001D68F3 /* AddItemView.swift in Sources */,
 				B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */,
 				B5EEC6002B3E1A31001D68F3 /* SceneDelegate.swift in Sources */,

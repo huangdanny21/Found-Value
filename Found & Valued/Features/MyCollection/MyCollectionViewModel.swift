@@ -74,7 +74,7 @@ class MyCollectionViewModel: ObservableObject {
                     ]
                     
                     let db = Firestore.firestore()
-                    var newItem = Item(id: item.id, name: item.name, description: item.description, imageURL: URL(string: imageUrl))
+                    let newItem = Item(id: item.id, name: item.name, description: item.description, imageURL: URL(string: imageUrl))
                     db.collection("items").addDocument(data: data) { error in
                         if let error = error {
                             print("Error adding document: \(error.localizedDescription)")

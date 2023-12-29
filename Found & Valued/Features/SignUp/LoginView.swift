@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 import FirebaseAuth
 
 struct LoginView: View {
     @State private var email = ""
+    @State private var username = ""
     @State private var password = ""
     
     var onLogin: () -> Void
@@ -25,6 +27,9 @@ struct LoginView: View {
             
             VStack {
                 TextField("Email", text: $email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                TextField("Username", text: $username)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 
@@ -60,6 +65,7 @@ struct LoginView: View {
             } else {
                 print("User created successfully")
                 // User signed up successfully, handle the transition to the next view or action
+                addUserToFirestore(username: self.username, email: email)
                 onLogin()
                 // For example, you might navigate to the HomeView after successful signup
                 // Navigate to HomeView or perform any other action
@@ -81,4 +87,29 @@ struct LoginView: View {
              }
          }
      }
+    
+    // Assuming this function is called after a successful signup
+    func addUserToFirestore(username: String, email: String) {
+        let db = Firestore.firestore()
+        let userID = Auth.auth().currentUser?.uid ?? "" // Get the current user's ID
+
+        // Create a reference to the "users" collection in Firestore
+        let usersRef = db.collection("users")
+
+        // Define the user data
+        let userData: [String: Any] = [
+            "username": username,
+            "email": email
+            // Add other user data as needed
+        ]
+
+        // Add the user data to Firestore
+        usersRef.document(userID).setData(userData) { error in
+            if let error = error {
+                print("Error adding user: \(error.localizedDescription)")
+            } else {
+                print("User added to Firestore successfully")
+            }
+        }
+    }
 }
