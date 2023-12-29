@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct MyCollectionView: View {
     @StateObject private var myCollectionViewModel = MyCollectionViewModel()
     @State private var isAddItemViewPresented = false
     @State private var shouldRefresh = false // Add a state variable for refreshing
-
+    @State private var imageCache = ImageCache.shared
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -20,15 +22,7 @@ struct MyCollectionView: View {
                         VStack(alignment: .leading) {
                             if let imageURL = item.imageURL {
                                 // Load and display the image using URLSession or your preferred library
-                                AsyncImage(url: imageURL) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 100, height: 100) // Adjust size as needed
-                                } placeholder: {
-                                    // Placeholder or loading view
-                                    ProgressView()
-                                }
+                                CachedImageView(url: imageURL, imageCache: imageCache)
                             }
                             Text(item.name)
                                 .font(.headline)

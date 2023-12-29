@@ -53,6 +53,7 @@
 		B5EEC67D2B3E3A52001D68F3 /* MyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67C2B3E3A52001D68F3 /* MyCollectionViewModel.swift */; };
 		B5EEC6802B3E3DF7001D68F3 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */; };
 		B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */; };
+		B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6842B3E581C001D68F3 /* ImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		B5EEC67C2B3E3A52001D68F3 /* MyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewModel.swift; sourceTree = "<group>"; };
 		B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		B5EEC6842B3E581C001D68F3 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */,
+				B5EEC6842B3E581C001D68F3 /* ImageCache.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EEC6752B3E3435001D68F3 /* LoginView.swift in Sources */,
+				B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */,
 				B5EEC6022B3E1A31001D68F3 /* MainViewController.swift in Sources */,
 				B5EEC67D2B3E3A52001D68F3 /* MyCollectionViewModel.swift in Sources */,
 				B5EEC6702B3E3187001D68F3 /* MyCollectionView.swift in Sources */,
