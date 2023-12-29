@@ -32,7 +32,9 @@ class MyCollectionViewModel: ObservableObject {
                 let name = data["name"] as? String ?? ""
                 let description = data["description"] as? String ?? ""
                 let idString = document.documentID
-                return Item(id: UUID(uuidString: idString) ?? UUID(), name: name, description: description)
+                let urlString = data["imageUrl"] as? String ?? ""
+                let url = URL(string: urlString)
+                return Item(id: UUID(uuidString: idString) ?? UUID(), name: name, description: description, imageURL: url)
             }
         }
     }
