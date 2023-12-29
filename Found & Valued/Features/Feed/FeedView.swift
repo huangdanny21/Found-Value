@@ -8,30 +8,28 @@
 import SwiftUI
 
 struct FeedView: View {
-    @StateObject var createPostViewModel = CreatePostViewModel()
-
-    @State private var shouldReloadData = false // State variable to reload data
+    @StateObject var viewModel = FeedViewModel()
 
     var body: some View {
         NavigationView {
             VStack {
-                // Display posts in a list or grid view
-                Text("Posts will be displayed here")
-                    .padding()
-
-                // Button to create a new post
-                NavigationLink(destination: CreatePostView()) {
-                    Text("Create Post")
-                        .padding()
+                // Display fetched public feed items
+                List(viewModel.feedItems) { feedItem in
+                    // Display feed item details
+                    // Example:
+                    VStack(alignment: .leading) {
+                        Text(feedItem.itemTitle)
+                            .font(.headline)
+                        Text(feedItem.itemDescription)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        // Add image display or other content here using the imageURL
+                    }
                 }
             }
-            .navigationTitle("Feed")
+            .navigationTitle("Public Feeds")
             .onAppear {
-                // Refresh the feed when this view appears
-                shouldReloadData.toggle()
-            }
-            .sheet(isPresented: $createPostViewModel.isImagePickerPresented) {
-                CreatePostView()
+                viewModel.fetchPublicFeeds() // Fetch public feeds when the view appears
             }
         }
     }

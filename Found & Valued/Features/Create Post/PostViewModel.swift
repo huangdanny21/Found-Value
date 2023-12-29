@@ -10,11 +10,40 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
 
-class CreatePostViewModel: ObservableObject {
+class PostViewModel: ObservableObject {
     @Published var itemTitle = ""
     @Published var itemDescription = ""
     @Published var selectedImage: UIImage?
     @Published var isImagePickerPresented = false
+    
+    @Published var feedItems: [FeedItem] = [] // Assuming FeedItem is your model for feed posts
+    
+    func fetchFeeds() {
+            let db = Firestore.firestore()
+            db.collection("PublicFeed").document("Posts").collection("Posts").getDocuments { snapshot, error in
+                if let error = error {
+                    print("Error fetching feed items: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let documents = snapshot?.documents else {
+                    print("No feed items found")
+                    return
+                }
+
+                self.feedItems = documents.compactMap { document in
+                    let data = document.data()
+                    // Create a FeedItem object from the retrieved data
+                    // Example:
+                    let itemTitle = data["itemTitle"] as? String ?? ""
+                    let itemDescription = data["itemDescription"] as? String ?? ""
+                    let imageURL = data["imageURL"] as? String ?? ""
+                    let id = data["userID"] as? String ?? ""
+                    return FeedItem(id: id, itemTitle: itemTitle, itemDescription: itemDescription, imageURL: imageURL)
+
+                }
+            }
+        }
 
     func postItem(completion: @escaping () -> Void) {
             guard let currentUser = Auth.auth().currentUser else {

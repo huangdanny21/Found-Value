@@ -7,12 +7,10 @@
 
 import Foundation
 
-struct FeedItem: Identifiable, ItemData {
-    var id: UUID
-    var name: String
-    var description: String
-    var imageURL: URL?
-    
-    let userID: UUID
-    
+struct FeedItem: Identifiable {
+    let id: String // Consider adding an identifier for your FeedItem
+    let itemTitle: String
+    let itemDescription: String
+    let imageURL: String
+    // Add other properties as needed
 }

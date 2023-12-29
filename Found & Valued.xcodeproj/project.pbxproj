@@ -10,7 +10,8 @@
 		B5B047C32B3E948D00A358B6 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C22B3E948D00A358B6 /* FeedView.swift */; };
 		B5B047C52B3E958300A358B6 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C42B3E958300A358B6 /* FeedItem.swift */; };
 		B5B047C82B3E978300A358B6 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C72B3E978300A358B6 /* CreatePostView.swift */; };
-		B5B047CA2B3E982500A358B6 /* CreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C92B3E982500A358B6 /* CreatePostViewModel.swift */; };
+		B5B047CA2B3E982500A358B6 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C92B3E982500A358B6 /* PostViewModel.swift */; };
+		B5B047CC2B3EA42C00A358B6 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047CB2B3EA42C00A358B6 /* FeedViewModel.swift */; };
 		B5EEC5FE2B3E1A31001D68F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC5FD2B3E1A31001D68F3 /* AppDelegate.swift */; };
 		B5EEC6002B3E1A31001D68F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC5FF2B3E1A31001D68F3 /* SceneDelegate.swift */; };
 		B5EEC6022B3E1A31001D68F3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6012B3E1A31001D68F3 /* MainViewController.swift */; };
@@ -86,7 +87,8 @@
 		B5B047C22B3E948D00A358B6 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		B5B047C42B3E958300A358B6 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		B5B047C72B3E978300A358B6 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
-		B5B047C92B3E982500A358B6 /* CreatePostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewModel.swift; sourceTree = "<group>"; };
+		B5B047C92B3E982500A358B6 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		B5B047CB2B3EA42C00A358B6 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		B5EEC5FA2B3E1A31001D68F3 /* Found & Valued.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Found & Valued.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EEC5FD2B3E1A31001D68F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5EEC5FF2B3E1A31001D68F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B047C22B3E948D00A358B6 /* FeedView.swift */,
+				B5B047CB2B3EA42C00A358B6 /* FeedViewModel.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -182,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B047C72B3E978300A358B6 /* CreatePostView.swift */,
-				B5B047C92B3E982500A358B6 /* CreatePostViewModel.swift */,
+				B5B047C92B3E982500A358B6 /* PostViewModel.swift */,
 			);
 			path = "Create Post";
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				B5EEC68C2B3E6B9A001D68F3 /* SearchViewModel.swift in Sources */,
 				B5EEC6022B3E1A31001D68F3 /* MainViewController.swift in Sources */,
 				B5EEC67D2B3E3A52001D68F3 /* MyCollectionViewModel.swift in Sources */,
+				B5B047CC2B3EA42C00A358B6 /* FeedViewModel.swift in Sources */,
 				B5EEC6702B3E3187001D68F3 /* MyCollectionView.swift in Sources */,
 				B5EEC66D2B3E2E38001D68F3 /* SignUpViewModel.swift in Sources */,
 				B5B047C82B3E978300A358B6 /* CreatePostView.swift in Sources */,
@@ -503,7 +507,7 @@
 				B5EEC68A2B3E6303001D68F3 /* SearchView.swift in Sources */,
 				B5EEC6802B3E3DF7001D68F3 /* AddItemView.swift in Sources */,
 				B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */,
-				B5B047CA2B3E982500A358B6 /* CreatePostViewModel.swift in Sources */,
+				B5B047CA2B3E982500A358B6 /* PostViewModel.swift in Sources */,
 				B5EEC6002B3E1A31001D68F3 /* SceneDelegate.swift in Sources */,
 				B5EEC68F2B3E7510001D68F3 /* UserProfileViewModel.swift in Sources */,
 				B5EEC67B2B3E391F001D68F3 /* Item.swift in Sources */,

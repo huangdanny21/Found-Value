@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreatePostView: View {
-    @ObservedObject var createPostViewModel = CreatePostViewModel()
+    @ObservedObject var createPostViewModel = PostViewModel()
     @State private var isCreatePostPresented = false
     @State var isImagePickerPresented = false
     @Environment(\.presentationMode) var presentationMode
