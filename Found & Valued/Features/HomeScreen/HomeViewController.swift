@@ -20,7 +20,7 @@ class HomeViewController: UITabBarController {
         
         let searchVC = UIHostingController(rootView: SearchView())
         searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
-        
+                
         viewControllers = [cardCollectionVC, searchVC]
     }
 }

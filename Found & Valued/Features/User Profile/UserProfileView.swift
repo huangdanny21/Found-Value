@@ -24,6 +24,12 @@ struct UserProfileView: View {
 
             Spacer()
 
+            List(userProfileViewModel.userItems) { item in
+                // Display the list of items associated with the user
+                Text(item.name)
+                // Other item details can be displayed here
+            }
+            
             Button("Edit Profile") {
                 // Functionality to edit the user profile
                 // You can implement an edit profile screen or action here
