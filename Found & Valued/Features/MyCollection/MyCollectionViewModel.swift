@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 import SwiftUI
+import FirebaseAuth
 
 class MyCollectionViewModel: ObservableObject {
     @Published var items: [Item] = []
@@ -18,7 +19,12 @@ class MyCollectionViewModel: ObservableObject {
 
     // Fetch items from Firebase for the MyCollection
     func fetchItemsFromFirebase() {
-        db.collection("items").getDocuments { snapshot, error in
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("User not authenticated")
+            return
+        }
+
+        db.collection("users").document(currentUserID).collection("items").getDocuments { snapshot, error in
             if let error = error {
                 print("Error fetching items: \(error.localizedDescription)")
                 return
@@ -40,6 +46,7 @@ class MyCollectionViewModel: ObservableObject {
             }
         }
     }
+
     
     // Function to upload item with image to Firestore
     func uploadItemToFirestore(item: Item, image: UIImage) {
@@ -66,26 +73,37 @@ class MyCollectionViewModel: ObservableObject {
                 
                 if let imageUrl = url?.absoluteString {
                     // Save item details and image URL to Firestore
-                    let data: [String: Any] = [
-                        "name": item.name,
-                        "description": item.description,
-                        "imageUrl": imageUrl
-                        // Add other properties as needed
-                    ]
                     
-                    let db = Firestore.firestore()
                     let newItem = Item(id: item.id, name: item.name, description: item.description, imageURL: URL(string: imageUrl))
-                    db.collection("items").addDocument(data: data) { error in
-                        if let error = error {
-                            print("Error adding document: \(error.localizedDescription)")
-                        } else {
-                            print("Item added to Firestore with image URL.")
-                            // Item added successfully, perform any required actions
-                            
-                            self.items.append(newItem)
-                        }
-                    }
+                    
+                    self.addItemForCurrentUser(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
+                    self.items.append(newItem)
                 }
+            }
+        }
+    }
+    
+    func addItemForCurrentUser(itemName: String, itemDescription: String, imageUrl: String) {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("User not authenticated")
+            return
+        }
+
+        let db = Firestore.firestore()
+
+        let newItemData: [String: Any] = [
+            "itemName": itemName,
+            "description": itemDescription,
+            "imageUrl": imageUrl
+            // Other item details can be added here
+        ]
+
+        // Add a new item document directly under the 'items' subcollection of the current user
+        db.collection("users").document(currentUserID).collection("items").addDocument(data: newItemData) { error in
+            if let error = error {
+                print("Error adding item: \(error.localizedDescription)")
+            } else {
+                print("Item added successfully")
             }
         }
     }

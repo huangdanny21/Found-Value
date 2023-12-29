@@ -18,7 +18,10 @@ class HomeViewController: UITabBarController {
         let cardCollectionVC = UIHostingController(rootView: MyCollectionView())
         cardCollectionVC.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "square.grid.2x2"), tag: 0)
         
-        viewControllers = [cardCollectionVC]
+        let searchVC = UIHostingController(rootView: SearchView())
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        
+        viewControllers = [cardCollectionVC, searchVC]
     }
 }
 

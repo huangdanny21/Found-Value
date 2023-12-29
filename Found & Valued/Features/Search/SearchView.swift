@@ -8,30 +8,24 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var searchText = ""
+    @StateObject private var searchViewModel = SearchViewModel()
+    @State private var searchQuery = ""
     @State private var users: [User] = []
 
-    var filteredUsers: [User] {
-        if searchText.isEmpty {
-            return users
-        } else {
-            return users.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        }
-    }
-
     var body: some View {
-        NavigationView {
-            VStack {
-                TextField("Search", text: $searchText)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+        VStack {
+            TextField("Search Username", text: $searchQuery, onCommit: {
+                searchViewModel.searchUser(withUsername: searchQuery)
+            })
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .padding()
 
-                List(filteredUsers) { user in
-                    Text(user.name)
-                }
-                .listStyle(InsetGroupedListStyle())
-                .navigationTitle("Search Users")
+            List(searchViewModel.searchResults, id: \.self) { username in
+                Text(username)
             }
+        }
+        .onAppear {
+            // Additional setup if needed
         }
     }
 }
