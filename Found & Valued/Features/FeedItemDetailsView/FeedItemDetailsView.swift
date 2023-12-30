@@ -12,17 +12,23 @@ struct FeedItemDetailsView: View {
 
     var body: some View {
         VStack {
+            Spacer() // Pushes the content to the top
             
-            // Display details of the feed item
+            // Display the image centered in the view
             if let url = URL(string: feedItem.imageURL) {
                 CachedImageView(url: url, imageCache: ImageCache.shared)
+                    .frame(maxWidth: .infinity) // Expand the image to the width of the screen
+                    .padding()
             }
+
             Text("Item Title: \(feedItem.itemTitle)")
+                .padding()
             Text("Item Description: \(feedItem.itemDescription)")
+                .padding()
 
-
-            // You can add more details here based on your FeedItem structure
+            Spacer() // Pushes the content to the bottom
         }
         .navigationBarTitle("Item Details") // Set the navigation bar title
+        .navigationBarTitleDisplayMode(.inline) // Display the title in the middle of the navigation bar
     }
 }

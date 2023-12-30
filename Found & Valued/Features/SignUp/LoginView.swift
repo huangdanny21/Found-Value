@@ -99,7 +99,8 @@ struct LoginView: View {
         // Define the user data
         let userData: [String: Any] = [
             "username": username,
-            "email": email
+            "email": email,
+            "id": userID
             // Add other user data as needed
         ]
 

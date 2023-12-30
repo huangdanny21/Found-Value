@@ -20,9 +20,9 @@ struct SearchView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
 
-                List(searchViewModel.searchResults, id: \.self) { username in
-                    NavigationLink(destination: UserProfileView(userProfileViewModel: UserProfileViewModel(with: username))) {
-                        Text(username)
+                List(searchViewModel.users, id: \.self) { user in
+                    NavigationLink(destination: UserProfileView(userProfileViewModel: UserProfileViewModel(with: user))) {
+                        Text(user.name)
                     }
                     .onAppear {
                         // Fetch user profile or additional details as needed

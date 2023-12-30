@@ -14,16 +14,27 @@ class UserProfileViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var userItems: [Item] = []
     
+    private var user: User?
+    
     private var db = Firestore.firestore()
     private var userListener: ListenerRegistration?
 
+    // MARK: Life Cycle
+    
+    init(with user: User) {
+        self.user = user
+    }
+    
     init(with username: String) {
+        self.username = username
         fetchUserProfile(for: username)
     }
 
     deinit {
         userListener?.remove()
     }
+    
+    // MARK: - Functions
 
     func fetchUserProfile(for username: String? = nil) {
         if let requestedUsername = username {
@@ -100,5 +111,33 @@ class UserProfileViewModel: ObservableObject {
     func updateUserProfile(newUsername: String, newEmail: String) {
         // Implementation for updating user profile
         // Similar to your existing updateUserProfile method
+    }
+    
+    func sendFriendRequest() {
+        // Logic to send a friend request to this user
+        // This could involve updating the user's friend list or sending a request to the other user
+        
+        // For example (pseudo code):
+        // You can access the current user's ID using Auth.auth().currentUser?.uid
+        // Then update a field in the user's document in Firestore indicating the friend request
+        
+        
+        guard let currentUserId = Auth.auth().currentUser?.uid else {
+            print("User not authenticated")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        db.collection("friendRequests").addDocument(data: [
+            "senderID": currentUserId,
+            "receiverID": user?.id.uuidString ?? "",
+            "status": "pending" // You can set different statuses for friend requests
+        ]) { error in
+            if let error = error {
+                print("Error sending friend request: \(error.localizedDescription)")
+            } else {
+                print("Friend request sent successfully")
+            }
+        }
     }
 }

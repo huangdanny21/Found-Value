@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Identifiable {
+struct User: Identifiable, Hashable {
     var id = UUID()
     let name: String
     let email: String?

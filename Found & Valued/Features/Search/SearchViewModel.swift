@@ -8,13 +8,12 @@
 import FirebaseFirestore
 
 class SearchViewModel: ObservableObject {
-    @Published var searchResults: [String] = [] // Store search results
+    @Published var users: [User] = []
     
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
     
     func searchUser(withUsername username: String) {
-        // Remove any existing listener
         listener?.remove()
 
         listener = db.collection("users")
@@ -22,18 +21,29 @@ class SearchViewModel: ObservableObject {
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     print("Error fetching users: \(error.localizedDescription)")
-                    self.searchResults = []
+                    self.users = []
                     return
                 }
                 
                 guard let documents = querySnapshot?.documents else {
                     print("No documents")
-                    self.searchResults = []
+                    self.users = []
                     return
                 }
                 
-                let usernames = documents.compactMap { $0.data()["username"] as? String }
-                self.searchResults = usernames
+                let users = documents.compactMap { document -> User? in
+                    let data = document.data()
+                    guard let name = data["username"] as? String else { return nil }
+                    let email = data["email"] as? String
+                    let profilePictureURLString = data["profilePictureURL"] as? String
+                    let profilePictureURL = URL(string: profilePictureURLString ?? "")
+                    let bio = data["bio"] as? String
+                    let id = data["id"] as? String ?? ""
+                    let uuid = UUID(uuidString: id) ?? UUID()
+                    return User(id: uuid, name: name, email: email, profilePictureURL: profilePictureURL, bio: bio)
+                }
+                
+                self.users = users
             }
     }
 }

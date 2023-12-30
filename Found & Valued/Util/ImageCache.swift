@@ -41,7 +41,7 @@ struct CachedImageView: View {
                 Image(uiImage: image)
                     .resizable() // Make sure to add resizable() here
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: UIScreen.main.bounds.width, height: 100) // Adjust size as needed
+                    .frame(width: 200, height: 100) // Adjust size as needed
             } else {
                 ProgressView()
                     .onAppear {
