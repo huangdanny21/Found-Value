@@ -77,7 +77,30 @@ class ItemMangerViewModel: ObservableObject {
                     
                     self.addItemForCurrentUser(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
                     self.addItemToPublicFeed(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
+                    self.createMyPostsCollectionIfNotExists(for: CurrentUser.shared.userID ?? "")
                     self.items.append(newItem)
+                }
+            }
+        }
+    }
+    
+    func createMyPostsCollectionIfNotExists(for userID: String) {
+        let db = Firestore.firestore()
+        let userPostsRef = db.collection("MyPosts").document(userID)
+
+        userPostsRef.getDocument { document, error in
+            if let error = error {
+                print("Error checking MyPosts collection: \(error.localizedDescription)")
+            } else {
+                if let document = document, !document.exists {
+                    // MyPosts collection for the user doesn't exist, create it
+                    userPostsRef.setData(["postids": []]) { error in
+                        if let error = error {
+                            print("Error creating MyPosts collection: \(error.localizedDescription)")
+                        } else {
+                            print("MyPosts collection created successfully")
+                        }
+                    }
                 }
             }
         }
