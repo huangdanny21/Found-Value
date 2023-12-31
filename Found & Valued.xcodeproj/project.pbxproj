@@ -7,10 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B503AFEB2B4226F2005FF71E /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFEA2B4226F2005FF71E /* Channel.swift */; };
+		B503AFEE2B422749005FF71E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFED2B422749005FF71E /* ChatViewController.swift */; };
+		B503AFF32B422A02005FF71E /* UICollectionView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFF22B422A02005FF71E /* UICollectionView+Additions.swift */; };
+		B503AFF52B422A14005FF71E /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFF42B422A14005FF71E /* UIColor+Additions.swift */; };
+		B503AFF72B422A33005FF71E /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFF62B422A33005FF71E /* UIImage+Additions.swift */; };
+		B503AFF92B422A54005FF71E /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFF82B422A54005FF71E /* UIView+Additions.swift */; };
 		B50932692B4132BC00D2F450 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50932682B4132BC00D2F450 /* Post.swift */; };
 		B509326B2B4132FE00D2F450 /* MyPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B509326A2B4132FE00D2F450 /* MyPostViewModel.swift */; };
 		B509326D2B41334A00D2F450 /* MyPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B509326C2B41334A00D2F450 /* MyPostsView.swift */; };
 		B509326F2B4133A300D2F450 /* PostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B509326E2B4133A300D2F450 /* PostDetailsView.swift */; };
+		B55903712B420BA900423F4A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55903702B420BA900423F4A /* Message.swift */; };
+		B55903742B420C4D00423F4A /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = B55903732B420C4D00423F4A /* MessageKit */; };
+		B55903792B42233600423F4A /* ImageMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55903782B42233600423F4A /* ImageMediaItem.swift */; };
+		B559037B2B42236F00423F4A /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559037A2B42236F00423F4A /* DatabaseRepresentation.swift */; };
+		B559037D2B42246600423F4A /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559037C2B42246600423F4A /* Sender.swift */; };
+		B559037F2B42248900423F4A /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559037E2B42248900423F4A /* AppSettings.swift */; };
 		B5B047C32B3E948D00A358B6 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C22B3E948D00A358B6 /* FeedView.swift */; };
 		B5B047C52B3E958300A358B6 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C42B3E958300A358B6 /* FeedItem.swift */; };
 		B5B047C82B3E978300A358B6 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C72B3E978300A358B6 /* CreatePostView.swift */; };
@@ -99,10 +111,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B503AFEA2B4226F2005FF71E /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		B503AFED2B422749005FF71E /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		B503AFF22B422A02005FF71E /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
+		B503AFF42B422A14005FF71E /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
+		B503AFF62B422A33005FF71E /* UIImage+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
+		B503AFF82B422A54005FF71E /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		B50932682B4132BC00D2F450 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B509326A2B4132FE00D2F450 /* MyPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewModel.swift; sourceTree = "<group>"; };
 		B509326C2B41334A00D2F450 /* MyPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsView.swift; sourceTree = "<group>"; };
 		B509326E2B4133A300D2F450 /* PostDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsView.swift; sourceTree = "<group>"; };
+		B55903702B420BA900423F4A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B55903782B42233600423F4A /* ImageMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMediaItem.swift; sourceTree = "<group>"; };
+		B559037A2B42236F00423F4A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
+		B559037C2B42246600423F4A /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		B559037E2B42248900423F4A /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		B5B047C22B3E948D00A358B6 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		B5B047C42B3E958300A358B6 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		B5B047C72B3E978300A358B6 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
@@ -158,6 +181,7 @@
 				B5EEC6492B3E2BA0001D68F3 /* FirebaseDatabase in Frameworks */,
 				B5EEC6572B3E2BA0001D68F3 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				B5EEC64F2B3E2BA0001D68F3 /* FirebaseFirestore in Frameworks */,
+				B55903742B420C4D00423F4A /* MessageKit in Frameworks */,
 				B5EEC63B2B3E2BA0001D68F3 /* FirebaseAnalyticsSwift in Frameworks */,
 				B5EEC6372B3E2BA0001D68F3 /* FirebaseAnalytics in Frameworks */,
 				B5EEC6392B3E2BA0001D68F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -202,6 +226,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B503AFEC2B42273B005FF71E /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B503AFED2B422749005FF71E /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		B503AFF12B4229E3005FF71E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B503AFF22B422A02005FF71E /* UICollectionView+Additions.swift */,
+				B503AFF42B422A14005FF71E /* UIColor+Additions.swift */,
+				B503AFF62B422A33005FF71E /* UIImage+Additions.swift */,
+				B503AFF82B422A54005FF71E /* UIView+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B50932672B41325800D2F450 /* MyPosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +253,14 @@
 				B509326E2B4133A300D2F450 /* PostDetailsView.swift */,
 			);
 			path = MyPosts;
+			sourceTree = "<group>";
+		};
+		B55903752B4222CD00423F4A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B559037A2B42236F00423F4A /* DatabaseRepresentation.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		B5B047C12B3E948000A358B6 /* Feed */ = {
@@ -271,6 +322,8 @@
 		B5EEC5FC2B3E1A31001D68F3 /* Found & Valued */ = {
 			isa = PBXGroup;
 			children = (
+				B503AFF12B4229E3005FF71E /* Extensions */,
+				B55903752B4222CD00423F4A /* Protocols */,
 				B5EEC6812B3E3E3A001D68F3 /* Util */,
 				B5EEC62E2B3E293E001D68F3 /* Models */,
 				B5EEC62D2B3E2937001D68F3 /* Features */,
@@ -306,6 +359,7 @@
 		B5EEC62D2B3E2937001D68F3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				B503AFEC2B42273B005FF71E /* Chat */,
 				B50932672B41325800D2F450 /* MyPosts */,
 				B5D96B5D2B410DBC00D74847 /* Friends */,
 				B5D96B562B41030B00D74847 /* Notifications */,
@@ -331,6 +385,10 @@
 				B5D96B5B2B410B1000D74847 /* Notification.swift */,
 				B5D96B682B41230D00D74847 /* Comment.swift */,
 				B50932682B4132BC00D2F450 /* Post.swift */,
+				B55903702B420BA900423F4A /* Message.swift */,
+				B55903782B42233600423F4A /* ImageMediaItem.swift */,
+				B559037C2B42246600423F4A /* Sender.swift */,
+				B503AFEA2B4226F2005FF71E /* Channel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +427,7 @@
 				B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */,
 				B5EEC6842B3E581C001D68F3 /* ImageCache.swift */,
 				B5D96B592B41062000D74847 /* CurrentUser.swift */,
+				B559037E2B42248900423F4A /* AppSettings.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -445,6 +504,7 @@
 				B5EEC6662B3E2BA0001D68F3 /* FirebaseRemoteConfigSwift */,
 				B5EEC6682B3E2BA0001D68F3 /* FirebaseStorage */,
 				B5EEC66A2B3E2BA0001D68F3 /* FirebaseStorageCombine-Community */,
+				B55903732B420C4D00423F4A /* MessageKit */,
 			);
 			productName = "Found & Valued";
 			productReference = B5EEC5FA2B3E1A31001D68F3 /* Found & Valued.app */;
@@ -520,6 +580,7 @@
 			mainGroup = B5EEC5F12B3E1A31001D68F3;
 			packageReferences = (
 				B5EEC6352B3E2BA0001D68F3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B55903722B420C4D00423F4A /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = B5EEC5FB2B3E1A31001D68F3 /* Products */;
 			projectDirPath = "";
@@ -567,6 +628,8 @@
 			files = (
 				B5EEC6752B3E3435001D68F3 /* LoginView.swift in Sources */,
 				B509326F2B4133A300D2F450 /* PostDetailsView.swift in Sources */,
+				B503AFEB2B4226F2005FF71E /* Channel.swift in Sources */,
+				B503AFF52B422A14005FF71E /* UIColor+Additions.swift in Sources */,
 				B5EEC6912B3E7719001D68F3 /* UserProfileView.swift in Sources */,
 				B5D96B532B40FC4400D74847 /* FriendRequestNotification.swift in Sources */,
 				B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */,
@@ -574,22 +637,29 @@
 				B5EEC68C2B3E6B9A001D68F3 /* SearchViewModel.swift in Sources */,
 				B5EEC6022B3E1A31001D68F3 /* MainViewController.swift in Sources */,
 				B5EEC67D2B3E3A52001D68F3 /* ItemMangerViewModel.swift in Sources */,
+				B559037B2B42236F00423F4A /* DatabaseRepresentation.swift in Sources */,
+				B55903712B420BA900423F4A /* Message.swift in Sources */,
 				B5D96B582B41034900D74847 /* NotificationView.swift in Sources */,
 				B5B047CC2B3EA42C00A358B6 /* FeedViewModel.swift in Sources */,
 				B5EEC6702B3E3187001D68F3 /* MyCollectionView.swift in Sources */,
 				B5EEC66D2B3E2E38001D68F3 /* SignUpViewModel.swift in Sources */,
+				B503AFF32B422A02005FF71E /* UICollectionView+Additions.swift in Sources */,
 				B5B047C82B3E978300A358B6 /* CreatePostView.swift in Sources */,
 				B5B047C52B3E958300A358B6 /* FeedItem.swift in Sources */,
 				B5D96B5F2B410E1700D74847 /* FriendListViewModel.swift in Sources */,
+				B559037F2B42248900423F4A /* AppSettings.swift in Sources */,
+				B55903792B42233600423F4A /* ImageMediaItem.swift in Sources */,
 				B509326D2B41334A00D2F450 /* MyPostsView.swift in Sources */,
 				B5D96B552B40FC6000D74847 /* NotificationsViewModel.swift in Sources */,
 				B5D96B612B410E3900D74847 /* FriendListView.swift in Sources */,
 				B5B047C32B3E948D00A358B6 /* FeedView.swift in Sources */,
 				B5EEC6872B3E61E5001D68F3 /* User.swift in Sources */,
 				B5EEC6792B3E34C0001D68F3 /* HomeViewController.swift in Sources */,
+				B503AFF72B422A33005FF71E /* UIImage+Additions.swift in Sources */,
 				B50932692B4132BC00D2F450 /* Post.swift in Sources */,
 				B5EEC5FE2B3E1A31001D68F3 /* AppDelegate.swift in Sources */,
 				B5EEC6772B3E3459001D68F3 /* AuthView.swift in Sources */,
+				B503AFF92B422A54005FF71E /* UIView+Additions.swift in Sources */,
 				B5D96B672B4122CE00D74847 /* itemDetailsViewModel.swift in Sources */,
 				B5EEC68A2B3E6303001D68F3 /* SearchView.swift in Sources */,
 				B5D96B5C2B410B1000D74847 /* Notification.swift in Sources */,
@@ -598,10 +668,12 @@
 				B5D96B6B2B4123B800D74847 /* CommentSectionView.swift in Sources */,
 				B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */,
 				B5B047CA2B3E982500A358B6 /* PostViewModel.swift in Sources */,
+				B559037D2B42246600423F4A /* Sender.swift in Sources */,
 				B5EEC6002B3E1A31001D68F3 /* SceneDelegate.swift in Sources */,
 				B5EEC68F2B3E7510001D68F3 /* UserProfileViewModel.swift in Sources */,
 				B5D96B5A2B41062000D74847 /* CurrentUser.swift in Sources */,
 				B5D96B692B41230D00D74847 /* Comment.swift in Sources */,
+				B503AFEE2B422749005FF71E /* ChatViewController.swift in Sources */,
 				B5EEC67B2B3E391F001D68F3 /* Item.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -940,6 +1012,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B55903722B420C4D00423F4A /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		B5EEC6352B3E2BA0001D68F3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -951,6 +1031,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B55903732B420C4D00423F4A /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B55903722B420C4D00423F4A /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
 		B5EEC6362B3E2BA0001D68F3 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B5EEC6352B3E2BA0001D68F3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
