@@ -90,12 +90,14 @@ class UserProfileViewModel: ObservableObject {
     func sendFriendRequest(completion: @escaping (Bool) -> Void) {
         guard let currentUserId = Auth.auth().currentUser?.uid else {
             print("User not authenticated")
+            completion(false)
             return
         }
         
         // Assuming 'user' is the user being viewed or the receiver of the friend request
         guard let receiverId = user?.id else {
             print("Receiver ID not found")
+            completion(false)
             return
         }
 
@@ -110,57 +112,42 @@ class UserProfileViewModel: ObservableObject {
         requestQuery.getDocuments { snapshot, error in
             if let error = error {
                 print("Error checking existing request: \(error.localizedDescription)")
+                completion(false)
                 return
             }
             
-            guard let documents = snapshot?.documents else {
-                // If no pending request found, proceed to send a new request
-                db.collection("friendRequests").addDocument(data: [
-                    "senderID": currentUserId,
-                    "receiverID": receiverId,
-                    "status": "pending" // Set status to pending for a new request
-                ]) { error in
-                    if let error = error {
-                        print("Error sending friend request: \(error.localizedDescription)")
-                    } else {
-                        print("Friend request sent successfully")
-                    }
-                }
-                return
-            }
-            
-            // Handle the case where there is an existing pending request
-            if let existingRequest = documents.first {
-                let existingRequestId = existingRequest.documentID
+            guard snapshot?.isEmpty ?? true else {
                 print("There's already a pending request")
-                // You can handle this case as needed, such as showing an alert to the user
-                // or providing a way to cancel the existing request
-                
-                // Example: Cancel the existing request by deleting the document
-                db.collection("friendRequests").document(existingRequestId).delete { error in
-                    if let error = error {
-                        print("Error canceling existing request: \(error.localizedDescription)")
-                        completion(false) // Send false in case of failure
-                    } else {
-                        print("Existing request canceled successfully")
-                        // After canceling the request, send a new one
-                        db.collection("friendRequests").addDocument(data: [
-                            "senderID": currentUserId,
-                            "receiverID": receiverId,
-                            "status": "pending" // Set status to pending for a new request
-                        ]) { error in
-                            if let error = error {
-                                print("Error sending friend request: \(error.localizedDescription)")
-                                completion(false) // Send false in case of failure
-                            } else {
-                                print("Friend request sent successfully")
-                                completion(true) // Send false in case of failure
-                            }
-                        }
-                    }
+                completion(false)
+                return
+            }
+            
+            // Send a new friend request
+            let newRequestRef = db.collection("friendRequests").addDocument(data: [
+                "senderID": currentUserId,
+                "receiverID": receiverId,
+                "status": "pending" // Set status to pending for a new request
+            ])
+            
+            // Get the newly created document ID
+            
+            db.collection("notifications").addDocument(data: [
+                "senderID": currentUserId,
+                "receiverID": receiverId,
+                "requestID": newRequestRef.documentID, // Include the request ID for reference
+                "notificationType": "friendRequest",
+                "status": "unread"
+                // Add other necessary fields to the notification
+            ]) { error in
+                if let error = error {
+                    print("Error adding notification: \(error.localizedDescription)")
+                    completion(false)
+                    return
                 }
+                
+                print("Friend request sent successfully")
+                completion(true)
             }
         }
     }
-
 }
