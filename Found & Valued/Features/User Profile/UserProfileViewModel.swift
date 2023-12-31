@@ -50,7 +50,7 @@ class UserProfileViewModel: ObservableObject {
                 let itemName = data["itemName"] as? String ?? ""
                 let imageUrl = data["imageUrl"] as? String ?? ""
                 let description = data["description"] as? String ?? ""
-                return Item(id: UUID(uuidString: id) ?? UUID(), name: itemName, description: description, imageURL: URL(string: imageUrl))
+                return Item(id: id, name: itemName, description: description, imageURL: URL(string: imageUrl))
             }
             self.userItems = userItems
         }

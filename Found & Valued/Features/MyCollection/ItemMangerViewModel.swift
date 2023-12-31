@@ -42,7 +42,7 @@ class ItemMangerViewModel: ObservableObject {
                 let idString = document.documentID
                 let urlString = data["imageUrl"] as? String ?? ""
                 let url = URL(string: urlString)
-                return Item(id: UUID(uuidString: idString) ?? UUID(), name: name, description: description, imageURL: url)
+                return Item(id: idString, name: name, description: description, imageURL: url)
             }
         }
     }

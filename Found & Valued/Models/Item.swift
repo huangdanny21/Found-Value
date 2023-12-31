@@ -8,14 +8,14 @@
 import Foundation
 
 protocol ItemData {
-    var id: UUID { get }
+    var id: String { get }
     var name: String { get }
     var description: String { get }
     var imageURL: URL? { get set }
 }
 
 struct Item: Identifiable, ItemData, Equatable, Hashable {
-    let id: UUID
+    let id: String
     let name: String
     let description: String
     var imageURL: URL?

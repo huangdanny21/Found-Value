@@ -12,7 +12,7 @@ import SwiftUI
 import FirebaseAuth
 
 class FeedViewModel: ObservableObject {
-    @Published var feedItems: [FeedItem] = []
+    @Published var items: [Item] = []
 
     func fetchPublicFeeds() {
         let db = Firestore.firestore()
@@ -27,14 +27,14 @@ class FeedViewModel: ObservableObject {
                 return
             }
 
-            self.feedItems = documents.compactMap { document in
+            self.items = documents.compactMap { document in
                 let data = document.data()
-                // Create a FeedItem object from the retrieved data
+                // Create an Item object from the retrieved data
                 // Example:
                 let itemTitle = data["itemTitle"] as? String ?? ""
                 let itemDescription = data["itemDescription"] as? String ?? ""
                 let imageURL = data["imageURL"] as? String ?? ""
-                return FeedItem(id: document.documentID, itemTitle: itemTitle, itemDescription: itemDescription, imageURL: imageURL)
+                return Item(id: document.documentID, name: itemTitle, description: itemDescription, imageURL: URL(string: imageURL))
             }
         }
     }

@@ -10,54 +10,39 @@ import SwiftUI
 struct FeedView: View {
     @StateObject var viewModel = FeedViewModel()
 
-    @State private var availableWidth: CGFloat = 0
-    
     let columns = [
         GridItem(.flexible())
     ]
 
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                ScrollView {
-                    Group {
-                        LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(viewModel.feedItems) { feedItem in
-                                NavigationLink(destination: FeedItemDetailsView(feedItem: feedItem)) {
-                                    VStack {
-                                        if let imageURL = URL(string: feedItem.imageURL) {
-                                            CachedImageView(url: imageURL, imageCache: ImageCache.shared)
-                                                .frame(maxHeight: 200)
-                                                .cornerRadius(8)
-                                                .aspectRatio(contentMode: .fit)
-                                        }
-                                        Text(feedItem.itemTitle)
-                                            .font(.headline)
-                                            .multilineTextAlignment(.center)
-                                        
-                                        Text(feedItem.itemDescription)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
-                                            .multilineTextAlignment(.center)
-                                    }
-                                    .padding()
-                                    .background(Color.gray.opacity(0.1))
-                                    .cornerRadius(8)
-                                    .frame(width: availableWidth - 32) // Subtracting padding from total width
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(viewModel.items) { item in
+                        NavigationLink(destination: ItemDetailView(item: item)) {
+                            VStack(alignment: .leading) {
+                                if let imageURL = item.imageURL {
+                                    // Load and display the image using URLSession or your preferred library
+                                    CachedImageView(url: imageURL, imageCache: ImageCache.shared)
                                 }
-                                .buttonStyle(PlainButtonStyle()) // Use this to remove navigation link button style
+                                Text(item.name)
+                                    .font(.headline)
+                                Text(item.description)
+                                    .font(.subheadline)
                             }
+                            .padding()
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(8)
                         }
-                        .padding()
-                        .onAppear {
-                            availableWidth = geometry.size.width // Get available width
-                            viewModel.fetchPublicFeeds()
-                        }
+                        .buttonStyle(PlainButtonStyle()) // Use this to remove navigation link button style
                     }
-                    
                 }
-                .navigationTitle("Public Feeds")
+                .padding()
+                .onAppear {
+                    viewModel.fetchPublicFeeds()
+                }
             }
+            .navigationTitle("Public Feeds")
         }
     }
 }
