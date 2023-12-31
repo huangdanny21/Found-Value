@@ -92,7 +92,7 @@ class MyCollectionViewModel: ObservableObject {
 
         let newItemData: [String: Any] = [
             "itemName": itemName,
-            "description": itemDescription,
+            "itemDescription": itemDescription,
             "imageUrl": imageUrl
             // Other item details can be added here
         ]
@@ -106,5 +106,6 @@ class MyCollectionViewModel: ObservableObject {
             }
         }
     }
+
 
 }

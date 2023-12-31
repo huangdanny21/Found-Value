@@ -39,8 +39,7 @@ class SearchViewModel: ObservableObject {
                     let profilePictureURL = URL(string: profilePictureURLString ?? "")
                     let bio = data["bio"] as? String
                     let id = data["id"] as? String ?? ""
-                    let uuid = UUID(uuidString: id) ?? UUID()
-                    return User(id: uuid, name: name, email: email, profilePictureURL: profilePictureURL, bio: bio)
+                    return User(id: id, name: name, email: email, profilePictureURL: profilePictureURL, bio: bio)
                 }
                 
                 self.users = users

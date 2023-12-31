@@ -7,12 +7,14 @@
 
 import Foundation
 
-struct User: Identifiable, Hashable {
-    var id = UUID()
+struct User: Identifiable, Hashable, Equatable {
+    var id: String
     let name: String
     let email: String?
     let profilePictureURL: URL? // URL for the user's profile picture
     let bio: String?
+    
+    var items: [Item]?
 
     // Other user attributes as needed
 }

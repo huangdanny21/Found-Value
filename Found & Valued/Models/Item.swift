@@ -14,7 +14,7 @@ protocol ItemData {
     var imageURL: URL? { get set }
 }
 
-struct Item: Identifiable, ItemData {
+struct Item: Identifiable, ItemData, Equatable, Hashable {
     let id: UUID
     let name: String
     let description: String
