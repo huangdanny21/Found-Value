@@ -27,8 +27,11 @@ class HomeViewController: UITabBarController {
              
         let notificationsVC = UIHostingController(rootView: NotificationView())
         notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: 3)
+        
+        let friendsVC = UIHostingController(rootView: FriendListView())
+        friendsVC.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(systemName: "person.2"), tag: 4)
 
-        viewControllers = [cardCollectionVC, feedVC, searchVC, notificationsVC]
+        viewControllers = [cardCollectionVC, feedVC, searchVC, notificationsVC, friendsVC]
     }
     
     func logout() {

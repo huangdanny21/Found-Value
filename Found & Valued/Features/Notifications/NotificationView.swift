@@ -20,7 +20,15 @@ struct NotificationView: View {
                 if notification.notificationType == .friendRequest {
                     HStack {
                         Button("Accept") {
-                            notificationsViewModel.acceptFriendRequest(notification)
+                            notificationsViewModel.acceptFriendRequest(notification.senderID) { success in
+                                if success {
+                                    // Handle UI update or navigation after accepting the friend request
+                                    print("Friend request accepted successfully")
+                                } else {
+                                    // Handle failure case
+                                    print("Failed to accept friend request")
+                                }
+                            }
                         }
                         .foregroundColor(.green)
                         
@@ -39,8 +47,6 @@ struct NotificationView: View {
         }
     }
 }
-
-
 
 struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {

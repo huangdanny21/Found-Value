@@ -15,6 +15,6 @@ struct User: Identifiable, Hashable, Equatable {
     let bio: String?
     
     var items: [Item]?
-
+    var friendsList: [String]
     // Other user attributes as needed
 }
