@@ -21,17 +21,14 @@ class HomeViewController: UITabBarController {
         
         let feedVC = UIHostingController(rootView: FeedView())
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 1)
-        
-        let searchVC = UIHostingController(rootView: SearchView())
-        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
              
         let notificationsVC = UIHostingController(rootView: NotificationView())
-        notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: 3)
+        notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: 2)
         
         let friendsVC = UIHostingController(rootView: FriendListView())
-        friendsVC.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(systemName: "person.2"), tag: 4)
+        friendsVC.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(systemName: "person.2"), tag: 3)
 
-        viewControllers = [cardCollectionVC, feedVC, searchVC, notificationsVC, friendsVC]
+        viewControllers = [cardCollectionVC, feedVC, notificationsVC, friendsVC]
     }
     
     func logout() {

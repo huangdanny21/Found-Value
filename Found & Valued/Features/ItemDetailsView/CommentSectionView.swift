@@ -14,10 +14,16 @@ struct CommentSectionView: View {
 
     var body: some View {
         VStack {
-            List {
-                ForEach(itemDetailsViewModel.comments) { comment in
-                    Text(comment.text)
-                        .padding()
+            if itemDetailsViewModel.comments.isEmpty {
+                Text("No comments so far")
+            } else {
+                List {
+                    ForEach(itemDetailsViewModel.comments) { comment in
+                        Text(comment.username)
+                            .padding()
+                        Text(comment.text)
+                            .padding()
+                    }
                 }
             }
 
@@ -35,7 +41,6 @@ struct CommentSectionView: View {
             .padding()
         }
         .onAppear {
-            itemDetailsViewModel.fetchComments(for: item.id)
         }
     }
 }

@@ -5,7 +5,6 @@
 //  Created by Zhi Yong Huang on 12/28/23.
 //
 
-import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 import SwiftUI
@@ -16,7 +15,9 @@ class FeedViewModel: ObservableObject {
 
     func fetchPublicFeeds() {
         let db = Firestore.firestore()
-        db.collection("publicFeed").document("posts").collection("posts").getDocuments { snapshot, error in
+        let postsCollection = db.collection("publicFeed").document("posts").collection("posts")
+        
+        postsCollection.getDocuments { snapshot, error in
             if let error = error {
                 print("Error fetching public feed items: \(error.localizedDescription)")
                 return
@@ -31,8 +32,8 @@ class FeedViewModel: ObservableObject {
                 let data = document.data()
                 // Create an Item object from the retrieved data
                 // Example:
-                let itemTitle = data["itemTitle"] as? String ?? ""
-                let itemDescription = data["itemDescription"] as? String ?? ""
+                let itemTitle = data["title"] as? String ?? ""
+                let itemDescription = data["description"] as? String ?? ""
                 let imageURL = data["imageURL"] as? String ?? ""
                 return Item(id: document.documentID, name: itemTitle, description: itemDescription, imageURL: URL(string: imageURL))
             }

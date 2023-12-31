@@ -14,7 +14,6 @@ class ItemDetailsViewModel: ObservableObject {
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
     
-
     // Function to fetch comments for a specific item
     func fetchComments(for itemId: String) {
         let commentsRef = db.collection("items").document(itemId).collection("comments")

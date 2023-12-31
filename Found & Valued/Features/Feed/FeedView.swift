@@ -9,7 +9,8 @@ import SwiftUI
 
 struct FeedView: View {
     @StateObject var viewModel = FeedViewModel()
-
+    @State private var searchText = ""
+    
     let columns = [
         GridItem(.flexible())
     ]
@@ -22,7 +23,6 @@ struct FeedView: View {
                         NavigationLink(destination: ItemDetailView(item: item)) {
                             VStack(alignment: .leading) {
                                 if let imageURL = item.imageURL {
-                                    // Load and display the image using URLSession or your preferred library
                                     CachedImageView(url: imageURL, imageCache: ImageCache.shared)
                                 }
                                 Text(item.name)
@@ -34,7 +34,7 @@ struct FeedView: View {
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(8)
                         }
-                        .buttonStyle(PlainButtonStyle()) // Use this to remove navigation link button style
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 .padding()
@@ -43,6 +43,9 @@ struct FeedView: View {
                 }
             }
             .navigationTitle("Public Feeds")
+            .navigationBarItems(trailing: NavigationLink(destination: SearchView(), label: {
+                Image(systemName: "magnifyingglass")
+            }))
         }
     }
 }

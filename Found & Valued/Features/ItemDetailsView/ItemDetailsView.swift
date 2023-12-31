@@ -22,9 +22,11 @@ struct ItemDetailView: View {
             // Show item image if available
             if let imageURL = item.imageURL {
                 // Replace with your image loading logic (e.g., URLImage, AsyncImage)
-                Text("Load image from URL: \(imageURL)")
+                CachedImageView(url: imageURL, imageCache: ImageCache.shared)
             }
 
+            Spacer()
+            
             // Display comment section
             CommentSectionView(item: item, itemDetailsViewModel: itemDetailsViewModel)
                 .padding()
