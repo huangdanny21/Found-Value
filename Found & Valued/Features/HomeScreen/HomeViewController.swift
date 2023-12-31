@@ -9,6 +9,14 @@ import UIKit
 import SwiftUI
 import FirebaseAuth
 
+enum Tabs: Int {
+    case cardCollection
+    case feed
+    case myPosts
+    case notifications
+    case friends
+}
+
 class HomeViewController: UITabBarController {
     
     // MARK: View Life Cycle
@@ -17,18 +25,21 @@ class HomeViewController: UITabBarController {
         super.viewDidLoad()
         
         let cardCollectionVC = UIHostingController(rootView: MyCollectionView(onlogout: logout))
-        cardCollectionVC.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "square.grid.2x2"), tag: 0)
+        cardCollectionVC.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "square.grid.2x2"), tag: Tabs.cardCollection.rawValue)
         
         let feedVC = UIHostingController(rootView: FeedView())
-        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 1)
+        feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: Tabs.cardCollection.rawValue)
              
         let notificationsVC = UIHostingController(rootView: NotificationView())
-        notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: 2)
+        notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: Tabs.notifications.rawValue)
         
         let friendsVC = UIHostingController(rootView: FriendListView())
-        friendsVC.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(systemName: "person.2"), tag: 3)
+        friendsVC.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(systemName: "person.2"), tag: Tabs.friends.rawValue)
 
-        viewControllers = [cardCollectionVC, feedVC, notificationsVC, friendsVC]
+        let myPostsVC = UIHostingController(rootView: MyPostsView())
+        myPostsVC.tabBarItem = UITabBarItem(title: "My Posts", image: UIImage(systemName: "book"), tag: Tabs.myPosts.rawValue)
+        
+        viewControllers = [cardCollectionVC, feedVC, notificationsVC, friendsVC, myPostsVC]
     }
     
     func logout() {

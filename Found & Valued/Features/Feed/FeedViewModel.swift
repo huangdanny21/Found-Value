@@ -5,6 +5,7 @@
 //  Created by Zhi Yong Huang on 12/28/23.
 //
 
+import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 import SwiftUI
@@ -13,30 +14,29 @@ import FirebaseAuth
 class FeedViewModel: ObservableObject {
     @Published var items: [Item] = []
 
-    func fetchPublicFeeds() {
+    func fetchUserPosts() {
         let db = Firestore.firestore()
-        let postsCollection = db.collection("publicFeed").document("posts").collection("posts")
-        
-        postsCollection.getDocuments { snapshot, error in
+        let userPostsCollection = db.collection("publicFeed").document("posts").collection("posts")
+
+        userPostsCollection.getDocuments { snapshot, error in
             if let error = error {
-                print("Error fetching public feed items: \(error.localizedDescription)")
+                print("Error fetching user posts: \(error.localizedDescription)")
                 return
             }
-
+            
             guard let documents = snapshot?.documents else {
-                print("No public feed items found")
+                print("No user posts found")
                 return
             }
-
+            
             self.items = documents.compactMap { document in
                 let data = document.data()
-                // Create an Item object from the retrieved data
-                // Example:
-                let itemTitle = data["title"] as? String ?? ""
-                let itemDescription = data["description"] as? String ?? ""
+                let itemTitle = data["itemTitle"] as? String ?? ""
+                let itemDescription = data["itemDescription"] as? String ?? ""
                 let imageURL = data["imageURL"] as? String ?? ""
                 return Item(id: document.documentID, name: itemTitle, description: itemDescription, imageURL: URL(string: imageURL))
             }
         }
     }
 }
+

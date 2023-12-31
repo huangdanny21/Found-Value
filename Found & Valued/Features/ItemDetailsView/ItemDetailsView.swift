@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemDetailView: View {
-    let item: Item // Assuming Item is a struct that conforms to Identifiable
+    let item: Item
     @StateObject var itemDetailsViewModel = ItemDetailsViewModel()
 
     var body: some View {

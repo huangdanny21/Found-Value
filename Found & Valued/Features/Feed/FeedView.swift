@@ -39,7 +39,7 @@ struct FeedView: View {
                 }
                 .padding()
                 .onAppear {
-                    viewModel.fetchPublicFeeds()
+                    viewModel.fetchUserPosts()
                 }
             }
             .navigationTitle("Public Feeds")
