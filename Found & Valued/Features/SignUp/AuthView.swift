@@ -34,6 +34,7 @@ struct AuthView: View {
     
     func checkAuthentication() {
         if let user = Auth.auth().currentUser {
+            CurrentUser.shared.setupCurrentUser()
             if user.isAnonymous {
                 // User is logged in anonymously
                 isLoggedIn = true

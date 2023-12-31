@@ -126,6 +126,7 @@ class UserProfileViewModel: ObservableObject {
             let newRequestRef = db.collection("friendRequests").addDocument(data: [
                 "senderID": currentUserId,
                 "receiverID": receiverId,
+                "username": CurrentUser.shared.username ?? "Error",
                 "status": "pending" // Set status to pending for a new request
             ])
             
@@ -136,6 +137,7 @@ class UserProfileViewModel: ObservableObject {
                 "receiverID": receiverId,
                 "requestID": newRequestRef.documentID, // Include the request ID for reference
                 "notificationType": "friendRequest",
+                "username": CurrentUser.shared.username ?? "",
                 "status": "unread"
                 // Add other necessary fields to the notification
             ]) { error in

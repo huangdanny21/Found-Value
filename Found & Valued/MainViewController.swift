@@ -17,10 +17,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         if let _ = Auth.auth().currentUser {
+            CurrentUser.shared.setupCurrentUser()
             let homeView = HomeViewController()
             addChild(homeView)
             view.addSubview(homeView.view)
-            
             
             // Setup constraints for the SwiftUI view
             homeView.view.translatesAutoresizingMaskIntoConstraints = false

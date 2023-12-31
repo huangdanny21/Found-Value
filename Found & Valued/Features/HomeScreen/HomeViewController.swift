@@ -24,8 +24,11 @@ class HomeViewController: UITabBarController {
         
         let searchVC = UIHostingController(rootView: SearchView())
         searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
-                
-        viewControllers = [cardCollectionVC, feedVC, searchVC]
+             
+        let notificationsVC = UIHostingController(rootView: NotificationView())
+        notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: 3)
+
+        viewControllers = [cardCollectionVC, feedVC, searchVC, notificationsVC]
     }
     
     func logout() {
