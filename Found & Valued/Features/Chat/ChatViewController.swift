@@ -291,7 +291,7 @@ extension ChatViewController: MessagesDataSource {
     
     
     var currentSender: SenderType {
-        Sender(senderId: user.id, displayName: AppSettings.displayName)
+        Sender(senderId: user.uid, displayName: CurrentUser.shared.username ?? "")
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {

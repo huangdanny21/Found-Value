@@ -14,7 +14,7 @@ enum Tabs: Int {
     case feed
     case myPosts
     case notifications
-    case friends
+    case chat
 }
 
 class HomeViewController: UITabBarController {
@@ -32,14 +32,19 @@ class HomeViewController: UITabBarController {
              
         let notificationsVC = UIHostingController(rootView: NotificationView())
         notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: Tabs.notifications.rawValue)
-        
-        let friendsVC = UIHostingController(rootView: FriendListView())
-        friendsVC.tabBarItem = UITabBarItem(title: "Friends", image: UIImage(systemName: "person.2"), tag: Tabs.friends.rawValue)
-
+                
         let myPostsVC = UIHostingController(rootView: MyPostsView())
         myPostsVC.tabBarItem = UITabBarItem(title: "My Posts", image: UIImage(systemName: "book"), tag: Tabs.myPosts.rawValue)
         
-        viewControllers = [cardCollectionVC, feedVC, notificationsVC, friendsVC, myPostsVC]
+        viewControllers = [cardCollectionVC, feedVC, notificationsVC, myPostsVC]
+        
+        if let user = Auth.auth().currentUser {
+            let channelsVC = ChannelsViewController(currentUser: user)
+            channelsVC.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "person.2"), tag: Tabs.chat.rawValue)
+            let navVC = UINavigationController(rootViewController: channelsVC)
+
+            viewControllers?.append(navVC)
+        }
     }
     
     func logout() {

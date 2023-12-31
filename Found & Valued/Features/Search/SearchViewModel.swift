@@ -8,7 +8,7 @@
 import FirebaseFirestore
 
 class SearchViewModel: ObservableObject {
-    @Published var users: [User] = []
+    @Published var users: [FVUser] = []
     
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
@@ -31,7 +31,7 @@ class SearchViewModel: ObservableObject {
                     return
                 }
                 
-                let users = documents.compactMap { document -> User? in
+                let users = documents.compactMap { document -> FVUser? in
                     let data = document.data()
                     guard let name = data["username"] as? String else { return nil }
                     let email = data["email"] as? String
@@ -39,7 +39,7 @@ class SearchViewModel: ObservableObject {
                     let profilePictureURL = URL(string: profilePictureURLString ?? "")
                     let bio = data["bio"] as? String
                     let id = data["id"] as? String ?? ""
-                    return User(id: id, name: name, email: email, profilePictureURL: profilePictureURL, bio: bio, friendsList: [])
+                    return FVUser(id: id, name: name, email: email, profilePictureURL: profilePictureURL, bio: bio, friendsList: [])
                 }
                 
                 self.users = users

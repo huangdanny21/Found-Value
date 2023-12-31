@@ -12,14 +12,14 @@ import Combine
 class UserProfileViewModel: ObservableObject {
     @Published var userItems: [Item] = []
     var areUsersFriends = false
-    var user: User?
+    var user: FVUser?
     
     private var db = Firestore.firestore()
     private var userListener: ListenerRegistration?
 
     // MARK: Life Cycle
     
-    init(with user: User) {
+    init(with user: FVUser) {
         self.user = user
     }
 
@@ -29,7 +29,7 @@ class UserProfileViewModel: ObservableObject {
     
     // MARK: - Functions
 
-    func fetchUserItems(for user: User) {
+    func fetchUserItems(for user: FVUser) {
         let itemsRef = db.collection("users").document(user.id).collection("items")
         itemsRef.getDocuments { snapshot, error in
             if let error = error {

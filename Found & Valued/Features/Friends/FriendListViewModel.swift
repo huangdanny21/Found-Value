@@ -10,7 +10,7 @@ import FirebaseAuth
 import Combine
 
 class FriendListViewModel: ObservableObject {
-    @Published var friendsList: [User] = []
+    @Published var friendsList: [FVUser] = []
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
 
@@ -38,7 +38,7 @@ class FriendListViewModel: ObservableObject {
             }
             
             // Fetch User objects for each friend in the friendsList
-            var users: [User] = []
+            var users: [FVUser] = []
             let dispatchGroup = DispatchGroup()
             
             for friendId in friends {
@@ -52,7 +52,7 @@ class FriendListViewModel: ObservableObject {
                     }
                     
                     if let friendData = friendSnapshot?.data() {
-                        let friend = User(
+                        let friend = FVUser(
                             id: friendId,
                             name: friendData["username"] as? String ?? "",
                             email: friendData["email"] as? String,

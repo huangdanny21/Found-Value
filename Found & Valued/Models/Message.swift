@@ -33,14 +33,14 @@ struct Message: MessageType {
   // MARK: Constructors
     
   init(user: User, content: String) {
-    sender = Sender(senderId: user.id, displayName: AppSettings.displayName)
+      sender = Sender(senderId: user.uid, displayName: CurrentUser.shared.username ?? "")
     self.content = content
     sentDate = Date()
     id = nil
   }
 
   init(user: User, image: UIImage) {
-    sender = Sender(senderId: user.id, displayName: AppSettings.displayName)
+    sender = Sender(senderId: user.uid, displayName: CurrentUser.shared.username ?? "")
     self.image = image
     content = ""
     sentDate = Date()
