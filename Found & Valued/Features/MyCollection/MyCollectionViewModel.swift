@@ -47,7 +47,6 @@ class MyCollectionViewModel: ObservableObject {
         }
     }
 
-    
     // Function to upload item with image to Firestore
     func uploadItemToFirestore(item: Item, image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {

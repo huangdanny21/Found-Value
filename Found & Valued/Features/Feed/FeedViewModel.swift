@@ -16,7 +16,7 @@ class FeedViewModel: ObservableObject {
 
     func fetchPublicFeeds() {
         let db = Firestore.firestore()
-        db.collection("PublicFeed").document("Posts").collection("Posts").getDocuments { snapshot, error in
+        db.collection("publicFeed").document("posts").collection("posts").getDocuments { snapshot, error in
             if let error = error {
                 print("Error fetching public feed items: \(error.localizedDescription)")
                 return

@@ -12,7 +12,7 @@ struct MyCollectionView: View {
     @StateObject private var myCollectionViewModel = MyCollectionViewModel()
     @State private var isAddItemViewPresented = false
     @State private var imageCache = ImageCache.shared
-    
+    var onlogout: () -> Void
     var body: some View {
         NavigationView {
             ScrollView {
@@ -36,16 +36,22 @@ struct MyCollectionView: View {
                 .padding()
             }
             .navigationTitle("My Collection")
-            .navigationBarItems(trailing:
+            .navigationBarItems(leading:
                 Button(action: {
-                    // Action to add an item (e.g., navigate to a view to add an item)
-                    // Add your logic here to perform the action when the plus button is tapped
-                    // For example, navigate to a new view to add an item
+                // Action to add an item (e.g., navigate to a view to add an item)
+                // Add your logic here to perform the action when the plus button is tapped
+                // For example, navigate to a new view to add an item
+                onlogout()
+            }) {
+                Text("Logout")
+            }, trailing:             Button(action: {
+                // Action to add an item (e.g., navigate to a view to add an item)
+                // Add your logic here to perform the action when the plus button is tapped
+                // For example, navigate to a new view to add an item
                 isAddItemViewPresented = true
-                }) {
-                    Image(systemName: "plus")
-                }
-            )
+            }) {
+                Image(systemName: "plus")
+            })
             .sheet(isPresented: $isAddItemViewPresented, content: {
                 AddItemView(myCollectionViewModel: myCollectionViewModel)
                     .onDisappear {

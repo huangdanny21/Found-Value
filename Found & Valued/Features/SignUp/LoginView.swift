@@ -39,6 +39,7 @@ struct LoginView: View {
                 
                 Button("Login") {
                     // Handle login action
+                    login()
                 }
                 .padding()
                 .foregroundColor(.white)

@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import FirebaseAuth
 
 class HomeViewController: UITabBarController {
     
@@ -15,7 +16,7 @@ class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cardCollectionVC = UIHostingController(rootView: MyCollectionView())
+        let cardCollectionVC = UIHostingController(rootView: MyCollectionView(onlogout: logout))
         cardCollectionVC.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "square.grid.2x2"), tag: 0)
         
         let feedVC = UIHostingController(rootView: FeedView())
@@ -25,6 +26,26 @@ class HomeViewController: UITabBarController {
         searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
                 
         viewControllers = [cardCollectionVC, feedVC, searchVC]
+    }
+    
+    func logout() {
+        do {
+            try Auth.auth().signOut()
+            // If the user logs out successfully, present the MainViewController again
+            let mainViewController = MainViewController()
+            UIApplication
+                .shared
+                .connectedScenes
+                .compactMap { ($0 as? UIWindowScene)?.keyWindow }
+                .last?.rootViewController = mainViewController
+            UIApplication
+                .shared
+                .connectedScenes
+                .compactMap { ($0 as? UIWindowScene)?.keyWindow }
+                .last?.makeKeyAndVisible()
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError.localizedDescription)")
+        }
     }
 }
 
