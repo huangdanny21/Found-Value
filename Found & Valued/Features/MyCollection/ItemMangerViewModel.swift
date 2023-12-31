@@ -1,5 +1,5 @@
 //
-//  MyCollectionViewModel.swift
+//  ItemMangerViewModel.swift
 //  Found & Valued
 //
 //  Created by Zhi Yong Huang on 12/28/23.
@@ -11,7 +11,7 @@ import FirebaseStorage
 import SwiftUI
 import FirebaseAuth
 
-class MyCollectionViewModel: ObservableObject {
+class ItemMangerViewModel: ObservableObject {
     @Published var items: [Item] = []
     @State var shouldRefresh = false // Add a state variable for refreshing
 
@@ -76,6 +76,7 @@ class MyCollectionViewModel: ObservableObject {
                     let newItem = Item(id: item.id, name: item.name, description: item.description, imageURL: URL(string: imageUrl))
                     
                     self.addItemForCurrentUser(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
+                    self.addItemToPublicFeed(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
                     self.items.append(newItem)
                 }
             }
@@ -107,5 +108,30 @@ class MyCollectionViewModel: ObservableObject {
         }
     }
 
+    func addItemToPublicFeed(itemName: String, itemDescription: String, imageUrl: String) {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("User not authenticated")
+            return
+        }
 
+        let db = Firestore.firestore()
+
+        let newPostData: [String: Any] = [
+            "userID": currentUserID,
+            "itemName": itemName,
+            "itemDescription": itemDescription,
+            "imageURL": imageUrl,
+            "timestamp": FieldValue.serverTimestamp() // Use Firestore server timestamp
+            // Other item details can be added here
+        ]
+
+        // Add a new document directly under the 'Posts' collection in 'PublicFeed'
+        db.collection("publicFeed").document("posts").collection("posts").addDocument(data: newPostData) { error in
+            if let error = error {
+                print("Error adding item to public feed: \(error.localizedDescription)")
+            } else {
+                print("Item added to public feed successfully")
+            }
+        }
+    }
 }

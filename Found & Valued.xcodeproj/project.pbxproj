@@ -12,7 +12,6 @@
 		B5B047C82B3E978300A358B6 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C72B3E978300A358B6 /* CreatePostView.swift */; };
 		B5B047CA2B3E982500A358B6 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C92B3E982500A358B6 /* PostViewModel.swift */; };
 		B5B047CC2B3EA42C00A358B6 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047CB2B3EA42C00A358B6 /* FeedViewModel.swift */; };
-		B5D96B512B40DAE700D74847 /* RandomUserGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D96B502B40DAE700D74847 /* RandomUserGenerator.swift */; };
 		B5EEC5FE2B3E1A31001D68F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC5FD2B3E1A31001D68F3 /* AppDelegate.swift */; };
 		B5EEC6002B3E1A31001D68F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC5FF2B3E1A31001D68F3 /* SceneDelegate.swift */; };
 		B5EEC6022B3E1A31001D68F3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6012B3E1A31001D68F3 /* MainViewController.swift */; };
@@ -56,7 +55,7 @@
 		B5EEC6772B3E3459001D68F3 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6762B3E3459001D68F3 /* AuthView.swift */; };
 		B5EEC6792B3E34C0001D68F3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6782B3E34C0001D68F3 /* HomeViewController.swift */; };
 		B5EEC67B2B3E391F001D68F3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67A2B3E391F001D68F3 /* Item.swift */; };
-		B5EEC67D2B3E3A52001D68F3 /* MyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67C2B3E3A52001D68F3 /* MyCollectionViewModel.swift */; };
+		B5EEC67D2B3E3A52001D68F3 /* ItemMangerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */; };
 		B5EEC6802B3E3DF7001D68F3 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */; };
 		B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */; };
 		B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6842B3E581C001D68F3 /* ImageCache.swift */; };
@@ -91,7 +90,6 @@
 		B5B047C72B3E978300A358B6 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
 		B5B047C92B3E982500A358B6 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		B5B047CB2B3EA42C00A358B6 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
-		B5D96B502B40DAE700D74847 /* RandomUserGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserGenerator.swift; sourceTree = "<group>"; };
 		B5EEC5FA2B3E1A31001D68F3 /* Found & Valued.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Found & Valued.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EEC5FD2B3E1A31001D68F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5EEC5FF2B3E1A31001D68F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,7 +110,7 @@
 		B5EEC6762B3E3459001D68F3 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B5EEC6782B3E34C0001D68F3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B5EEC67A2B3E391F001D68F3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		B5EEC67C2B3E3A52001D68F3 /* MyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewModel.swift; sourceTree = "<group>"; };
+		B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemMangerViewModel.swift; sourceTree = "<group>"; };
 		B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B5EEC6842B3E581C001D68F3 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -296,7 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				B5EEC66F2B3E3187001D68F3 /* MyCollectionView.swift */,
-				B5EEC67C2B3E3A52001D68F3 /* MyCollectionViewModel.swift */,
+				B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */,
 				B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */,
 			);
 			path = MyCollection;
@@ -315,7 +313,6 @@
 			children = (
 				B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */,
 				B5EEC6842B3E581C001D68F3 /* ImageCache.swift */,
-				B5D96B502B40DAE700D74847 /* RandomUserGenerator.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -516,7 +513,7 @@
 				B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */,
 				B5EEC68C2B3E6B9A001D68F3 /* SearchViewModel.swift in Sources */,
 				B5EEC6022B3E1A31001D68F3 /* MainViewController.swift in Sources */,
-				B5EEC67D2B3E3A52001D68F3 /* MyCollectionViewModel.swift in Sources */,
+				B5EEC67D2B3E3A52001D68F3 /* ItemMangerViewModel.swift in Sources */,
 				B5B047CC2B3EA42C00A358B6 /* FeedViewModel.swift in Sources */,
 				B5EEC6702B3E3187001D68F3 /* MyCollectionView.swift in Sources */,
 				B5EEC66D2B3E2E38001D68F3 /* SignUpViewModel.swift in Sources */,
@@ -532,7 +529,6 @@
 				B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */,
 				B5B047CA2B3E982500A358B6 /* PostViewModel.swift in Sources */,
 				B5EEC6002B3E1A31001D68F3 /* SceneDelegate.swift in Sources */,
-				B5D96B512B40DAE700D74847 /* RandomUserGenerator.swift in Sources */,
 				B5EEC68F2B3E7510001D68F3 /* UserProfileViewModel.swift in Sources */,
 				B5EEC67B2B3E391F001D68F3 /* Item.swift in Sources */,
 			);

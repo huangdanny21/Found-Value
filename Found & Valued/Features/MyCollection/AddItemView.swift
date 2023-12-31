@@ -13,7 +13,7 @@ struct AddItemView: View {
     @State var isImagePickerPresented = false
     @Environment(\.presentationMode) var presentationMode
 
-    var myCollectionViewModel: MyCollectionViewModel // Your view model
+    var myCollectionViewModel: ItemMangerViewModel // Your view model
 
     
     var isAddButtonDisabled: Bool {
@@ -83,7 +83,7 @@ struct AddItemView: View {
         .navigationTitle("Add Item")
     }
     
-    init(myCollectionViewModel: MyCollectionViewModel) {
+    init(myCollectionViewModel: ItemMangerViewModel) {
         self.myCollectionViewModel = myCollectionViewModel
     }
 }

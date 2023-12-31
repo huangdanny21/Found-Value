@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct UserProfileView: View {
     @ObservedObject var userProfileViewModel: UserProfileViewModel // Assuming you have a UserProfileViewModel
+    @State private var isRequestSent: Bool = false // To track the request status
 
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 16),
@@ -24,7 +26,29 @@ struct UserProfileView: View {
             // Display user profile information
             Text("Username: \(userProfileViewModel.user?.name ?? "")")
             Text("Email: \(userProfileViewModel.user?.email ?? "")")
-
+            if let currentUser = Auth.auth().currentUser, let viewedUser = userProfileViewModel.user {
+                if currentUser.uid != viewedUser.id {
+                    if !userProfileViewModel.areUsersFriends {
+                        Button(action: {
+                            userProfileViewModel.sendFriendRequest { success in
+                                if success {
+                                    isRequestSent = true
+                                } else {
+                                    // Handle failure, show an alert or message to the user
+                                }
+                            }
+                        }) {
+                            Text(isRequestSent ? "Request Sent" : "Add Friend")
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(isRequestSent ? Color.gray : Color.blue)
+                                .cornerRadius(8)
+                        }
+                        .disabled(isRequestSent) // Disable button if request is already sent
+                        .padding()
+                    }
+                }
+            }
             // Add other user profile details as needed
 
             Spacer()
@@ -51,12 +75,6 @@ struct UserProfileView: View {
             } else {
                 Text("No items to display")
             }
-
-            Button("Edit Profile") {
-                // Functionality to edit the user profile
-                // You can implement an edit profile screen or action here
-            }
-            .padding()
         }
         .onAppear {
             if let user = userProfileViewModel.user {

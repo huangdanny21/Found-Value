@@ -10,12 +10,20 @@ import FirebaseCore
 @main
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        // Request user authorization for notifications
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if granted {
+                print("Notification authorization granted")
+            } else {
+                print("Notification authorization denied")
+            }
+        }
+        
+        application.registerForRemoteNotifications()
+        
         return true
     }
 
@@ -33,6 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    // Handle receiving remote notifications while app is in background or not running
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // Process received notification when the app is in background or not running
+        // Access the notification payload in userInfo
+    }
+    
+    // Handle failed remote notification registration
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        // Handle failed registration
+        print("Failed to register for remote notifications: \(error.localizedDescription)")
+    }
 
 }
 

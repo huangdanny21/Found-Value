@@ -9,31 +9,35 @@ import SwiftUI
 import UIKit
 
 struct MyCollectionView: View {
-    @StateObject private var myCollectionViewModel = MyCollectionViewModel()
+    @StateObject private var myCollectionViewModel = ItemMangerViewModel()
     @State private var isAddItemViewPresented = false
     @State private var imageCache = ImageCache.shared
     var onlogout: () -> Void
+    
+    
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)], spacing: 16) {
-                    ForEach(myCollectionViewModel.items) { item in
-                        VStack(alignment: .leading) {
-                            if let imageURL = item.imageURL {
-                                // Load and display the image using URLSession or your preferred library
-                                CachedImageView(url: imageURL, imageCache: imageCache)
+                Group {
+                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)], spacing: 16) {
+                        ForEach(myCollectionViewModel.items) { item in
+                            VStack(alignment: .leading) {
+                                if let imageURL = item.imageURL {
+                                    // Load and display the image using URLSession or your preferred library
+                                    CachedImageView(url: imageURL, imageCache: imageCache)
+                                }
+                                Text(item.name)
+                                    .font(.headline)
+                                Text(item.description)
+                                    .font(.subheadline)
                             }
-                            Text(item.name)
-                                .font(.headline)
-                            Text(item.description)
-                                .font(.subheadline)
+                            .padding()
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(8)
                         }
-                        .padding()
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(8)
                     }
+                    .padding()
                 }
-                .padding()
             }
             .navigationTitle("My Collection")
             .navigationBarItems(leading:
