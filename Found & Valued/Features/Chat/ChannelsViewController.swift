@@ -77,7 +77,7 @@ final class ChannelsViewController: UITableViewController {
         var friendListView = FriendListView()
         friendListView.userSelected = { user in
             self.dismissFriendListView {
-                self.addChannelToFirestore(channelName: user.name, messageData: Channel(name: user.name).representation)
+                self.addChannelToFirestore(channelName: user.name, messageData: [:])
             } // Dismiss FriendListView upon selection
         }
 
@@ -117,6 +117,7 @@ final class ChannelsViewController: UITableViewController {
 
                 DispatchQueue.main.async {
                     if let channel = Channel(document: document) {
+                        channel.id = channelID
                         self.addChannelToTable(channel)
                     }
                 }
@@ -185,6 +186,7 @@ final class ChannelsViewController: UITableViewController {
                 } else {
                     DispatchQueue.main.async {
                         let channel = Channel(name: channelName)
+                        channel.id = newChannelRef.documentID
                         let viewController = ChatViewController(user: self.currentUser, channel: channel)
                         self.navigationController?.pushViewController(viewController, animated: true)
                         print("Message added successfully to the channel!")

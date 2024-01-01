@@ -25,7 +25,6 @@ final class ChatViewController: MessagesViewController {
     }
     
     private let database = Firestore.firestore()
-    private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
     private var channelReference: CollectionReference?
 
@@ -53,7 +52,6 @@ final class ChatViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupFirestore()
         listenToMessages()
         navigationItem.largeTitleDisplayMode = .never
         setUpMessageView()
@@ -61,26 +59,17 @@ final class ChatViewController: MessagesViewController {
         addCameraBarButton()
     }
     
-    private func setupFirestore() {
-        guard let currentUserId = Auth.auth().currentUser?.uid else {
-            print("User is not authenticated")
-            return
-        }
-
-        let db = Firestore.firestore()
-        channelReference = db.collection("channels").document(currentUserId).collection("conversations")
-    }
     
     
     private func listenToMessages() {
         guard let id = channel.id else {
-//            navigationController?.popViewController(animated: true)
+            navigationController?.popViewController(animated: true)
             return
         }
         
-        reference = database.collection("channels/\(user.id)/conversations")
+        channelReference = database.collection("channels/\(id)/thread")
         
-        messageListener = reference?.addSnapshotListener { [weak self] querySnapshot, error in
+        messageListener = channelReference?.addSnapshotListener { [weak self] querySnapshot, error in
             guard let self = self else { return }
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
