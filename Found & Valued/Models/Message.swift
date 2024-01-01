@@ -72,6 +72,10 @@ struct Message: MessageType {
       return nil
     }
   }
+    
+    func isCurrentUserMessage(userID: String) -> Bool {
+        return sender.senderId == userID
+    }
 }
 
 // MARK: - DatabaseRepresentation

@@ -35,17 +35,11 @@ class HomeViewController: UITabBarController {
                 
         let myPostsVC = UIHostingController(rootView: MyPostsView())
         myPostsVC.tabBarItem = UITabBarItem(title: "My Posts", image: UIImage(systemName: "book"), tag: Tabs.myPosts.rawValue)
-        
-        viewControllers = [cardCollectionVC, feedVC, notificationsVC, myPostsVC]
-        
-        if let user = Auth.auth().currentUser {
-            let fvUser = FVUser(id: user.uid, name: user.displayName ?? "", email: nil, profilePictureURL: nil, bio: nil, friendsList: [])
-            let channelsVC = ChannelsViewController(currentUser: fvUser)
-            channelsVC.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "person.2"), tag: Tabs.chat.rawValue)
-            let navVC = UINavigationController(rootViewController: channelsVC)
+            
+        let channelsVC = UIHostingController(rootView: ChannelListView())
+        channelsVC.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "person.2"), tag: Tabs.chat.rawValue)
 
-            viewControllers?.append(navVC)
-        }
+        viewControllers = [cardCollectionVC, feedVC, notificationsVC, myPostsVC, channelsVC]
     }
     
     func logout() {

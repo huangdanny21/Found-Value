@@ -7,7 +7,7 @@
 
 import FirebaseFirestore
 
-class Channel {
+class Channel: Identifiable {
     var id: String?
     let name: String
     
