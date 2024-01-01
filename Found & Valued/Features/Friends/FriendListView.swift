@@ -9,21 +9,20 @@ import SwiftUI
 
 struct FriendListView: View {
     @StateObject var friendListViewModel = FriendListViewModel()
+    var userSelected: ((FVUser) -> Void)?
 
     var body: some View {
-        List(friendListViewModel.friendsList, id: \.id) { friend in
-            Text("Friend Name: \(friend.name)")
-            Text("Friend Email: \(friend.email ?? "")")
-            // Display other friend details as needed
+        NavigationView {
+            List(friendListViewModel.friendsList) { item in
+                Button(item.name) {
+                    self.userSelected?(item)
+                    
+                }
+            }
+            .navigationTitle("Friends")
         }
         .onAppear {
             friendListViewModel.fetchFriendsList()
         }
-    }
-}
-
-struct FriendListView_Previews: PreviewProvider {
-    static var previews: some View {
-        FriendListView()
     }
 }

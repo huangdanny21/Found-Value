@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import SwiftUI
 
 final class ChannelsViewController: UITableViewController {
     private let toolbarLabel: UILabel = {
@@ -19,8 +20,7 @@ final class ChannelsViewController: UITableViewController {
     }()
     
     private let channelCellIdentifier = "channelCell"
-    private var currentChannelAlertController: UIAlertController?
-    
+    private var hostingController: UIHostingController<FriendListView>?
     private let database = Firestore.firestore()
     private var channelReference: CollectionReference {
         return database.collection("channels")
@@ -29,13 +29,13 @@ final class ChannelsViewController: UITableViewController {
     private var channels: [Channel] = []
     private var channelListener: ListenerRegistration?
     
-    private let currentUser: User
+    private let currentUser: FVUser
     
     deinit {
         channelListener?.remove()
     }
     
-    init(currentUser: User) {
+    init(currentUser: FVUser) {
         self.currentUser = currentUser
         super.init(style: .grouped)
         
@@ -53,7 +53,6 @@ final class ChannelsViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: channelCellIdentifier)
         
         toolbarItems = [
-            UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOut)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(customView: toolbarLabel),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
@@ -61,17 +60,7 @@ final class ChannelsViewController: UITableViewController {
         ]
         toolbarLabel.text = CurrentUser.shared.username ?? ""
         
-        channelListener = channelReference.addSnapshotListener { [weak self] querySnapshot, error in
-            guard let self = self else { return }
-            guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-            
-            snapshot.documentChanges.forEach { change in
-                self.handleDocumentChange(change)
-            }
-        }
+        fetchChannels()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,80 +73,127 @@ final class ChannelsViewController: UITableViewController {
         navigationController?.isToolbarHidden = true
     }
     
-    // MARK: - Actions
-    @objc private func signOut() {
-        let alertController = UIAlertController(
-            title: nil,
-            message: "Are you sure you want to sign out?",
-            preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alertController.addAction(cancelAction)
-        
-        let signOutAction = UIAlertAction(
-            title: "Sign Out",
-            style: .destructive) { _ in
-                do {
-                    try Auth.auth().signOut()
-                } catch {
-                    print("Error signing out: \(error.localizedDescription)")
-                }
-            }
-        alertController.addAction(signOutAction)
-        
-        present(alertController, animated: true)
-    }
-    
     @objc private func addButtonPressed() {
-        let alertController = UIAlertController(title: "Create a new Channel", message: nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alertController.addTextField { field in
-            field.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-            field.enablesReturnKeyAutomatically = true
-            field.autocapitalizationType = .words
-            field.clearButtonMode = .whileEditing
-            field.placeholder = "Channel name"
-            field.returnKeyType = .done
-            field.tintColor = .primary
+        var friendListView = FriendListView()
+        friendListView.userSelected = { user in
+            self.dismissFriendListView {
+                self.addChannelToFirestore(channelName: user.name, messageData: Channel(name: user.name).representation)
+            } // Dismiss FriendListView upon selection
         }
-        
-        let createAction = UIAlertAction(
-            title: "Create",
-            style: .default) { _ in
-                self.createChannel()
-            }
-        createAction.isEnabled = false
-        alertController.addAction(createAction)
-        alertController.preferredAction = createAction
-        
-        present(alertController, animated: true) {
-            alertController.textFields?.first?.becomeFirstResponder()
-        }
-        currentChannelAlertController = alertController
+
+        hostingController = UIHostingController(rootView: friendListView)
+        self.present(hostingController!, animated: true, completion: nil)
     }
-    
-    @objc private func textFieldDidChange(_ field: UITextField) {
-        guard let alertController = currentChannelAlertController else {
-            return
-        }
-        alertController.preferredAction?.isEnabled = field.hasText
+
+    private func dismissFriendListView(completion: @escaping (() -> Void)) {
+        hostingController?.dismiss(animated: true, completion: completion)
+        hostingController = nil // Release reference to hosting controller
     }
     
     // MARK: - Helpers
-    private func createChannel() {
-        guard
-            let alertController = currentChannelAlertController,
-            let channelName = alertController.textFields?.first?.text
-        else {
+    
+    func fetchChannels() {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("User is not authenticated")
             return
         }
-        
-        let channel = Channel(name: channelName)
-        channelReference.addDocument(data: channel.representation) { error in
+
+        let db = Firestore.firestore()
+        let channelsCollection = db.collection("channels")
+
+        channelsCollection.getDocuments { (snapshot, error) in
             if let error = error {
-                print("Error saving channel: \(error.localizedDescription)")
+                print("Error fetching channels: \(error.localizedDescription)")
+                return
+            }
+
+            guard let documents = snapshot?.documents else {
+                print("No channels found")
+                return
+            }
+
+            for document in documents {
+                let channelID = document.documentID
+
+                DispatchQueue.main.async {
+                    if let channel = Channel(document: document) {
+                        self.addChannelToTable(channel)
+                    }
+                }
+
+                let messagesCollection = channelsCollection.document(channelID).collection("thread")
+                messagesCollection.getDocuments { (messagesSnapshot, messagesError) in
+                    if let messagesError = messagesError {
+                        print("Error fetching messages for channel \(channelID): \(messagesError.localizedDescription)")
+                        return
+                    }
+
+                    guard let messagesDocuments = messagesSnapshot?.documents else {
+                        print("No messages found for channel \(channelID)")
+                        return
+                    }
+
+                    // Process fetched messages for the channel and initialize Message objects
+                    let messages: [Message] = messagesDocuments.compactMap { messageDocument in
+                        guard let message = Message(document: messageDocument) else {
+                            print("Error creating Message object from document")
+                            return nil
+                        }
+                        return message
+                    }
+
+                    // Use the 'messages' array containing fetched messages as needed
+                    print("Fetched messages for channel \(channelID): \(messages)")
+                }
             }
         }
     }
+
+
+    func addChannelToFirestore(channelName: String, messageData: [String: Any]) {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            print("User is not authenticated")
+            return
+        }
+
+        let db = Firestore.firestore()
+        let channelsCollection = db.collection("channels")
+
+        // Check if a channel with the same name exists
+        channelsCollection.whereField("name", isEqualTo: channelName)
+                         .getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error checking channel existence: \(error.localizedDescription)")
+                return
+            }
+
+            if let documents = snapshot?.documents, !documents.isEmpty {
+                // Channel already exists
+                print("Channel with the name '\(channelName)' already exists.")
+                // Handle existing channel, you might want to retrieve its details or perform specific actions
+                // For example: Load existing channel or display an alert
+
+                return // Exit the function as the channel already exists
+            }
+
+            // Create a new channel as it doesn't exist
+            let newChannelRef = channelsCollection.addDocument(data: ["name": channelName]) // Create a new channel
+
+            newChannelRef.collection("thread").addDocument(data: messageData) { error in
+                if let error = error {
+                    print("Failed to add message: \(error.localizedDescription)")
+                } else {
+                    DispatchQueue.main.async {
+                        let channel = Channel(name: channelName)
+                        let viewController = ChatViewController(user: self.currentUser, channel: channel)
+                        self.navigationController?.pushViewController(viewController, animated: true)
+                        print("Message added successfully to the channel!")
+                    }
+                }
+            }
+        }
+    }
+
     
     private func addChannelToTable(_ channel: Channel) {
         if channels.contains(channel) {

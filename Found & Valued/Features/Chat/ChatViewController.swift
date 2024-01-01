@@ -27,18 +27,19 @@ final class ChatViewController: MessagesViewController {
     private let database = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
-    
+    private var channelReference: CollectionReference?
+
     private var messages: [Message] = []
     private var messageListener: ListenerRegistration?
     
-    private let user: User
+    private let user: FVUser
     private let channel: Channel
     
     deinit {
         messageListener?.remove()
     }
     
-    init(user: User, channel: Channel) {
+    init(user: FVUser, channel: Channel) {
         self.user = user
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
@@ -52,6 +53,7 @@ final class ChatViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupFirestore()
         listenToMessages()
         navigationItem.largeTitleDisplayMode = .never
         setUpMessageView()
@@ -59,13 +61,24 @@ final class ChatViewController: MessagesViewController {
         addCameraBarButton()
     }
     
+    private func setupFirestore() {
+        guard let currentUserId = Auth.auth().currentUser?.uid else {
+            print("User is not authenticated")
+            return
+        }
+
+        let db = Firestore.firestore()
+        channelReference = db.collection("channels").document(currentUserId).collection("conversations")
+    }
+    
+    
     private func listenToMessages() {
         guard let id = channel.id else {
-            navigationController?.popViewController(animated: true)
+//            navigationController?.popViewController(animated: true)
             return
         }
         
-        reference = database.collection("channels/\(id)/thread")
+        reference = database.collection("channels/\(user.id)/conversations")
         
         messageListener = reference?.addSnapshotListener { [weak self] querySnapshot, error in
             guard let self = self else { return }
@@ -139,16 +152,21 @@ final class ChatViewController: MessagesViewController {
     }
     
     // MARK: - Helpers
-    private func save(_ message: Message) {
-        reference?.addDocument(data: message.representation) { [weak self] error in
-            guard let self = self else { return }
+    private func saveMessage(_ message: Message) {
+        guard let channelRef = channelReference else {
+            print("Channel reference is nil")
+            return
+        }
+        
+        channelRef.addDocument(data: message.representation) { error in
             if let error = error {
                 print("Error sending message: \(error.localizedDescription)")
-                return
+            } else {
+                self.messagesCollectionView.scrollToLastItem()
             }
-            self.messagesCollectionView.scrollToLastItem()
         }
     }
+    
     
     private func insertNewMessage(_ message: Message) {
         if messages.contains(message) {
@@ -233,7 +251,7 @@ final class ChatViewController: MessagesViewController {
             var message = Message(user: self.user, image: image)
             message.downloadURL = url
             
-            self.save(message)
+            self.saveMessage(message)
             self.messagesCollectionView.scrollToLastItem()
         }
     }
@@ -291,7 +309,7 @@ extension ChatViewController: MessagesDataSource {
     
     
     var currentSender: SenderType {
-        Sender(senderId: user.uid, displayName: CurrentUser.shared.username ?? "")
+        Sender(senderId: user.id, displayName: CurrentUser.shared.username ?? "")
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
@@ -313,7 +331,7 @@ extension ChatViewController: MessagesDataSource {
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         let message = Message(user: user, content: text)
-        save(message)
+        saveMessage(message)
         inputBar.inputTextView.text = ""
     }
 }
