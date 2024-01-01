@@ -78,9 +78,20 @@ class ChannelListViewModel: ObservableObject {
                     completion(false, "Failed to add message: \(error.localizedDescription)")
                 } else {
                     let channelID = newChannelRef.documentID
+                    let newChannel = Channel(name: channelName)
+                    self.channels.append(newChannel) // Add the new channel to the local channels array
+
+                    // Completion handler to indicate success
+                    completion(true, "Channel added successfully")
                     completion(true, channelID)
                 }
             }
+        }
+    }
+    
+    func addMessageToChannel(channelID: String, message: Message) {
+        if let index = channels.firstIndex(where: { $0.id == channelID }) {
+            channels[index].messages.append(message) // Append the message to the specified channel's messages
         }
     }
 }

@@ -10,6 +10,7 @@ import FirebaseFirestore
 class Channel: Identifiable {
     var id: String?
     let name: String
+    var messages: [Message] = []
     
     init(name: String) {
         id = nil

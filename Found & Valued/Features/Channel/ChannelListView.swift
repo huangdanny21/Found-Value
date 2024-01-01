@@ -33,6 +33,7 @@ struct ChannelListView: View {
                 FriendListView(userSelected: { selectedFriend = $0 }, isPresentingFriendList: $isPresentingFriendList, selectedFriend: $selectedFriend)
                     .onDisappear {
                         if let friend = selectedFriend {
+                            newChannelName = "\(selectedFriend?.name ?? "") and \(CurrentUser.shared.username ?? "")"
                             if !newChannelName.isEmpty {
                                 // Define your message data here
                                 let messageData: [String: Any] = [:] // Add your message data
@@ -40,6 +41,7 @@ struct ChannelListView: View {
                                 viewModel.addChannelToFirestore(channelName: newChannelName, messageData: messageData) { success, error in
                                     if success {
                                         // Channel added successfully, handle accordingly
+                                        
                                     } else {
                                         // Handle error
                                         if let error = error {

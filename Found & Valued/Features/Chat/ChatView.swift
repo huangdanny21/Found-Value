@@ -11,10 +11,11 @@ import InputBarAccessoryView
 import Firebase
 
 struct ChatView: View {
-    @ObservedObject var viewModel: ChatViewModel
-    
+    @StateObject var viewModel: ChatViewModel // Use @StateObject here
+
     init(channel: Channel) {
-        self.viewModel = ChatViewModel(channel: channel)
+        let chatViewModel = ChatViewModel(channel: channel)
+        _viewModel = StateObject(wrappedValue: chatViewModel)
     }
     
     var body: some View {
@@ -22,6 +23,7 @@ struct ChatView: View {
             ScrollView {
                 ForEach(viewModel.messages, id: \.id) { message in
                     MessageView(message: message)
+                    Spacer()
                 }
             }
             .padding()

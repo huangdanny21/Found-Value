@@ -9,6 +9,7 @@ import SwiftUI
 import MessageKit
 import InputBarAccessoryView
 import Firebase
+
 class ChatViewModel: ObservableObject {
     @Published var messages: [Message] = []
     var channel: Channel
@@ -60,11 +61,56 @@ class ChatViewModel: ObservableObject {
         channelReference.addDocument(data: message.representation) { error in
             if let error = error {
                 print("Error sending message: \(error.localizedDescription)")
+            } else {
+                // Message successfully saved in Firestore
+                // No need to call handleDocumentChange here
+                // Instead, append the message directly to your local array
+
             }
         }
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {
-        // Handle document change logic here
+        guard let message = Message(document: change.document), !messages.contains(message) else {
+            print("Error creating message from document")
+            return
+        }
+        
+
+        switch change.type {
+        case .added:
+            appendMessage(message)
+        case .modified:
+            updateMessage(message)
+        case .removed:
+            removeMessage(message)
+        }
     }
+
+    private func appendMessage(_ message: Message) {
+        DispatchQueue.main.async { [weak self] in
+            if var messages = self?.messages {
+                if !messages.contains(message) {
+                    messages.append(message)
+                    self?.messages = messages
+                }
+            }
+        }
+    }
+
+    private func updateMessage(_ message: Message) {
+        DispatchQueue.main.async { [weak self] in
+            guard let index = self?.messages.firstIndex(where: { $0.id == message.id }) else {
+                return
+            }
+            self?.messages[index] = message
+        }
+    }
+
+    private func removeMessage(_ message: Message) {
+        DispatchQueue.main.async { [weak self] in
+            self?.messages.removeAll(where: { $0.id == message.id })
+        }
+    }
+
 }
