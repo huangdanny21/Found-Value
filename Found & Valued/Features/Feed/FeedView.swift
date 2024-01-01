@@ -11,10 +11,10 @@ struct FeedView: View {
     @StateObject var viewModel = FeedViewModel()
     @State private var searchText = ""
     
-    let columns = [
+    let columns: [GridItem] = [
         GridItem(.flexible())
     ]
-
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -24,11 +24,17 @@ struct FeedView: View {
                             VStack(alignment: .leading) {
                                 if let imageURL = item.imageURL {
                                     CachedImageView(url: imageURL, imageCache: ImageCache.shared)
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(height: 150) // Adjust the height as needed
+                                        .clipped()
                                 }
                                 Text(item.name)
                                     .font(.headline)
+                                    .lineLimit(1) // Limit the lines to one for name
                                 Text(item.description)
                                     .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(2) // Limit the lines to two for description
                             }
                             .padding()
                             .background(Color.gray.opacity(0.2))

@@ -15,7 +15,7 @@ class ChannelListViewModel: ObservableObject {
         Firestore.firestore().collection("channels")
     }
     
-    func fetchChannels() {
+    func fetchChannelsForCurrentUser() {
         guard let currentUserID = Auth.auth().currentUser?.uid else {
             print("User is not authenticated")
             return
@@ -24,8 +24,13 @@ class ChannelListViewModel: ObservableObject {
         let db = Firestore.firestore()
         let channelsCollection = db.collection("channels")
 
-        channelsCollection.getDocuments { (snapshot, error) in
-            // Error handling and channel fetching code
+        // Query channels where the user ID matches the current user's ID
+        channelsCollection.whereField("members", arrayContains: currentUserID).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error fetching channels: \(error.localizedDescription)")
+                return
+            }
+
             guard let documents = snapshot?.documents else {
                 print("No channels found")
                 return
@@ -49,6 +54,7 @@ class ChannelListViewModel: ObservableObject {
             }
         }
     }
+
 
     func addChannelToFirestore(channelName: String, messageData: [String: Any], completion: @escaping (Bool, String?) -> Void) {
         guard let currentUserID = Auth.auth().currentUser?.uid else {

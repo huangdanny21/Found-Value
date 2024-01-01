@@ -19,10 +19,9 @@ struct CommentSectionView: View {
             } else {
                 List {
                     ForEach(itemDetailsViewModel.comments) { comment in
-                        Text(comment.username)
+                        Text("\(comment.username): \(comment.text)")
                             .padding()
-                        Text(comment.text)
-                            .padding()
+  
                     }
                 }
             }

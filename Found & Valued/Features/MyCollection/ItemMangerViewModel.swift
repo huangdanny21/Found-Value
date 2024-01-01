@@ -37,7 +37,7 @@ class ItemMangerViewModel: ObservableObject {
 
             self.items = documents.compactMap { document in
                 let data = document.data()
-                let name = data["name"] as? String ?? ""
+                let name = data["itemName"] as? String ?? ""
                 let description = data["description"] as? String ?? ""
                 let idString = document.documentID
                 let urlString = data["imageUrl"] as? String ?? ""
@@ -79,29 +79,35 @@ class ItemMangerViewModel: ObservableObject {
                     if postToPublic {
                         self.addItemToPublicFeed(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
                     }
-                    self.createMyPostsCollectionIfNotExists(for: CurrentUser.shared.userID ?? "")
                     self.items.append(newItem)
                 }
             }
         }
     }
     
-    func createMyPostsCollectionIfNotExists(for userID: String) {
+    func addToMyPostsCollection(userID: String) {
         let db = Firestore.firestore()
-        let userPostsRef = db.collection("MyPosts").document(userID)
+        let userPostsRef = db.collection("posts").document(userID)
 
         userPostsRef.getDocument { document, error in
             if let error = error {
                 print("Error checking MyPosts collection: \(error.localizedDescription)")
             } else {
-                if let document = document, !document.exists {
-                    // MyPosts collection for the user doesn't exist, create it
-                    userPostsRef.setData(["postids": []]) { error in
-                        if let error = error {
-                            print("Error creating MyPosts collection: \(error.localizedDescription)")
-                        } else {
-                            print("MyPosts collection created successfully")
-                        }
+                var postIDs = [String]()
+                if let document = document, document.exists {
+                    if let existingPostIDs = document.data()?["postids"] as? [String] {
+                        postIDs = existingPostIDs
+                    }
+                }
+
+                postIDs.append(userID) // Append the new post ID to the list
+
+                // Update the MyPosts collection with the updated post IDs
+                userPostsRef.setData(["postids": postIDs]) { error in
+                    if let error = error {
+                        print("Error updating MyPosts collection: \(error.localizedDescription)")
+                    } else {
+                        print("Post ID added to MyPosts collection")
                     }
                 }
             }
@@ -129,6 +135,7 @@ class ItemMangerViewModel: ObservableObject {
                 print("Error adding item: \(error.localizedDescription)")
             } else {
                 print("Item added successfully")
+                self.addToMyPostsCollection(userID: Auth.auth().currentUser?.uid ?? "")
             }
         }
     }

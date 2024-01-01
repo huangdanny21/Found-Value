@@ -54,7 +54,7 @@ struct ChannelListView: View {
                     }
             })
             .onAppear(perform: {
-                viewModel.fetchChannels()
+                viewModel.fetchChannelsForCurrentUser()
             })
         }
     }
