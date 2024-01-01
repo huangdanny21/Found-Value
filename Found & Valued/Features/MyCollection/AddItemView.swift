@@ -11,11 +11,12 @@ struct AddItemView: View {
     @State private var itemDescription = ""
     @State private var selectedImage: UIImage?
     @State var isImagePickerPresented = false
+    @State private var postToPublicFeed = false
+
     @Environment(\.presentationMode) var presentationMode
 
     var myCollectionViewModel: ItemMangerViewModel // Your view model
 
-    
     var isAddButtonDisabled: Bool {
         return selectedImage == nil || itemTitle.isEmpty || itemDescription.isEmpty
     }
@@ -24,6 +25,7 @@ struct AddItemView: View {
         NavigationView {
             ScrollView {
                 VStack {
+                    
                     Button(action: {
                         isImagePickerPresented = true
                     }) {
@@ -53,6 +55,9 @@ struct AddItemView: View {
                     TextField("Item Description", text: $itemDescription)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
+                    
+                    Toggle("Post to Public Feed", isOn: $postToPublicFeed)
+                        .padding()
                 }
             }
             .navigationBarItems(
@@ -70,7 +75,7 @@ struct AddItemView: View {
                          }
 
                         let newItem = Item(id: UUID().uuidString, name: itemTitle, description: itemDescription)
-                        self.myCollectionViewModel.uploadItemToFirestore(item: newItem, image: image)
+                        self.myCollectionViewModel.uploadItemToFirestore(item: newItem, image: image, postToPublic: postToPublicFeed)
                         presentationMode.wrappedValue.dismiss()
                         self.myCollectionViewModel.shouldRefresh.toggle()
                     }

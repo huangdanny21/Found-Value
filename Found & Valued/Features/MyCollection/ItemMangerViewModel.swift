@@ -48,7 +48,7 @@ class ItemMangerViewModel: ObservableObject {
     }
 
     // Function to upload item with image to Firestore
-    func uploadItemToFirestore(item: Item, image: UIImage) {
+    func uploadItemToFirestore(item: Item, image: UIImage, postToPublic: Bool = false) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else {
             print("Could not convert image to data.")
             return
@@ -76,7 +76,9 @@ class ItemMangerViewModel: ObservableObject {
                     let newItem = Item(id: item.id, name: item.name, description: item.description, imageURL: URL(string: imageUrl))
                     
                     self.addItemForCurrentUser(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
-                    self.addItemToPublicFeed(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
+                    if postToPublic {
+                        self.addItemToPublicFeed(itemName: item.name, itemDescription: item.description, imageUrl: imageUrl)
+                    }
                     self.createMyPostsCollectionIfNotExists(for: CurrentUser.shared.userID ?? "")
                     self.items.append(newItem)
                 }
