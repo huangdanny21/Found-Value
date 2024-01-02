@@ -36,10 +36,10 @@ class HomeViewController: UITabBarController {
         let myPostsVC = UIHostingController(rootView: MyPostsView())
         myPostsVC.tabBarItem = UITabBarItem(title: "My Posts", image: UIImage(systemName: "book"), tag: Tabs.myPosts.rawValue)
             
-        let channelsVC = UIHostingController(rootView: ChannelListView())
-        channelsVC.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "person.2"), tag: Tabs.chat.rawValue)
+        let chatListsVC = UIHostingController(rootView: ChatListView())
+        chatListsVC.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "person.2"), tag: Tabs.chat.rawValue)
 
-        viewControllers = [cardCollectionVC, feedVC, notificationsVC, myPostsVC, channelsVC]
+        viewControllers = [cardCollectionVC, feedVC, notificationsVC, myPostsVC, chatListsVC]
     }
     
     func logout() {

@@ -12,9 +12,11 @@ protocol ItemData {
     var name: String { get }
     var description: String { get }
     var imageURL: URL? { get set }
+    var tagType: [ItemsTag]? { get set }
 }
 
 struct Item: Identifiable, ItemData, Equatable, Hashable {
+    var tagType: [ItemsTag]?
     let id: String
     let name: String
     let description: String

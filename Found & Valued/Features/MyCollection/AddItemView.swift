@@ -12,7 +12,8 @@ struct AddItemView: View {
     @State private var selectedImage: UIImage?
     @State var isImagePickerPresented = false
     @State private var postToPublicFeed = false
-
+    @State private var selectedTags: Set<ItemsTag> = [] // Add this state to hold selected tags
+    
     @Environment(\.presentationMode) var presentationMode
 
     var myCollectionViewModel: ItemMangerViewModel // Your view model
@@ -58,6 +59,32 @@ struct AddItemView: View {
                     
                     Toggle("Post to Public Feed", isOn: $postToPublicFeed)
                         .padding()
+                    // Display selected tags as labels or text
+                      if !selectedTags.isEmpty {
+                          VStack(alignment: .leading, spacing: 8) {
+                              Text("Selected Tags:")
+                                  .font(.headline)
+                              
+                              // Display selected tags
+                              ForEach(Array(selectedTags), id: \.self) { tag in
+                                  Text(tag.rawValue)
+                                      .padding(8)
+                                      .background(Color.gray.opacity(0.2))
+                                      .cornerRadius(8)
+                              }
+                          }
+                          .padding(.top, 20)
+                      }
+                    NavigationLink(destination: TagListView(selectedTags: selectedTags)) {
+                        Text("View Tags")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(Color.blue)
+                            .cornerRadius(8)
+                            .padding(.bottom, 8)
+                    }
                 }
             }
             .navigationBarItems(
@@ -74,7 +101,7 @@ struct AddItemView: View {
                              return
                          }
 
-                        let newItem = Item(id: UUID().uuidString, name: itemTitle, description: itemDescription)
+                        let newItem = Item(tagType: Array(selectedTags), id: UUID().uuidString, name: itemTitle, description: itemDescription)
                         self.myCollectionViewModel.uploadItemToFirestore(item: newItem, image: image, postToPublic: postToPublicFeed)
                         presentationMode.wrappedValue.dismiss()
                         self.myCollectionViewModel.shouldRefresh.toggle()
