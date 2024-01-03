@@ -16,5 +16,6 @@ struct FVUser: Identifiable, Hashable, Equatable {
     
     var items: [Item]?
     var friendsList: [String]
+    var chats: [String]?
     // Other user attributes as needed
 }

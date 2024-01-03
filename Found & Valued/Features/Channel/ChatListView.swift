@@ -43,7 +43,7 @@ struct ChatListView: View {
             }
             .navigationTitle("Chats")
             .sheet(isPresented: $isPresentingFriendList) {
-                FriendListView(isPresentingFriendList: $isPresentingFriendList, selectedFriend: $selectedFriend)
+                FriendListView(isPresentingFriendList: $isPresentingFriendList, selectedFriend: $selectedFriend, chatListViewModel: chatListViewModel)
                     .environmentObject(FriendListViewModel()) 
             }
         }

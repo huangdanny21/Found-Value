@@ -11,10 +11,9 @@ struct FriendListView: View {
     @StateObject var friendListViewModel = FriendListViewModel()
     var userSelected: ((FVUser) -> Void)?
     
-    @Binding var isPresentingFriendList: Bool // Binding property to control dismissal
-    @Binding var selectedFriend: FVUser?     // Binding property to communicate selected friend
-    
-    // Other view code remains the same...
+    @Binding var isPresentingFriendList: Bool
+    @Binding var selectedFriend: FVUser?
+    @StateObject var chatListViewModel: ChatListViewModel // Inject ChatListViewModel
     
     var body: some View {
         NavigationView {
@@ -22,6 +21,11 @@ struct FriendListView: View {
                 Button(item.name) {
                     selectedFriend = item
                     isPresentingFriendList = false // Dismiss the view
+                    
+                    // Add a new chat when a friend is selected
+                    if let selectedFriend = selectedFriend {
+                        chatListViewModel.addChatToFirestore(receiverUser: selectedFriend)
+                    }
                 }
             }
             .navigationTitle("Friends")
