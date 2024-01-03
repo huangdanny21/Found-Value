@@ -18,29 +18,48 @@ class ChatListViewModel: ObservableObject {
             return
         }
 
-        let currentUserChatsRef = db.collection("users").document(currentUserID).collection("chats")
-
-        currentUserChatsRef.getDocuments { [weak self] (snapshot, error) in
-            guard let self = self else { return }
+        let currentUserChatsRef = db.collection("users").document(currentUserID)
+        currentUserChatsRef.addSnapshotListener { snapshot, error in
 
             if let error = error {
                 print("Error fetching chats: \(error.localizedDescription)")
                 return
             }
 
-            guard let documents = snapshot?.documents else {
-                print("No chats found")
+            guard let data = snapshot?.data(), let chatIds = data["chatIds"] as? [String] else {
+                print("chatsId list not found")
                 return
             }
 
-            var chats: [Chat] = []
-            for document in documents {
-                let chat = Chat(from: document)
-                chats.append(chat)
-            }
+            self.fetchChats(for: chatIds)
+        }
+    }
+    
+    func fetchChats(for chatIds: [String]) {
+        var chats: [Chat] = []
 
-            DispatchQueue.main.async {
-                self.chats = chats
+        for chatId in chatIds {
+            let chatRef = db.collection("chats").document(chatId)
+
+            chatRef.getDocument { (document, error) in
+                if let error = error {
+                    print("Error fetching chat details for \(chatId): \(error.localizedDescription)")
+                    return
+                }
+
+                if let document = document, document.exists {
+                    // Extract chat details from the document
+                    let chat = Chat(from: document)
+                    chats.append(chat)
+
+                    // Check if this is the last chat to add to the array
+                    if chats.count == chatIds.count {
+                        // All chat details are fetched, update the view model's chats array
+                        DispatchQueue.main.async {
+                            self.chats = chats
+                        }
+                    }
+                }
             }
         }
     }
@@ -52,30 +71,62 @@ class ChatListViewModel: ObservableObject {
         }
 
         let chatRef = db.collection("chats").document() // Auto-generated document ID
-        let chatData = ["id": chatRef.documentID, "users": [currentUserID, receiverUser.id]] as [String : Any]
+        let chatID = chatRef.documentID
 
-        // Add chat reference to the current user's "chats" sub-collection
-        let currentUserChatsRef = db.collection("users").document(currentUserID).collection("chats").document(chatRef.documentID)
-        currentUserChatsRef.setData(chatData) { error in
+        let currentUserRef = db.collection("users").document(currentUserID)
+        currentUserRef.getDocument { (document, error) in
             if let error = error {
-                print("Error adding chat reference to current user: \(error.localizedDescription)")
-            } else {
-                let chat = Chat(id: chatRef.documentID, users: [currentUserID, receiverUser.id], threads: [])
-                DispatchQueue.main.async {
-                    self.chats.append(chat)
+                print("Error fetching current user document: \(error.localizedDescription)")
+                return
+            }
+
+            if let document = document, document.exists {
+                var chatIDs = document.get("chatIds") as? [String] ?? []
+                chatIDs.append(chatID)
+
+                currentUserRef.setData(["chatIds": chatIDs], merge: true) { currentUserError in
+                    if let currentUserError = currentUserError {
+                        print("Error updating current user's document: \(currentUserError.localizedDescription)")
+                    } else {
+                        let chat = Chat(id: chatRef.documentID, users: [currentUserID, receiverUser.id], threads: [])
+                        DispatchQueue.main.async {
+                            self.chats.append(chat)
+                        }
+                        print("Chat ID added to the current user's document")
+                    }
                 }
-                print("Chat reference added to current user's 'chats' sub-collection")
             }
         }
 
-        // Add chat reference to the receiver user's "chats" sub-collection
-        let receiverUserChatsRef = db.collection("users").document(receiverUser.id).collection("chats").document(chatRef.documentID)
-        receiverUserChatsRef.setData(chatData) { error in
+        let receiverUserRef = db.collection("users").document(receiverUser.id)
+        receiverUserRef.getDocument { (document, error) in
             if let error = error {
-                print("Error adding chat reference to receiver user: \(error.localizedDescription)")
+                print("Error fetching receiver user document: \(error.localizedDescription)")
+                return
+            }
+
+            if let document = document, document.exists {
+                var chatIDs = document.get("chatIds") as? [String] ?? []
+                chatIDs.append(chatID)
+
+                receiverUserRef.setData(["chatIds": chatIDs], merge: true) { receiverUserError in
+                    if let receiverUserError = receiverUserError {
+                        print("Error updating receiver user's document: \(receiverUserError.localizedDescription)")
+                    } else {
+                        print("Chat ID added to the receiver user's document")
+                    }
+                }
+            }
+        }
+
+        let chatData = ["id": chatID, "users": [currentUserID, receiverUser.id]] as [String: Any]
+        chatRef.setData(chatData) { error in
+            if let error = error {
+                print("Error adding chat document: \(error.localizedDescription)")
             } else {
-                print("Chat reference added to receiver user's 'chats' sub-collection")
+                print("Chat document added to Firestore")
             }
         }
     }
+
 }
