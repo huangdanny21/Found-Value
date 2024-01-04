@@ -35,9 +35,10 @@ class ItemDetailsViewModel: ObservableObject {
                 let data = document.data()
                 let text = data["text"] as? String ?? ""
                 let username = data["username"] as? String ?? ""
+                let userId = data["userID"] as? String ?? ""
                 // Parse other comment fields if needed
                 
-                return Comment(id: document.documentID, username: username, text: text)
+                return Comment(id: document.documentID, username: username, userid: userId, text: text)
             }
         }
     }

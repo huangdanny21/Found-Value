@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FVUser: Identifiable, Hashable, Equatable {
+struct FVUser: Identifiable, Hashable, Equatable, Codable {
     var id: String
     let name: String
     let email: String?

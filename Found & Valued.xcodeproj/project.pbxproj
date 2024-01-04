@@ -12,6 +12,8 @@
 		B503AFF72B422A33005FF71E /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFF62B422A33005FF71E /* UIImage+Additions.swift */; };
 		B503AFF92B422A54005FF71E /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFF82B422A54005FF71E /* UIView+Additions.swift */; };
 		B50932692B4132BC00D2F450 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50932682B4132BC00D2F450 /* Post.swift */; };
+		B5434DBA2B468E1E000AE7C7 /* NewPostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5434DB92B468E1E000AE7C7 /* NewPostService.swift */; };
+		B5434DBC2B4690E2000AE7C7 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5434DBB2B4690E2000AE7C7 /* SearchService.swift */; };
 		B55763142B4649CC0023F348 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55763132B4649CC0023F348 /* MessageView.swift */; };
 		B55763162B46502D0023F348 /* DBPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55763152B46502D0023F348 /* DBPaths.swift */; };
 		B55763192B4654500023F348 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55763182B4654500023F348 /* UploadView.swift */; };
@@ -122,6 +124,8 @@
 		B503AFF62B422A33005FF71E /* UIImage+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		B503AFF82B422A54005FF71E /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		B50932682B4132BC00D2F450 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		B5434DB92B468E1E000AE7C7 /* NewPostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostService.swift; sourceTree = "<group>"; };
+		B5434DBB2B4690E2000AE7C7 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		B55763132B4649CC0023F348 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		B55763152B46502D0023F348 /* DBPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPaths.swift; sourceTree = "<group>"; };
 		B55763182B4654500023F348 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
@@ -259,6 +263,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B5434DB82B468E0E000AE7C7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B5434DB92B468E1E000AE7C7 /* NewPostService.swift */,
+				B5434DBB2B4690E2000AE7C7 /* SearchService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		B55763172B46543B0023F348 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +375,7 @@
 		B5EEC5FC2B3E1A31001D68F3 /* Found & Valued */ = {
 			isa = PBXGroup;
 			children = (
+				B5434DB82B468E0E000AE7C7 /* Services */,
 				B5B4F99D2B428C5C00203702 /* Enums */,
 				B503AFF12B4229E3005FF71E /* Extensions */,
 				B55903752B4222CD00423F4A /* Protocols */,
@@ -693,6 +707,7 @@
 				B5EEC6872B3E61E5001D68F3 /* FVUser.swift in Sources */,
 				B5EEC6792B3E34C0001D68F3 /* HomeViewController.swift in Sources */,
 				B503AFF72B422A33005FF71E /* UIImage+Additions.swift in Sources */,
+				B5434DBA2B468E1E000AE7C7 /* NewPostService.swift in Sources */,
 				B50932692B4132BC00D2F450 /* Post.swift in Sources */,
 				B55763282B467DCA0023F348 /* GalleryView.swift in Sources */,
 				B55763192B4654500023F348 /* UploadView.swift in Sources */,
@@ -721,6 +736,7 @@
 				B5B4F9972B4262AC00203702 /* ChatView.swift in Sources */,
 				B5D96B5A2B41062000D74847 /* CurrentUser.swift in Sources */,
 				B5D96B692B41230D00D74847 /* Comment.swift in Sources */,
+				B5434DBC2B4690E2000AE7C7 /* SearchService.swift in Sources */,
 				B55763162B46502D0023F348 /* DBPaths.swift in Sources */,
 				B5EEC67B2B3E391F001D68F3 /* Item.swift in Sources */,
 			);

@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Post: Identifiable {
-    let id: String    
-    let item: Item
+struct Post: Identifiable, Codable {
+    let id: String
+    let content: String
+    let timeStamp: String
+    let imageUrls: [String]
+    var comments: [Comment]?
 }

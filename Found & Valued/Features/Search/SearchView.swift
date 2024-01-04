@@ -15,7 +15,9 @@ struct SearchView: View {
         NavigationView {
             VStack {
                 TextField("Search", text: $searchText, onCommit: {
-                    searchViewModel.searchUser(withUsername: searchText)
+                    Task {
+                        await searchViewModel.fetchUser(withUsername: searchText)
+                    }
                 })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()

@@ -11,10 +11,13 @@ import YPImagePicker
 class NewPostViewModel: ObservableObject {
     @Published var selectedImages: [UIImage] = []
     @Published var postText: String = ""
+    
+    let service: NewPostServiceProtocol
 
-    init(selectedImages: [UIImage], postText: String) {
+    init(selectedImages: [UIImage], postText: String, service: NewPostServiceProtocol = NewPostService()) {
         self.selectedImages = selectedImages
         self.postText = postText
+        self.service = service
     }
     
     // Function to add images
