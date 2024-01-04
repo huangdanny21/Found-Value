@@ -56,6 +56,7 @@ struct MediaPicker: UIViewControllerRepresentable {
         config.showsCrop = .none
         config.screens = [.library]
         config.startOnScreen = .library
+        config.hidesCancelButton = true
         config.hidesStatusBar = true
         config.hidesBottomBar = true
         

@@ -15,7 +15,7 @@ struct UploadView: View {
         VStack {
             MediaPicker(image: $selectedImage, isPickerPresented: $isImagePickerPresented, onCancel: {
                 // Handle cancel action
-x            }, onNext: {
+            }, onNext: {
                 // Handle next action
             })
         }

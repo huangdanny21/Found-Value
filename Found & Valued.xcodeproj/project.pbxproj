@@ -28,8 +28,6 @@
 		B59C0C202B43AAB00099E030 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1F2B43AAB00099E030 /* ChatListView.swift */; };
 		B5B047C32B3E948D00A358B6 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C22B3E948D00A358B6 /* FeedView.swift */; };
 		B5B047C52B3E958300A358B6 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C42B3E958300A358B6 /* FeedItem.swift */; };
-		B5B047C82B3E978300A358B6 /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C72B3E978300A358B6 /* CreatePostView.swift */; };
-		B5B047CA2B3E982500A358B6 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C92B3E982500A358B6 /* PostViewModel.swift */; };
 		B5B047CC2B3EA42C00A358B6 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047CB2B3EA42C00A358B6 /* FeedViewModel.swift */; };
 		B5B4F9972B4262AC00203702 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B4F9962B4262AC00203702 /* ChatView.swift */; };
 		B5B4F99B2B42712700203702 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B4F99A2B42712700203702 /* ChatViewModel.swift */; };
@@ -136,8 +134,6 @@
 		B59C0C1F2B43AAB00099E030 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		B5B047C22B3E948D00A358B6 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		B5B047C42B3E958300A358B6 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
-		B5B047C72B3E978300A358B6 /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
-		B5B047C92B3E982500A358B6 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		B5B047CB2B3EA42C00A358B6 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		B5B4F9962B4262AC00203702 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		B5B4F99A2B42712700203702 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
@@ -285,15 +281,6 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		B5B047C62B3E977300A358B6 /* Create Post */ = {
-			isa = PBXGroup;
-			children = (
-				B5B047C72B3E978300A358B6 /* CreatePostView.swift */,
-				B5B047C92B3E982500A358B6 /* PostViewModel.swift */,
-			);
-			path = "Create Post";
-			sourceTree = "<group>";
-		};
 		B5B4F99C2B42729300203702 /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,7 +393,6 @@
 				B5D96B5D2B410DBC00D74847 /* Friends */,
 				B5D96B562B41030B00D74847 /* Notifications */,
 				B5FE23152B3EAD8900D1C6DB /* ItemDetailsView */,
-				B5B047C62B3E977300A358B6 /* Create Post */,
 				B5B047C12B3E948000A358B6 /* Feed */,
 				B5EEC68D2B3E74BF001D68F3 /* User Profile */,
 				B5EEC6882B3E626B001D68F3 /* Search */,
@@ -685,7 +671,6 @@
 				B5EEC6702B3E3187001D68F3 /* MyCollectionView.swift in Sources */,
 				B5EEC66D2B3E2E38001D68F3 /* SignUpViewModel.swift in Sources */,
 				B503AFF32B422A02005FF71E /* UICollectionView+Additions.swift in Sources */,
-				B5B047C82B3E978300A358B6 /* CreatePostView.swift in Sources */,
 				B5B047C52B3E958300A358B6 /* FeedItem.swift in Sources */,
 				B5D96B5F2B410E1700D74847 /* FriendListViewModel.swift in Sources */,
 				B55903792B42233600423F4A /* ImageMediaItem.swift in Sources */,
@@ -709,7 +694,6 @@
 				B59C0C1E2B43A7070099E030 /* ChatListViewModel.swift in Sources */,
 				B5B4F99B2B42712700203702 /* ChatViewModel.swift in Sources */,
 				B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */,
-				B5B047CA2B3E982500A358B6 /* PostViewModel.swift in Sources */,
 				B5B4F9A22B428D7F00203702 /* TagListView.swift in Sources */,
 				B559037D2B42246600423F4A /* Sender.swift in Sources */,
 				B5B4F99F2B428C6400203702 /* Tags.swift in Sources */,
