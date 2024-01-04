@@ -34,7 +34,7 @@ struct ItemDetailView: View {
         .navigationBarTitle("Item Details")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            itemDetailsViewModel.fetchComments(for: item.id)
+            itemDetailsViewModel.fetchComments(for: item.id ?? "")
         }
     }
 }

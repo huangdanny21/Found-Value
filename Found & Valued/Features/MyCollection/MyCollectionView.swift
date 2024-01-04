@@ -14,7 +14,6 @@ struct MyCollectionView: View {
     @State private var imageCache = ImageCache.shared
     var onlogout: () -> Void
     
-    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -42,9 +41,7 @@ struct MyCollectionView: View {
             .navigationTitle("My Collection")
             .navigationBarItems(leading:
                 Button(action: {
-                // Action to add an item (e.g., navigate to a view to add an item)
-                // Add your logic here to perform the action when the plus button is tapped
-                // For example, navigate to a new view to add an item
+
                 onlogout()
             }) {
                 Text("Logout")
@@ -62,11 +59,10 @@ struct MyCollectionView: View {
                         self.myCollectionViewModel.shouldRefresh.toggle() // Toggle the state variable on dismiss of AddItemView
                     }
             })
-            .onAppear {
-                myCollectionViewModel.fetchItemsFromFirebase() // Fetch items when the view appears
-            }
-            .onChange(of: myCollectionViewModel.shouldRefresh) { _ in
-                myCollectionViewModel.fetchItemsFromFirebase() // Fetch items when shouldRefresh changes
+            .task {
+                do {
+                    await myCollectionViewModel.fetchItemsFromFirebase()
+                }
             }
         }
     }

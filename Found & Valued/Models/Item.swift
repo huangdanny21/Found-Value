@@ -6,18 +6,19 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 protocol ItemData {
-    var id: String { get }
+    var id: String? { get }
     var name: String { get }
     var description: String { get }
     var imageURL: URL? { get set }
-    var tagType: [ItemsTag]? { get set }
+//    var tagType: [ItemsTag]? { get set }
 }
 
-struct Item: Identifiable, ItemData, Equatable, Hashable {
-    var tagType: [ItemsTag]?
-    let id: String
+struct Item: Identifiable, ItemData, Equatable, Hashable, Codable {
+//    var tagType: [ItemsTag]?
+    @DocumentID var id: String?
     let name: String
     let description: String
     var imageURL: URL?

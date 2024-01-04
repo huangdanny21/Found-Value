@@ -11,10 +11,14 @@ import FirebaseFirestoreSwift
 struct Chat: Identifiable, Codable {
     @DocumentID var id: String?
     var users: [String]
+    var receiverName: String?
+    var senderName: String?
     var threads: [Thread]
 
-    init(id: String? = nil, users: [String], threads: [Thread]) {
+    init(id: String? = nil, receiverName: String? = nil, senderName: String? = nil, users: [String], threads: [Thread]) {
         self.id = id
+        self.receiverName = receiverName
+        self.senderName = senderName
         self.users = users
         self.threads = threads
     }
@@ -22,6 +26,9 @@ struct Chat: Identifiable, Codable {
     init(from doc: DocumentSnapshot) {
         self.id = doc.documentID
         self.users = doc.data()?["users"] as? [String] ?? []
+        self.receiverName = doc.data()?["receiverName"] as? String
+        self.senderName = doc.data()?["senderName"] as? String
+
         self.threads = []
         if let threadsData = doc.data()?["threads"] as? [[String: Any]] {
             self.threads = threadsData.compactMap { threadData in
@@ -32,7 +39,7 @@ struct Chat: Identifiable, Codable {
 }
 
 struct Thread: Identifiable, Codable {
-    var id: String?
+    @DocumentID var id: String?
     let content: String
     let created: String
     let senderID: String

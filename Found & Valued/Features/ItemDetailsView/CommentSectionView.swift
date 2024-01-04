@@ -32,7 +32,7 @@ struct CommentSectionView: View {
                 
                 Button("Post") {
                     guard !newCommentText.isEmpty else { return }
-                    itemDetailsViewModel.addComment(to: item.id, text: newCommentText)
+                    itemDetailsViewModel.addComment(to: item.id ?? "", text: newCommentText)
                     newCommentText = ""
                 }
                 .padding(.horizontal)

@@ -16,18 +16,12 @@ struct ChatListView: View {
         NavigationView {
             VStack {
                 List(chatListViewModel.chats) { chat in
-                    NavigationLink(destination: ChatDetailView(chat: chat)) {
+                    NavigationLink(destination: ChatView(chat: chat)) {
                         VStack(alignment: .leading) {
-                            Text("Chat ID: \(chat.id ?? "Unknown")")
+                            Text(chatTitle(for: chat))
                                 .font(.headline)
-                            Text("Users: \(chat.users.joined(separator: ", "))")
-                                .font(.subheadline)
                         }
                     }
-                }
-                .navigationTitle("Chats")
-                .onAppear {
-                    chatListViewModel.fetchChatsForCurrentUser()
                 }
 
                 Button(action: {
@@ -51,30 +45,11 @@ struct ChatListView: View {
             chatListViewModel.fetchChatsForCurrentUser()
         }
     }
-}
-
-struct ChatDetailView: View {
-    let chat: Chat
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Chat ID: \(chat.id ?? "Unknown")")
-                .font(.headline)
-            Text("Users: \(chat.users.joined(separator: ", "))")
-                .font(.subheadline)
-
-            List(chat.threads) { thread in
-                VStack(alignment: .leading) {
-                    Text("Sender: \(thread.senderName)")
-                        .font(.headline)
-                    Text("Message: \(thread.content)")
-                        .font(.subheadline)
-                    Text("Sent at: \(thread.created)")
-                        .font(.caption)
-                }
-            }
+    
+    private func chatTitle(for chat: Chat) -> String {
+        if chat.senderName == CurrentUser.shared.username {
+            return chat.receiverName ?? ""
         }
-        .padding()
-        .navigationTitle("Chat Detail")
+        return chat.senderName ?? ""
     }
 }

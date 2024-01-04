@@ -34,8 +34,7 @@ class FeedViewModel: ObservableObject {
                 let itemTitle = data["itemTitle"] as? String ?? ""
                 let itemDescription = data["itemDescription"] as? String ?? ""
                 let imageURL = data["imageURL"] as? String ?? ""
-                let tagTypes = data["tags"] as? [ItemsTag]
-                return Item(tagType: tagTypes, id: document.documentID, name: itemTitle, description: itemDescription, imageURL: URL(string: imageURL))
+                return Item(id: document.documentID, name: itemTitle, description: itemDescription, imageURL: URL(string: imageURL))
             }
         }
     }

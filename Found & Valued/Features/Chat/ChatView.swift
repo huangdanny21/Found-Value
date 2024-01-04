@@ -13,16 +13,16 @@ import Firebase
 struct ChatView: View {
     @StateObject var viewModel: ChatViewModel // Use @StateObject here
 
-    init(channel: Channel) {
-        let chatViewModel = ChatViewModel(channel: channel)
+    init(chat: Chat) {
+        let chatViewModel = ChatViewModel(chat: chat)
         _viewModel = StateObject(wrappedValue: chatViewModel)
     }
-    
+        
     var body: some View {
         VStack {
             ScrollView {
                 ForEach(viewModel.messages, id: \.id) { message in
-                    MessageView(message: message)
+                    MessageView(message: message, isCurrentUser: isCurrentUser(message))
                     Spacer()
                 }
             }
@@ -40,33 +40,66 @@ struct ChatView: View {
             }
             .padding(.bottom)
         }
-        .navigationTitle(viewModel.channel.name)
+        .navigationTitle(viewModel.chat.receiverName ?? "Chat")
+    }
+    
+    private func isCurrentUser(_ message: Message) -> Bool {
+        message.sender.displayName == CurrentUser.shared.username
     }
 }
 
 struct MessageView: View {
     let message: Message
+    let isCurrentUser: Bool
     
     var body: some View {
         HStack {
-            if message.isCurrentUserMessage(userID: Auth.auth().currentUser?.uid ?? "") {
+            if isCurrentUser {
                 Spacer()
-                Text(message.content)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-                    .padding(.leading)
+                VStack(alignment: .trailing) {
+                    Text(message.content)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                    Text(message.sender.displayName)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    if let formattedTime = formatDate(message.sentDate) {
+                        Text(formattedTime)
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                }
+                .padding(.leading)
             } else {
-                Text(message.content)
-                    .padding()
-                    .background(Color.gray)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-                    .padding(.trailing)
+                VStack(alignment: .leading) {
+                    Text(message.sender.displayName)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    if let formattedTime = formatDate(message.sentDate) {
+                        Text(formattedTime)
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                    Text(message.content)
+                        .padding()
+                        .background(Color.gray)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .padding(.trailing)
                 Spacer()
             }
         }
         .padding(.vertical, 4)
     }
+    
+    private func formatDate(_ date: Date) -> String? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm" // Format as hours and minutes
+        return formatter.string(from: date)
+    }
 }
+
+

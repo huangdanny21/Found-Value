@@ -12,22 +12,22 @@ import Firebase
 
 class ChatViewModel: ObservableObject {
     @Published var messages: [Message] = []
-    var channel: Channel
+    var chat: Chat
     @Published var inputText: String = ""
 
-    init(channel: Channel) {
-        self.channel = channel
+    init(chat: Chat) {
+        self.chat = chat
         listenToMessages()
     }
     
     private func listenToMessages() {
-        guard let id = channel.id else { return }
+        guard let id = chat.id else { return } // Replace channel with chat
         let db = Firestore.firestore()
-        let channelReference = db.collection("channels/\(id)/thread")
+        let chatReference = db.collection("chats/\(id)/thread") // Update the reference path
         
-        channelReference.addSnapshotListener { querySnapshot, error in
+        chatReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                print("Error listening for chat updates: \(error?.localizedDescription ?? "No error")")
                 return
             }
             
@@ -37,7 +37,6 @@ class ChatViewModel: ObservableObject {
         }
     }
     
-    
     func sendMessage() {
         let user = FVUser(id: Auth.auth().currentUser?.uid ?? "", name: CurrentUser.shared.username ?? "", email: Auth.auth().currentUser?.email ?? "", profilePictureURL: nil, bio: nil, friendsList: [])
         let message = Message(user: user, content: inputText)
@@ -45,38 +44,32 @@ class ChatViewModel: ObservableObject {
         inputText = "" // Clear inputText after sending the message
     }
     
-    private func takePhoto() {
-        // Implement logic to handle taking a photo
-    }
-    
     private func saveMessage(_ message: Message) {
-        guard let id = channel.id else {
-            print("Channel ID is nil")
+        guard let id = chat.id else {
+            print("Chat ID is nil")
             return
         }
         
         let db = Firestore.firestore()
-        let channelReference = db.collection("channels/\(id)/thread")
+        let chatReference = db.collection("chats/\(id)/thread") // Update the reference path
         
-        channelReference.addDocument(data: message.representation) { error in
+        chatReference.addDocument(data: message.representation) { error in
             if let error = error {
                 print("Error sending message: \(error.localizedDescription)")
             } else {
                 // Message successfully saved in Firestore
                 // No need to call handleDocumentChange here
                 // Instead, append the message directly to your local array
-
             }
         }
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {
-        guard let message = Message(document: change.document), !messages.contains(message) else {
+        guard let message = Message(document: change.document) else {
             print("Error creating message from document")
             return
         }
         
-
         switch change.type {
         case .added:
             appendMessage(message)

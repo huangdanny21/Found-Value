@@ -28,7 +28,7 @@ struct MyPostsView: View {
                             CommentSectionView(item: post.item, itemDetailsViewModel: ItemDetailsViewModel())
                                 .onAppear {
                                     // Fetch comments for this specific post
-                                    ItemDetailsViewModel().fetchComments(for: post.item.id)
+                                    ItemDetailsViewModel().fetchComments(for: post.item.id ?? "")
                                 }
                         }
                         .padding()

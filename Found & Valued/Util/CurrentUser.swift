@@ -30,6 +30,10 @@ class CurrentUser {
         }
     }
     
+    func isCurrentUser(_ userId: String) -> Bool {
+        userID == Auth.auth().currentUser?.uid
+    }
+    
     private func fetchUserData(userID: String) {
         let userRef = db.collection("users").document(userID)
         

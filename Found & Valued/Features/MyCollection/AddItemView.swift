@@ -101,7 +101,7 @@ struct AddItemView: View {
                              return
                          }
 
-                        let newItem = Item(tagType: Array(selectedTags), id: UUID().uuidString, name: itemTitle, description: itemDescription)
+                        let newItem = Item(id: UUID().uuidString, name: itemTitle, description: itemDescription)
                         self.myCollectionViewModel.uploadItemToFirestore(item: newItem, image: image, postToPublic: postToPublicFeed)
                         presentationMode.wrappedValue.dismiss()
                         self.myCollectionViewModel.shouldRefresh.toggle()

@@ -18,33 +18,29 @@ class ItemMangerViewModel: ObservableObject {
     private var db = Firestore.firestore()
 
     // Fetch items from Firebase for the MyCollection
-    func fetchItemsFromFirebase() {
+    func fetchItemsFromFirebase() async {
         guard let currentUserID = Auth.auth().currentUser?.uid else {
             print("User not authenticated")
             return
         }
-
-        db.collection("users").document(currentUserID).collection("items").getDocuments { snapshot, error in
-            if let error = error {
-                print("Error fetching items: \(error.localizedDescription)")
-                return
+        
+        do {
+            let querySnapshot = try await db.collection("users/\(currentUserID)/items").getDocuments()
+            DispatchQueue.main.async {
+                self.items = querySnapshot.documents.compactMap { document in
+                    let data = document.data()
+                    let name = data["itemName"] as? String ?? ""
+                    let description = data["description"] as? String ?? ""
+                    let idString = document.documentID
+                    let urlString = data["imageUrl"] as? String ?? ""
+                    let url = URL(string: urlString)
+                    return Item(id: idString, name: name, description: description, imageURL: url)
+                }
             }
-
-            guard let documents = snapshot?.documents else {
-                print("No items found")
-                return
-            }
-
-            self.items = documents.compactMap { document in
-                let data = document.data()
-                let name = data["itemName"] as? String ?? ""
-                let description = data["description"] as? String ?? ""
-                let idString = document.documentID
-                let urlString = data["imageUrl"] as? String ?? ""
-                let url = URL(string: urlString)
-                return Item(id: idString, name: name, description: description, imageURL: url)
-            }
+        } catch {
+            print("Error getting documents: \(error)")
         }
+        
     }
 
     // Function to upload item with image to Firestore
