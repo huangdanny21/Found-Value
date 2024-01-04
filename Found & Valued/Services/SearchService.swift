@@ -33,6 +33,7 @@ struct SearchService {
             
             return users
         } catch {
+
             throw error
         }
     }

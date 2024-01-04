@@ -12,12 +12,11 @@ class NewPostViewModel: ObservableObject {
     @Published var selectedImages: [UIImage] = []
     @Published var postText: String = ""
     
-    let service: NewPostServiceProtocol
+    let service = NewPostService()
 
-    init(selectedImages: [UIImage], postText: String, service: NewPostServiceProtocol = NewPostService()) {
+    init(selectedImages: [UIImage], postText: String) {
         self.selectedImages = selectedImages
         self.postText = postText
-        self.service = service
     }
     
     // Function to add images

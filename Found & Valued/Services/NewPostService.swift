@@ -8,14 +8,9 @@
 import Foundation
 import UIKit
 
-protocol NewPostServiceProtocol {
-    func storeImages(images: [UIImage], completionHandler: @escaping (Result<[String], Error>) -> Void)
-    func createNewPost(withImageUrls urls: [String], post: Post)
-}
-
-struct NewPostService: NewPostServiceProtocol {
-    func storeImages(images: [UIImage], completionHandler: @escaping (Result<[String], Error>) -> Void) {
-        
+struct NewPostService {
+    func storeImages(images: [UIImage]) async throws -> [String] {
+        return []
     }
     
     func createNewPost(withImageUrls urls: [String], post: Post) {
