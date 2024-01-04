@@ -13,17 +13,18 @@
 		B503AFF72B422A33005FF71E /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFF62B422A33005FF71E /* UIImage+Additions.swift */; };
 		B503AFF92B422A54005FF71E /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503AFF82B422A54005FF71E /* UIView+Additions.swift */; };
 		B50932692B4132BC00D2F450 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50932682B4132BC00D2F450 /* Post.swift */; };
-		B509326B2B4132FE00D2F450 /* MyPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B509326A2B4132FE00D2F450 /* MyPostViewModel.swift */; };
-		B509326D2B41334A00D2F450 /* MyPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B509326C2B41334A00D2F450 /* MyPostsView.swift */; };
-		B509326F2B4133A300D2F450 /* PostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B509326E2B4133A300D2F450 /* PostDetailsView.swift */; };
 		B55763142B4649CC0023F348 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55763132B4649CC0023F348 /* MessageView.swift */; };
+		B55763162B46502D0023F348 /* DBPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55763152B46502D0023F348 /* DBPaths.swift */; };
+		B55763192B4654500023F348 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55763182B4654500023F348 /* UploadView.swift */; };
+		B557631E2B4659940023F348 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = B557631D2B4659940023F348 /* YPImagePicker */; };
+		B55763202B4663C00023F348 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B557631F2B4663C00023F348 /* MediaPicker.swift */; };
 		B55903712B420BA900423F4A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55903702B420BA900423F4A /* Message.swift */; };
 		B55903742B420C4D00423F4A /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = B55903732B420C4D00423F4A /* MessageKit */; };
 		B55903792B42233600423F4A /* ImageMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55903782B42233600423F4A /* ImageMediaItem.swift */; };
 		B559037B2B42236F00423F4A /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559037A2B42236F00423F4A /* DatabaseRepresentation.swift */; };
 		B559037D2B42246600423F4A /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559037C2B42246600423F4A /* Sender.swift */; };
 		B59C0C1C2B439BB60099E030 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1B2B439BB60099E030 /* Chat.swift */; };
-		B59C0C1E2B43A7070099E030 /* ChatsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1D2B43A7070099E030 /* ChatsListViewModel.swift */; };
+		B59C0C1E2B43A7070099E030 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */; };
 		B59C0C202B43AAB00099E030 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1F2B43AAB00099E030 /* ChatListView.swift */; };
 		B5B047C32B3E948D00A358B6 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C22B3E948D00A358B6 /* FeedView.swift */; };
 		B5B047C52B3E958300A358B6 /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B047C42B3E958300A358B6 /* FeedItem.swift */; };
@@ -89,7 +90,6 @@
 		B5EEC6792B3E34C0001D68F3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6782B3E34C0001D68F3 /* HomeViewController.swift */; };
 		B5EEC67B2B3E391F001D68F3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67A2B3E391F001D68F3 /* Item.swift */; };
 		B5EEC67D2B3E3A52001D68F3 /* ItemMangerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */; };
-		B5EEC6802B3E3DF7001D68F3 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */; };
 		B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */; };
 		B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6842B3E581C001D68F3 /* ImageCache.swift */; };
 		B5EEC6872B3E61E5001D68F3 /* FVUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6862B3E61E5001D68F3 /* FVUser.swift */; };
@@ -123,16 +123,16 @@
 		B503AFF62B422A33005FF71E /* UIImage+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		B503AFF82B422A54005FF71E /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		B50932682B4132BC00D2F450 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		B509326A2B4132FE00D2F450 /* MyPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostViewModel.swift; sourceTree = "<group>"; };
-		B509326C2B41334A00D2F450 /* MyPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsView.swift; sourceTree = "<group>"; };
-		B509326E2B4133A300D2F450 /* PostDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsView.swift; sourceTree = "<group>"; };
 		B55763132B4649CC0023F348 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		B55763152B46502D0023F348 /* DBPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBPaths.swift; sourceTree = "<group>"; };
+		B55763182B4654500023F348 /* UploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
+		B557631F2B4663C00023F348 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		B55903702B420BA900423F4A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		B55903782B42233600423F4A /* ImageMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMediaItem.swift; sourceTree = "<group>"; };
 		B559037A2B42236F00423F4A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
 		B559037C2B42246600423F4A /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		B59C0C1B2B439BB60099E030 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		B59C0C1D2B43A7070099E030 /* ChatsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListViewModel.swift; sourceTree = "<group>"; };
+		B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		B59C0C1F2B43AAB00099E030 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		B5B047C22B3E948D00A358B6 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		B5B047C42B3E958300A358B6 /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
@@ -175,7 +175,6 @@
 		B5EEC6782B3E34C0001D68F3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B5EEC67A2B3E391F001D68F3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemMangerViewModel.swift; sourceTree = "<group>"; };
-		B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B5EEC6842B3E581C001D68F3 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		B5EEC6862B3E61E5001D68F3 /* FVUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FVUser.swift; sourceTree = "<group>"; };
@@ -197,6 +196,7 @@
 				B5EEC63B2B3E2BA0001D68F3 /* FirebaseAnalyticsSwift in Frameworks */,
 				B5EEC6372B3E2BA0001D68F3 /* FirebaseAnalytics in Frameworks */,
 				B5EEC6392B3E2BA0001D68F3 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				B557631E2B4659940023F348 /* YPImagePicker in Frameworks */,
 				B5EEC65F2B3E2BA0001D68F3 /* FirebaseMLModelDownloader in Frameworks */,
 				B5EEC6532B3E2BA0001D68F3 /* FirebaseFirestoreSwift in Frameworks */,
 				B5EEC63F2B3E2BA0001D68F3 /* FirebaseAppCheck in Frameworks */,
@@ -259,14 +259,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		B50932672B41325800D2F450 /* MyPosts */ = {
+		B55763172B46543B0023F348 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
-				B509326A2B4132FE00D2F450 /* MyPostViewModel.swift */,
-				B509326C2B41334A00D2F450 /* MyPostsView.swift */,
-				B509326E2B4133A300D2F450 /* PostDetailsView.swift */,
+				B55763182B4654500023F348 /* UploadView.swift */,
+				B557631F2B4663C00023F348 /* MediaPicker.swift */,
 			);
-			path = MyPosts;
+			path = Upload;
 			sourceTree = "<group>";
 		};
 		B55903752B4222CD00423F4A /* Protocols */ = {
@@ -295,19 +294,20 @@
 			path = "Create Post";
 			sourceTree = "<group>";
 		};
-		B5B4F99C2B42729300203702 /* Channel */ = {
+		B5B4F99C2B42729300203702 /* ChatList */ = {
 			isa = PBXGroup;
 			children = (
-				B59C0C1D2B43A7070099E030 /* ChatsListViewModel.swift */,
+				B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */,
 				B59C0C1F2B43AAB00099E030 /* ChatListView.swift */,
 			);
-			path = Channel;
+			path = ChatList;
 			sourceTree = "<group>";
 		};
 		B5B4F99D2B428C5C00203702 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
 				B5B4F99E2B428C6400203702 /* Tags.swift */,
+				B55763152B46502D0023F348 /* DBPaths.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -399,10 +399,10 @@
 		B5EEC62D2B3E2937001D68F3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				B55763172B46543B0023F348 /* Upload */,
 				B5B4F9A02B428D7200203702 /* Tags */,
-				B5B4F99C2B42729300203702 /* Channel */,
+				B5B4F99C2B42729300203702 /* ChatList */,
 				B503AFEC2B42273B005FF71E /* Chat */,
-				B50932672B41325800D2F450 /* MyPosts */,
 				B5D96B5D2B410DBC00D74847 /* Friends */,
 				B5D96B562B41030B00D74847 /* Notifications */,
 				B5FE23152B3EAD8900D1C6DB /* ItemDetailsView */,
@@ -451,7 +451,6 @@
 			children = (
 				B5EEC66F2B3E3187001D68F3 /* MyCollectionView.swift */,
 				B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */,
-				B5EEC67F2B3E3DF7001D68F3 /* AddItemView.swift */,
 			);
 			path = MyCollection;
 			sourceTree = "<group>";
@@ -547,6 +546,7 @@
 				B5EEC6682B3E2BA0001D68F3 /* FirebaseStorage */,
 				B5EEC66A2B3E2BA0001D68F3 /* FirebaseStorageCombine-Community */,
 				B55903732B420C4D00423F4A /* MessageKit */,
+				B557631D2B4659940023F348 /* YPImagePicker */,
 			);
 			productName = "Found & Valued";
 			productReference = B5EEC5FA2B3E1A31001D68F3 /* Found & Valued.app */;
@@ -623,6 +623,7 @@
 			packageReferences = (
 				B5EEC6352B3E2BA0001D68F3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B55903722B420C4D00423F4A /* XCRemoteSwiftPackageReference "MessageKit" */,
+				B557631C2B4659940023F348 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 			);
 			productRefGroup = B5EEC5FB2B3E1A31001D68F3 /* Products */;
 			projectDirPath = "";
@@ -669,13 +670,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EEC6752B3E3435001D68F3 /* LoginView.swift in Sources */,
-				B509326F2B4133A300D2F450 /* PostDetailsView.swift in Sources */,
 				B503AFEB2B4226F2005FF71E /* Channel.swift in Sources */,
 				B503AFF52B422A14005FF71E /* UIColor+Additions.swift in Sources */,
 				B5EEC6912B3E7719001D68F3 /* UserProfileView.swift in Sources */,
 				B5D96B532B40FC4400D74847 /* FriendRequestNotification.swift in Sources */,
 				B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */,
-				B509326B2B4132FE00D2F450 /* MyPostViewModel.swift in Sources */,
 				B5EEC68C2B3E6B9A001D68F3 /* SearchViewModel.swift in Sources */,
 				B5EEC6022B3E1A31001D68F3 /* MainViewController.swift in Sources */,
 				B5EEC67D2B3E3A52001D68F3 /* ItemMangerViewModel.swift in Sources */,
@@ -690,7 +689,6 @@
 				B5B047C52B3E958300A358B6 /* FeedItem.swift in Sources */,
 				B5D96B5F2B410E1700D74847 /* FriendListViewModel.swift in Sources */,
 				B55903792B42233600423F4A /* ImageMediaItem.swift in Sources */,
-				B509326D2B41334A00D2F450 /* MyPostsView.swift in Sources */,
 				B5D96B552B40FC6000D74847 /* NotificationsViewModel.swift in Sources */,
 				B5D96B612B410E3900D74847 /* FriendListView.swift in Sources */,
 				B5B047C32B3E948D00A358B6 /* FeedView.swift in Sources */,
@@ -698,6 +696,7 @@
 				B5EEC6792B3E34C0001D68F3 /* HomeViewController.swift in Sources */,
 				B503AFF72B422A33005FF71E /* UIImage+Additions.swift in Sources */,
 				B50932692B4132BC00D2F450 /* Post.swift in Sources */,
+				B55763192B4654500023F348 /* UploadView.swift in Sources */,
 				B5EEC5FE2B3E1A31001D68F3 /* AppDelegate.swift in Sources */,
 				B5EEC6772B3E3459001D68F3 /* AuthView.swift in Sources */,
 				B503AFF92B422A54005FF71E /* UIView+Additions.swift in Sources */,
@@ -705,10 +704,9 @@
 				B5EEC68A2B3E6303001D68F3 /* SearchView.swift in Sources */,
 				B5D96B5C2B410B1000D74847 /* Notification.swift in Sources */,
 				B5D96B6D2B41245300D74847 /* ItemDetailsView.swift in Sources */,
-				B5EEC6802B3E3DF7001D68F3 /* AddItemView.swift in Sources */,
 				B5D96B6B2B4123B800D74847 /* CommentSectionView.swift in Sources */,
 				B55763142B4649CC0023F348 /* MessageView.swift in Sources */,
-				B59C0C1E2B43A7070099E030 /* ChatsListViewModel.swift in Sources */,
+				B59C0C1E2B43A7070099E030 /* ChatListViewModel.swift in Sources */,
 				B5B4F99B2B42712700203702 /* ChatViewModel.swift in Sources */,
 				B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */,
 				B5B047CA2B3E982500A358B6 /* PostViewModel.swift in Sources */,
@@ -717,11 +715,13 @@
 				B5B4F99F2B428C6400203702 /* Tags.swift in Sources */,
 				B5EEC6002B3E1A31001D68F3 /* SceneDelegate.swift in Sources */,
 				B5EEC68F2B3E7510001D68F3 /* UserProfileViewModel.swift in Sources */,
+				B55763202B4663C00023F348 /* MediaPicker.swift in Sources */,
 				B59C0C202B43AAB00099E030 /* ChatListView.swift in Sources */,
 				B59C0C1C2B439BB60099E030 /* Chat.swift in Sources */,
 				B5B4F9972B4262AC00203702 /* ChatView.swift in Sources */,
 				B5D96B5A2B41062000D74847 /* CurrentUser.swift in Sources */,
 				B5D96B692B41230D00D74847 /* Comment.swift in Sources */,
+				B55763162B46502D0023F348 /* DBPaths.swift in Sources */,
 				B5EEC67B2B3E391F001D68F3 /* Item.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1060,6 +1060,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B557631C2B4659940023F348 /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Yummypets/YPImagePicker.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		B55903722B420C4D00423F4A /* XCRemoteSwiftPackageReference "MessageKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MessageKit/MessageKit";
@@ -1079,6 +1087,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B557631D2B4659940023F348 /* YPImagePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B557631C2B4659940023F348 /* XCRemoteSwiftPackageReference "YPImagePicker" */;
+			productName = YPImagePicker;
+		};
 		B55903732B420C4D00423F4A /* MessageKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B55903722B420C4D00423F4A /* XCRemoteSwiftPackageReference "MessageKit" */;

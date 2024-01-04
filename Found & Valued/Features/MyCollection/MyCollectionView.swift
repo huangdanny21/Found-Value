@@ -10,7 +10,6 @@ import UIKit
 
 struct MyCollectionView: View {
     @StateObject private var myCollectionViewModel = ItemMangerViewModel()
-    @State private var isAddItemViewPresented = false
     @State private var imageCache = ImageCache.shared
     var onlogout: () -> Void
     
@@ -39,26 +38,6 @@ struct MyCollectionView: View {
                 }
             }
             .navigationTitle("My Collection")
-            .navigationBarItems(leading:
-                Button(action: {
-
-                onlogout()
-            }) {
-                Text("Logout")
-            }, trailing:             Button(action: {
-                // Action to add an item (e.g., navigate to a view to add an item)
-                // Add your logic here to perform the action when the plus button is tapped
-                // For example, navigate to a new view to add an item
-                isAddItemViewPresented = true
-            }) {
-                Image(systemName: "plus")
-            })
-            .sheet(isPresented: $isAddItemViewPresented, content: {
-                AddItemView(myCollectionViewModel: myCollectionViewModel)
-                    .onDisappear {
-                        self.myCollectionViewModel.shouldRefresh.toggle() // Toggle the state variable on dismiss of AddItemView
-                    }
-            })
             .task {
                 do {
                     await myCollectionViewModel.fetchItemsFromFirebase()

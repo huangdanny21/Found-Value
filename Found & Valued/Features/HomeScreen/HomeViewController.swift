@@ -12,12 +12,12 @@ import FirebaseAuth
 enum Tabs: Int {
     case cardCollection
     case feed
-    case myPosts
+    case upload
     case notifications
     case chat
 }
 
-class HomeViewController: UITabBarController {
+final class HomeViewController: UITabBarController {
     
     // MARK: View Life Cycle
     
@@ -30,16 +30,16 @@ class HomeViewController: UITabBarController {
         let feedVC = UIHostingController(rootView: FeedView())
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: Tabs.cardCollection.rawValue)
              
+        let uploadVC = UIHostingController(rootView: UploadView())
+        uploadVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.circle.fill"), tag: Tabs.upload.rawValue)
+        
         let notificationsVC = UIHostingController(rootView: NotificationView())
         notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: Tabs.notifications.rawValue)
-                
-        let myPostsVC = UIHostingController(rootView: MyPostsView())
-        myPostsVC.tabBarItem = UITabBarItem(title: "My Posts", image: UIImage(systemName: "book"), tag: Tabs.myPosts.rawValue)
             
         let chatListsVC = UIHostingController(rootView: ChatListView())
         chatListsVC.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "person.2"), tag: Tabs.chat.rawValue)
 
-        viewControllers = [cardCollectionVC, feedVC, notificationsVC, myPostsVC, chatListsVC]
+        viewControllers = [cardCollectionVC, feedVC, uploadVC, notificationsVC, chatListsVC]
     }
     
     func logout() {
