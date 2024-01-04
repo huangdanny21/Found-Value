@@ -40,7 +40,7 @@ struct MediaPicker: UIViewControllerRepresentable {
     }
 
     typealias UIViewControllerType = YPImagePicker
-    @Binding var image: UIImage?
+    @Binding var selectedImages: [UIImage]
     @Binding var isPickerPresented: Bool
     
     var onCancel: (() -> Void)?
@@ -74,8 +74,17 @@ struct MediaPicker: UIViewControllerRepresentable {
             if didCancel {
                 self.onCancel?()
                 picker.dismiss(animated: true, completion: nil)
-            } else if let photo = items.singlePhoto {
-                self.image = photo.image
+            } else {
+                for item in items {
+                    switch item {
+                    case .photo(let photo):
+                        self.selectedImages.append(photo.image)
+                        print(photo)
+                    case .video(let video):
+                        print(video)
+                    }
+                }
+                self.onNext?()
             }
         }
         picker.delegate = context.coordinator
