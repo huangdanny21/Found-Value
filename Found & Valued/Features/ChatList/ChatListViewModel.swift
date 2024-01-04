@@ -37,7 +37,6 @@ class ChatListViewModel: ObservableObject {
     }
     
     func fetchChats(for chatIds: [String]) {
-        var currentChats: [Chat] = []
 
         chatIds.forEach { chatId in
             let chatRef = db.collection("chats").document(chatId)
@@ -48,7 +47,6 @@ class ChatListViewModel: ObservableObject {
                     DispatchQueue.main.async {
                         self.chats.append(chat)
                     }
-                    currentChats.append(chat)
                 case .failure(let error):
                     print("Error fetching chat details for \(chatId): \(error.localizedDescription)")
                 }

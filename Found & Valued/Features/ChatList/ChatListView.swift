@@ -12,6 +12,8 @@ struct ChatListView: View {
     @State private var isPresentingFriendList = false
     @State private var selectedFriend: FVUser?
     
+    @State private var shouldRefresh = true
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -42,7 +44,11 @@ struct ChatListView: View {
             }
         }
         .onAppear {
-            chatListViewModel.fetchChatsForCurrentUser()
+            // TODO: This is just some dumb hack
+            if shouldRefresh {
+                chatListViewModel.fetchChatsForCurrentUser()
+                shouldRefresh = false
+            }
         }
     }
     
