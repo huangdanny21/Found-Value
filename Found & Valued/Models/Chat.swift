@@ -13,28 +13,14 @@ struct Chat: Identifiable, Codable {
     var users: [String]
     var receiverName: String?
     var senderName: String?
-    var threads: [Thread]
+    var threads: [Thread]?
 
-    init(id: String? = nil, receiverName: String? = nil, senderName: String? = nil, users: [String], threads: [Thread]) {
+    init(id: String? = nil, receiverName: String? = nil, senderName: String? = nil, users: [String], threads: [Thread]? = nil) {
         self.id = id
         self.receiverName = receiverName
         self.senderName = senderName
         self.users = users
         self.threads = threads
-    }
-
-    init(from doc: DocumentSnapshot) {
-        self.id = doc.documentID
-        self.users = doc.data()?["users"] as? [String] ?? []
-        self.receiverName = doc.data()?["receiverName"] as? String
-        self.senderName = doc.data()?["senderName"] as? String
-
-        self.threads = []
-        if let threadsData = doc.data()?["threads"] as? [[String: Any]] {
-            self.threads = threadsData.compactMap { threadData in
-                Thread(from: threadData)
-            }
-        }
     }
 }
 

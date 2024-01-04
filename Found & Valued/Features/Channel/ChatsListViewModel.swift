@@ -37,29 +37,20 @@ class ChatListViewModel: ObservableObject {
     }
     
     func fetchChats(for chatIds: [String]) {
-        var chats: [Chat] = []
+        var currentChats: [Chat] = []
 
-        for chatId in chatIds {
+        chatIds.forEach { chatId in
             let chatRef = db.collection("chats").document(chatId)
-
-            chatRef.getDocument { (document, error) in
-                if let error = error {
-                    print("Error fetching chat details for \(chatId): \(error.localizedDescription)")
-                    return
-                }
-
-                if let document = document, document.exists {
-                    // Extract chat details from the document
-                    let chat = Chat(from: document)
-                    chats.append(chat)
-
-                    // Check if this is the last chat to add to the array
-                    if chats.count == chatIds.count {
-                        // All chat details are fetched, update the view model's chats array
-                        DispatchQueue.main.async {
-                            self.chats = chats
-                        }
+            
+            chatRef.getDocument(as: Chat.self) { result in
+                switch result {
+                case .success(let chat):
+                    DispatchQueue.main.async {
+                        self.chats.append(chat)
                     }
+                    currentChats.append(chat)
+                case .failure(let error):
+                    print("Error fetching chat details for \(chatId): \(error.localizedDescription)")
                 }
             }
         }
@@ -141,13 +132,6 @@ class ChatListViewModel: ObservableObject {
                     if let error = error {
                         print("Error adding chat document: \(error.localizedDescription)")
                     } else {
-                        //                        // Create a Chat object from the chat data
-                        //                        let chat = Chat(id: chatID, receiverName: receiverUser.name, senderName: CurrentUser.shared.username ?? "", users: [], threads: [])
-                        //
-                        //                        // Append the new chat to the chatList
-                        //                        DispatchQueue.main.async {
-                        //                            self.chats.append(chat)
-                        //                        }
                         print("Chat document added to Firestore")
                     }
                 }
