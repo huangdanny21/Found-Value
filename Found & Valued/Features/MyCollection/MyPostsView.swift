@@ -1,5 +1,5 @@
 //
-//  MyCollectionView.swift
+//  MyPostsView.swift
 //  Found & Valued
 //
 //  Created by Zhi Yong Huang on 12/28/23.
@@ -8,8 +8,10 @@
 import SwiftUI
 import UIKit
 
-struct MyCollectionView: View {
-    @StateObject private var myCollectionViewModel = ItemMangerViewModel()
+struct MyPostsView: View {
+    
+    @StateObject private var myPostsViewModel = MyPostsViewModel()
+    
     @State private var imageCache = ImageCache.shared
     var onlogout: () -> Void
     
@@ -18,15 +20,10 @@ struct MyCollectionView: View {
             ScrollView {
                 Group {
                     LazyVGrid(columns: [GridItem(.flexible(), spacing: 16), GridItem(.flexible(), spacing: 16)], spacing: 16) {
-                        ForEach(myCollectionViewModel.items) { item in
+                        ForEach(myPostsViewModel.myPosts) { post in
                             VStack(alignment: .leading) {
-                                if let imageURL = item.imageURL {
-                                    // Load and display the image using URLSession or your preferred library
-                                    CachedImageView(url: imageURL, imageCache: imageCache)
-                                }
-                                Text(item.name)
-                                    .font(.headline)
-                                Text(item.description)
+                                GalleryView(imageUrls: post.imageUrls, images: [], showImages: false)
+                                Text(post.content)
                                     .font(.subheadline)
                             }
                             .padding()
@@ -37,10 +34,10 @@ struct MyCollectionView: View {
                     .padding()
                 }
             }
-            .navigationTitle("My Collection")
+            .navigationTitle("My Posts")
             .task {
                 do {
-                    await myCollectionViewModel.fetchItemsFromFirebase()
+                    await myPostsViewModel.fetchPosts()
                 }
             }
         }

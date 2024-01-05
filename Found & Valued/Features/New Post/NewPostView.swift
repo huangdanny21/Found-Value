@@ -17,7 +17,7 @@ struct NewPostView: View {
         NavigationView {
             VStack(spacing: 0) {
                 // Gallery view showing selected images
-                GalleryView(images: viewModel.selectedImages)
+                GalleryView(imageUrls: [], images: viewModel.selectedImages, showImages: true)
                     .frame(height: UIScreen.main.bounds.height * 0.4)
                 
                 TextView("Description", text: $viewModel.postText)
@@ -35,11 +35,8 @@ struct NewPostView: View {
                 // Share button
                 Button(action: {
                     Task {
-                        if let post = await viewModel.createNewPost() {
-                            didCreatePost(post)
-                        } else {
-                            didCreatePost(nil)
-                        }
+                        let post = await viewModel.createNewPost()
+                        didCreatePost(post)
                         presentationMode.wrappedValue.dismiss()
                     }
                 }) {

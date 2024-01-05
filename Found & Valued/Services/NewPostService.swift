@@ -12,7 +12,7 @@ import FirebaseStorage
 import FirebaseAuth
 
 struct NewPostService {
-    static func createPost(with images: [UIImage], post: Post) async throws -> Post? {
+    static func createPost(with images: [UIImage], post: Post) async throws -> Post {
         do {
             let urls = try await storeImages(images: images)
              let post = try await self.createNewPost(withImageUrls: urls, post: post)
@@ -23,18 +23,18 @@ struct NewPostService {
         }
     }
     
-    static func storeImages(images: [UIImage]) async throws -> [String] {
+    static func storeImages(images: [UIImage]) async throws -> [URL] {
         do {
             let urls = try await ImageStorageService.uploadAsJPEG(images: images, path: "postImages")
-            return urls.map{ $0.absoluteString }
+            return urls
         } catch {
             print("Error uploading image: \(error.localizedDescription)")
             throw error
         }
     }
     
-    private static func createNewPost(withImageUrls urls: [String], post: Post) async throws -> Post? {
-        let postToSave = Post(id: post.id, ownerId: post.ownerId, name: post.name, content: post.content, timeStamp: post.timeStamp, imageUrls: urls)
+    private static func createNewPost(withImageUrls urls: [URL], post: Post) async throws -> Post {
+        let postToSave = Post(id: post.id, ownerId: post.ownerId, name: post.name, content: post.content, timeStamp: post.timeStamp, imageUrls: urls.map{$0.absoluteString})
         
         // Save the post object to Firestore
         let postsCollection = Firestore.firestore().collection("posts") // Reference to 'posts' collection

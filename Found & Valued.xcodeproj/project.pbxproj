@@ -32,6 +32,9 @@
 		B561DB162B47C81F003F6E75 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB152B47C81F003F6E75 /* HomeViewModel.swift */; };
 		B561DB1C2B47DB95003F6E75 /* PermissionContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB1B2B47DB95003F6E75 /* PermissionContainerViewController.swift */; };
 		B561DB1E2B47DD8F003F6E75 /* PermissionRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB1D2B47DD8F003F6E75 /* PermissionRequestViewController.swift */; };
+		B561DB202B47F4AC003F6E75 /* MyPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB1F2B47F4AC003F6E75 /* MyPostsViewModel.swift */; };
+		B561DB222B47F4FE003F6E75 /* MyPostsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB212B47F4FE003F6E75 /* MyPostsService.swift */; };
+		B561DB242B47F56E003F6E75 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB232B47F56E003F6E75 /* Errors.swift */; };
 		B59C0C1C2B439BB60099E030 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1B2B439BB60099E030 /* Chat.swift */; };
 		B59C0C1E2B43A7070099E030 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */; };
 		B59C0C202B43AAB00099E030 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1F2B43AAB00099E030 /* ChatListView.swift */; };
@@ -91,12 +94,11 @@
 		B5EEC6692B3E2BA0001D68F3 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B5EEC6682B3E2BA0001D68F3 /* FirebaseStorage */; };
 		B5EEC66B2B3E2BA0001D68F3 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B5EEC66A2B3E2BA0001D68F3 /* FirebaseStorageCombine-Community */; };
 		B5EEC66D2B3E2E38001D68F3 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC66C2B3E2E38001D68F3 /* SignUpViewModel.swift */; };
-		B5EEC6702B3E3187001D68F3 /* MyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC66F2B3E3187001D68F3 /* MyCollectionView.swift */; };
+		B5EEC6702B3E3187001D68F3 /* MyPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC66F2B3E3187001D68F3 /* MyPostsView.swift */; };
 		B5EEC6752B3E3435001D68F3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6742B3E3435001D68F3 /* LoginView.swift */; };
 		B5EEC6772B3E3459001D68F3 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6762B3E3459001D68F3 /* AuthView.swift */; };
 		B5EEC6792B3E34C0001D68F3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6782B3E34C0001D68F3 /* HomeViewController.swift */; };
 		B5EEC67B2B3E391F001D68F3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67A2B3E391F001D68F3 /* Item.swift */; };
-		B5EEC67D2B3E3A52001D68F3 /* ItemMangerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */; };
 		B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */; };
 		B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6842B3E581C001D68F3 /* ImageCache.swift */; };
 		B5EEC6872B3E61E5001D68F3 /* FVUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EEC6862B3E61E5001D68F3 /* FVUser.swift */; };
@@ -147,6 +149,9 @@
 		B561DB152B47C81F003F6E75 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		B561DB1B2B47DB95003F6E75 /* PermissionContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionContainerViewController.swift; sourceTree = "<group>"; };
 		B561DB1D2B47DD8F003F6E75 /* PermissionRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestViewController.swift; sourceTree = "<group>"; };
+		B561DB1F2B47F4AC003F6E75 /* MyPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsViewModel.swift; sourceTree = "<group>"; };
+		B561DB212B47F4FE003F6E75 /* MyPostsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsService.swift; sourceTree = "<group>"; };
+		B561DB232B47F56E003F6E75 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B59C0C1B2B439BB60099E030 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		B59C0C1F2B43AAB00099E030 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
@@ -183,12 +188,11 @@
 		B5EEC6202B3E1A32001D68F3 /* Found___ValuedUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Found___ValuedUITestsLaunchTests.swift"; sourceTree = "<group>"; };
 		B5EEC6332B3E2B45001D68F3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B5EEC66C2B3E2E38001D68F3 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		B5EEC66F2B3E3187001D68F3 /* MyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionView.swift; sourceTree = "<group>"; };
+		B5EEC66F2B3E3187001D68F3 /* MyPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsView.swift; sourceTree = "<group>"; };
 		B5EEC6742B3E3435001D68F3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B5EEC6762B3E3459001D68F3 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		B5EEC6782B3E34C0001D68F3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B5EEC67A2B3E391F001D68F3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemMangerViewModel.swift; sourceTree = "<group>"; };
 		B5EEC6822B3E3E4C001D68F3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B5EEC6842B3E581C001D68F3 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		B5EEC6862B3E61E5001D68F3 /* FVUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FVUser.swift; sourceTree = "<group>"; };
@@ -279,6 +283,7 @@
 				B561DB132B479A9B003F6E75 /* ImageStorageService.swift */,
 				B5434DB92B468E1E000AE7C7 /* NewPostService.swift */,
 				B5434DBB2B4690E2000AE7C7 /* SearchService.swift */,
+				B561DB212B47F4FE003F6E75 /* MyPostsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 			children = (
 				B5B4F99E2B428C6400203702 /* Tags.swift */,
 				B55763152B46502D0023F348 /* DBPaths.swift */,
+				B561DB232B47F56E003F6E75 /* Errors.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -501,8 +507,8 @@
 		B5EEC66E2B3E3173001D68F3 /* MyCollection */ = {
 			isa = PBXGroup;
 			children = (
-				B5EEC66F2B3E3187001D68F3 /* MyCollectionView.swift */,
-				B5EEC67C2B3E3A52001D68F3 /* ItemMangerViewModel.swift */,
+				B5EEC66F2B3E3187001D68F3 /* MyPostsView.swift */,
+				B561DB1F2B47F4AC003F6E75 /* MyPostsViewModel.swift */,
 			);
 			path = MyCollection;
 			sourceTree = "<group>";
@@ -730,12 +736,12 @@
 				B5EEC6852B3E581C001D68F3 /* ImageCache.swift in Sources */,
 				B5EEC68C2B3E6B9A001D68F3 /* SearchViewModel.swift in Sources */,
 				B5EEC6022B3E1A31001D68F3 /* MainViewController.swift in Sources */,
-				B5EEC67D2B3E3A52001D68F3 /* ItemMangerViewModel.swift in Sources */,
 				B559037B2B42236F00423F4A /* DatabaseRepresentation.swift in Sources */,
 				B55903712B420BA900423F4A /* Message.swift in Sources */,
 				B5D96B582B41034900D74847 /* NotificationView.swift in Sources */,
 				B5B047CC2B3EA42C00A358B6 /* FeedViewModel.swift in Sources */,
-				B5EEC6702B3E3187001D68F3 /* MyCollectionView.swift in Sources */,
+				B5EEC6702B3E3187001D68F3 /* MyPostsView.swift in Sources */,
+				B561DB202B47F4AC003F6E75 /* MyPostsViewModel.swift in Sources */,
 				B5EEC66D2B3E2E38001D68F3 /* SignUpViewModel.swift in Sources */,
 				B503AFF32B422A02005FF71E /* UICollectionView+Additions.swift in Sources */,
 				B5B047C52B3E958300A358B6 /* FeedItem.swift in Sources */,
@@ -749,6 +755,7 @@
 				B503AFF72B422A33005FF71E /* UIImage+Additions.swift in Sources */,
 				B5434DBA2B468E1E000AE7C7 /* NewPostService.swift in Sources */,
 				B50932692B4132BC00D2F450 /* Post.swift in Sources */,
+				B561DB222B47F4FE003F6E75 /* MyPostsService.swift in Sources */,
 				B55763282B467DCA0023F348 /* GalleryView.swift in Sources */,
 				B561DB1C2B47DB95003F6E75 /* PermissionContainerViewController.swift in Sources */,
 				B55763192B4654500023F348 /* UploadView.swift in Sources */,
@@ -756,6 +763,7 @@
 				B5EEC6772B3E3459001D68F3 /* AuthView.swift in Sources */,
 				B503AFF92B422A54005FF71E /* UIView+Additions.swift in Sources */,
 				B5D96B672B4122CE00D74847 /* itemDetailsViewModel.swift in Sources */,
+				B561DB242B47F56E003F6E75 /* Errors.swift in Sources */,
 				B5EEC68A2B3E6303001D68F3 /* SearchView.swift in Sources */,
 				B5D96B5C2B410B1000D74847 /* Notification.swift in Sources */,
 				B5D96B6D2B41245300D74847 /* ItemDetailsView.swift in Sources */,

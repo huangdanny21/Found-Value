@@ -48,9 +48,9 @@ struct ImageStorageService{
         
         return try await upload(imageData: data, path: path)
     }
+    
     ///Uploads Data to the designated path in `FirebaseStorage`
     static func upload(imageData: Data, path: String) async throws -> URL {
-        print("Path = \(path)")
         let storageRef = storage.reference()
         let imageRef = storageRef.child(path)
         

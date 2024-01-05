@@ -27,7 +27,7 @@ final class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cardCollectionVC = UIHostingController(rootView: MyCollectionView(onlogout: logout))
+        let cardCollectionVC = UIHostingController(rootView: MyPostsView(onlogout: logout))
         cardCollectionVC.tabBarItem = UITabBarItem(title: "Cards", image: UIImage(systemName: "square.grid.2x2"), tag: Tabs.cardCollection.rawValue)
         
         let feedVC = UIHostingController(rootView: FeedView())
