@@ -45,7 +45,7 @@ struct MediaPicker: UIViewControllerRepresentable {
     
     var onCancel: (() -> Void)?
     var onNext: (() -> Void)?
-    
+
     func makeUIViewController(context: Context) -> YPImagePicker {
         var config = YPImagePickerConfiguration()
         
@@ -56,7 +56,7 @@ struct MediaPicker: UIViewControllerRepresentable {
         config.showsCrop = .none
         config.screens = [.library]
         config.startOnScreen = .library
-        config.hidesCancelButton = true
+        config.hidesCancelButton = false
         config.hidesStatusBar = true
         config.hidesBottomBar = true
         

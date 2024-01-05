@@ -11,14 +11,19 @@ struct UploadView: View {
     @State private var selectedImages: [UIImage] = []
     @State private var isImagePickerPresented = false
 
+    var onCancel: (() -> Void)?
+    var createdPost: (NewPostViewModel) -> Void
+    
     var body: some View {
         NavigationView {
             VStack {
                 MediaPicker(selectedImages: $selectedImages, isPickerPresented: $isImagePickerPresented, onCancel: {
                     // Handle cancel action
+                    self.onCancel?()
+                    self.isImagePickerPresented.toggle() // Dismiss the picker on cancel
                 }, onNext: {
                     // Handle next action
-                    presentNewPostView()
+                    self.presentNewPostView()
                 })
             }
         }
@@ -26,13 +31,6 @@ struct UploadView: View {
     
     func presentNewPostView() {
         let newPostViewModel = NewPostViewModel(selectedImages: selectedImages, postText: "")
-        let newPostView = NewPostView(viewModel: newPostViewModel)
-
-        let hostingController = UIHostingController(rootView: newPostView)
-        UIApplication
-            .shared
-            .connectedScenes
-            .compactMap { ($0 as? UIWindowScene)?.keyWindow }
-            .first?.rootViewController?.present(hostingController, animated: true)
+        createdPost(newPostViewModel)
     }
 }

@@ -29,6 +29,9 @@
 		B559037D2B42246600423F4A /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559037C2B42246600423F4A /* Sender.swift */; };
 		B561DB122B47966E003F6E75 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB112B47966E003F6E75 /* TextView.swift */; };
 		B561DB142B479A9B003F6E75 /* ImageStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB132B479A9B003F6E75 /* ImageStorageService.swift */; };
+		B561DB162B47C81F003F6E75 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB152B47C81F003F6E75 /* HomeViewModel.swift */; };
+		B561DB1C2B47DB95003F6E75 /* PermissionContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB1B2B47DB95003F6E75 /* PermissionContainerViewController.swift */; };
+		B561DB1E2B47DD8F003F6E75 /* PermissionRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB1D2B47DD8F003F6E75 /* PermissionRequestViewController.swift */; };
 		B59C0C1C2B439BB60099E030 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1B2B439BB60099E030 /* Chat.swift */; };
 		B59C0C1E2B43A7070099E030 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */; };
 		B59C0C202B43AAB00099E030 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1F2B43AAB00099E030 /* ChatListView.swift */; };
@@ -141,6 +144,9 @@
 		B559037C2B42246600423F4A /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		B561DB112B47966E003F6E75 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		B561DB132B479A9B003F6E75 /* ImageStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorageService.swift; sourceTree = "<group>"; };
+		B561DB152B47C81F003F6E75 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B561DB1B2B47DB95003F6E75 /* PermissionContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionContainerViewController.swift; sourceTree = "<group>"; };
+		B561DB1D2B47DD8F003F6E75 /* PermissionRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionRequestViewController.swift; sourceTree = "<group>"; };
 		B59C0C1B2B439BB60099E030 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		B59C0C1F2B43AAB00099E030 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
@@ -312,6 +318,22 @@
 			path = UIVIewRepresentables;
 			sourceTree = "<group>";
 		};
+		B561DB172B47CD9E003F6E75 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				B561DB1B2B47DB95003F6E75 /* PermissionContainerViewController.swift */,
+				B561DB1D2B47DD8F003F6E75 /* PermissionRequestViewController.swift */,
+			);
+			path = Permissions;
+			sourceTree = "<group>";
+		};
+		B561DB1A2B47D85B003F6E75 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
 		B5B047C12B3E948000A358B6 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +410,7 @@
 		B5EEC5FC2B3E1A31001D68F3 /* Found & Valued */ = {
 			isa = PBXGroup;
 			children = (
+				B561DB1A2B47D85B003F6E75 /* Configs */,
 				B561DB102B47965A003F6E75 /* UIVIewRepresentables */,
 				B5434DB82B468E0E000AE7C7 /* Services */,
 				B5B4F99D2B428C5C00203702 /* Enums */,
@@ -428,6 +451,7 @@
 		B5EEC62D2B3E2937001D68F3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				B561DB172B47CD9E003F6E75 /* Permissions */,
 				B55763222B46724E0023F348 /* New Post */,
 				B55763172B46543B0023F348 /* Upload */,
 				B5B4F9A02B428D7200203702 /* Tags */,
@@ -487,6 +511,7 @@
 			isa = PBXGroup;
 			children = (
 				B5EEC6782B3E34C0001D68F3 /* HomeViewController.swift */,
+				B561DB152B47C81F003F6E75 /* HomeViewModel.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -725,6 +750,7 @@
 				B5434DBA2B468E1E000AE7C7 /* NewPostService.swift in Sources */,
 				B50932692B4132BC00D2F450 /* Post.swift in Sources */,
 				B55763282B467DCA0023F348 /* GalleryView.swift in Sources */,
+				B561DB1C2B47DB95003F6E75 /* PermissionContainerViewController.swift in Sources */,
 				B55763192B4654500023F348 /* UploadView.swift in Sources */,
 				B5EEC5FE2B3E1A31001D68F3 /* AppDelegate.swift in Sources */,
 				B5EEC6772B3E3459001D68F3 /* AuthView.swift in Sources */,
@@ -740,6 +766,7 @@
 				B59C0C1E2B43A7070099E030 /* ChatListViewModel.swift in Sources */,
 				B5B4F99B2B42712700203702 /* ChatViewModel.swift in Sources */,
 				B5EEC6832B3E3E4C001D68F3 /* ImagePicker.swift in Sources */,
+				B561DB162B47C81F003F6E75 /* HomeViewModel.swift in Sources */,
 				B55763262B46771D0023F348 /* NewPostViewModel.swift in Sources */,
 				B5B4F9A22B428D7F00203702 /* TagListView.swift in Sources */,
 				B559037D2B42246600423F4A /* Sender.swift in Sources */,
@@ -747,6 +774,7 @@
 				B5EEC6002B3E1A31001D68F3 /* SceneDelegate.swift in Sources */,
 				B5EEC68F2B3E7510001D68F3 /* UserProfileViewModel.swift in Sources */,
 				B55763202B4663C00023F348 /* MediaPicker.swift in Sources */,
+				B561DB1E2B47DD8F003F6E75 /* PermissionRequestViewController.swift in Sources */,
 				B59C0C202B43AAB00099E030 /* ChatListView.swift in Sources */,
 				B59C0C1C2B439BB60099E030 /* Chat.swift in Sources */,
 				B5B4F9972B4262AC00203702 /* ChatView.swift in Sources */,

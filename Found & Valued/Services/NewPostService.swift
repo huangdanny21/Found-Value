@@ -9,43 +9,68 @@ import Foundation
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
-import FirebaseFirestoreSwift
+import FirebaseAuth
 
 struct NewPostService {
-    
-    func createPost(with images: [UIImage], post: Post) async throws {
+    static func createPost(with images: [UIImage], post: Post) async throws -> Post? {
         do {
             let urls = try await storeImages(images: images)
-            await self.createNewPost(withImageUrls: urls, post: post)
+             let post = try await self.createNewPost(withImageUrls: urls, post: post)
+            return post
         } catch {
             print("Cannot create post: \(error.localizedDescription)")
+            throw error
         }
     }
     
-    func storeImages(images: [UIImage]) async throws -> [String] {
+    static func storeImages(images: [UIImage]) async throws -> [String] {
         do {
             let urls = try await ImageStorageService.uploadAsJPEG(images: images, path: "postImages")
             return urls.map{ $0.absoluteString }
         } catch {
             print("Error uploading image: \(error.localizedDescription)")
-            return []
+            throw error
         }
     }
     
-    private func createNewPost(withImageUrls urls: [String], post: Post) async {
-        let postToSave = Post(id: post.id, ownerId: post.ownerId, name: post.name, content: post.content, timeStamp: post.timeStamp, imageUrls: urls).representation
+    private static func createNewPost(withImageUrls urls: [String], post: Post) async throws -> Post? {
+        let postToSave = Post(id: post.id, ownerId: post.ownerId, name: post.name, content: post.content, timeStamp: post.timeStamp, imageUrls: urls)
         
         // Save the post object to Firestore
         let postsCollection = Firestore.firestore().collection("posts") // Reference to 'posts' collection
 
         do {
             // Add the document with a specific document ID (post.id)
-            let _ = try await postsCollection.document(post.id).setData(postToSave)
+            let _ = try await postsCollection.document(post.id).setData(postToSave.representation)
             print("post added succcessfully")
+            return postToSave
 
         } catch {
             print("Error creating new post: \(error.localizedDescription)")
+            throw error
         }
     }
+    
+    static func addPostToCurrentUser(postId: String) async throws {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            throw NewPostError.noUser
+        }
 
+        let userDocument = Firestore.firestore().collection("users").document(currentUserID)
+
+        do {
+            // Update the 'posts' field in the user document to add the new post's ID
+            try await userDocument.updateData([
+                "posts": FieldValue.arrayUnion([postId])
+            ])
+            print("Added post to user: \(postId)")
+        } catch {
+            print("Error adding post ID to current user: \(error.localizedDescription)")
+            throw error
+        }
+    }
+    
+    enum NewPostError: Error {
+        case noUser
+    }
 }

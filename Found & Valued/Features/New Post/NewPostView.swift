@@ -11,6 +11,8 @@ struct NewPostView: View {
     @ObservedObject var viewModel: NewPostViewModel
     @Environment(\.presentationMode) var presentationMode
 
+    var didCreatePost: (Post?) -> Void
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -33,7 +35,12 @@ struct NewPostView: View {
                 // Share button
                 Button(action: {
                     Task {
-                        await viewModel.createNewPost()
+                        if let post = await viewModel.createNewPost() {
+                            didCreatePost(post)
+                        } else {
+                            didCreatePost(nil)
+                        }
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }) {
                     Text("Share")

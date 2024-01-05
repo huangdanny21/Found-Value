@@ -37,6 +37,4 @@ struct SearchService {
             throw error
         }
     }
-
-
 }

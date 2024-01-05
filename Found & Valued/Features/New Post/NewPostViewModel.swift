@@ -14,6 +14,8 @@ class NewPostViewModel: ObservableObject {
     @Published var selectedImages: [UIImage] = []
     @Published var postText: String = ""
     
+    @Published var newPost: Post?
+    
     let service = NewPostService()
 
     init(selectedImages: [UIImage], postText: String) {
@@ -38,12 +40,17 @@ class NewPostViewModel: ObservableObject {
     }
 
     // Function to create a new post
-    func createNewPost() async {
+    func createNewPost() async -> Post? {
         do {
             let post = Post(id: UUID().uuidString, ownerId: Auth.auth().currentUser?.uid ?? "", name: CurrentUser.shared.username ?? "", content: postText, timeStamp: nil, imageUrls: [])
-            try await service.createPost(with: selectedImages, post: post)
+            let newP = try await NewPostService.createPost(with: selectedImages, post: post)
+            if let p = newP {
+                try await NewPostService.addPostToCurrentUser(postId: p.id)
+            }
+            return newP
         } catch {
             print("Failed to create post")
+            return nil
         }
     }
 }

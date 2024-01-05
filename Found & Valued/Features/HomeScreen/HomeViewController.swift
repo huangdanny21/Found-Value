@@ -8,8 +8,9 @@
 import UIKit
 import SwiftUI
 import FirebaseAuth
+import Photos
 
-enum Tabs: Int {
+enum Tabs: Int, CaseIterable {
     case cardCollection
     case feed
     case upload
@@ -18,8 +19,10 @@ enum Tabs: Int {
 }
 
 final class HomeViewController: UITabBarController {
-    
+        
     // MARK: View Life Cycle
+    
+    var previousSelectedIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +32,22 @@ final class HomeViewController: UITabBarController {
         
         let feedVC = UIHostingController(rootView: FeedView())
         feedVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: Tabs.cardCollection.rawValue)
-             
-        let uploadVC = UIHostingController(rootView: UploadView())
-        uploadVC.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.circle.fill"), tag: Tabs.upload.rawValue)
+        
+        let uploadContainerView = PermissionContainerViewController()
+        uploadContainerView.isPermissionGranted = checkPermission()
+        uploadContainerView.didCreatePost = { created in
+            self.createdPost()
+        }
+        
+        uploadContainerView.didCancel = {
+            if self.previousSelectedIndex != Tabs.upload.rawValue {
+                self.selectedIndex = self.previousSelectedIndex
+            }
+        }
+        
+        uploadContainerView.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.circle.fill"), tag: Tabs.upload.rawValue)
+
+        let navController = UINavigationController(rootViewController: uploadContainerView)
         
         let notificationsVC = UIHostingController(rootView: NotificationView())
         notificationsVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "bell"), tag: Tabs.notifications.rawValue)
@@ -39,10 +55,26 @@ final class HomeViewController: UITabBarController {
         let chatListsVC = UIHostingController(rootView: ChatListView())
         chatListsVC.tabBarItem = UITabBarItem(title: "Chats", image: UIImage(systemName: "person.2"), tag: Tabs.chat.rawValue)
 
-        viewControllers = [cardCollectionVC, feedVC, uploadVC, notificationsVC, chatListsVC]
+        viewControllers = [cardCollectionVC, feedVC, navController, notificationsVC, chatListsVC]
+        
+        delegate = self
     }
     
-    func logout() {
+    private func createdPost() {
+        DispatchQueue.main.async {
+            self.selectedIndex = self.previousSelectedIndex
+        }
+    }
+    
+    private func checkPermission() -> Bool {
+        let status = PHPhotoLibrary.authorizationStatus()
+        if status == .authorized {
+            return true
+        }
+        return false
+    }
+    
+    private func logout() {
         do {
             try Auth.auth().signOut()
             // If the user logs out successfully, present the MainViewController again
@@ -72,5 +104,20 @@ struct HomeViewControllerWrapper: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: HomeViewController, context: Context) {
         // Update the view controller if needed
+    }
+}
+
+extension HomeViewController: UITabBarControllerDelegate {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if let index = tabBar.items?.firstIndex(of: item) {
+            let selectedTag = index // Use the tag
+            print("Selected tab bar item tag: \(selectedTag)")
+            
+            if index == Tabs.upload.rawValue {
+                // We selected the plus button we dont do anything
+            } else {
+                previousSelectedIndex = selectedTag
+            }
+        }
     }
 }
