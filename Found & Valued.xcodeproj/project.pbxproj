@@ -27,6 +27,8 @@
 		B55903792B42233600423F4A /* ImageMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55903782B42233600423F4A /* ImageMediaItem.swift */; };
 		B559037B2B42236F00423F4A /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559037A2B42236F00423F4A /* DatabaseRepresentation.swift */; };
 		B559037D2B42246600423F4A /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559037C2B42246600423F4A /* Sender.swift */; };
+		B561DB122B47966E003F6E75 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB112B47966E003F6E75 /* TextView.swift */; };
+		B561DB142B479A9B003F6E75 /* ImageStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561DB132B479A9B003F6E75 /* ImageStorageService.swift */; };
 		B59C0C1C2B439BB60099E030 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1B2B439BB60099E030 /* Chat.swift */; };
 		B59C0C1E2B43A7070099E030 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */; };
 		B59C0C202B43AAB00099E030 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59C0C1F2B43AAB00099E030 /* ChatListView.swift */; };
@@ -137,6 +139,8 @@
 		B55903782B42233600423F4A /* ImageMediaItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMediaItem.swift; sourceTree = "<group>"; };
 		B559037A2B42236F00423F4A /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepresentation.swift; sourceTree = "<group>"; };
 		B559037C2B42246600423F4A /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		B561DB112B47966E003F6E75 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		B561DB132B479A9B003F6E75 /* ImageStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorageService.swift; sourceTree = "<group>"; };
 		B59C0C1B2B439BB60099E030 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		B59C0C1D2B43A7070099E030 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		B59C0C1F2B43AAB00099E030 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 		B5434DB82B468E0E000AE7C7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B561DB132B479A9B003F6E75 /* ImageStorageService.swift */,
 				B5434DB92B468E1E000AE7C7 /* NewPostService.swift */,
 				B5434DBB2B4690E2000AE7C7 /* SearchService.swift */,
 			);
@@ -297,6 +302,14 @@
 				B559037A2B42236F00423F4A /* DatabaseRepresentation.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B561DB102B47965A003F6E75 /* UIVIewRepresentables */ = {
+			isa = PBXGroup;
+			children = (
+				B561DB112B47966E003F6E75 /* TextView.swift */,
+			);
+			path = UIVIewRepresentables;
 			sourceTree = "<group>";
 		};
 		B5B047C12B3E948000A358B6 /* Feed */ = {
@@ -375,6 +388,7 @@
 		B5EEC5FC2B3E1A31001D68F3 /* Found & Valued */ = {
 			isa = PBXGroup;
 			children = (
+				B561DB102B47965A003F6E75 /* UIVIewRepresentables */,
 				B5434DB82B468E0E000AE7C7 /* Services */,
 				B5B4F99D2B428C5C00203702 /* Enums */,
 				B503AFF12B4229E3005FF71E /* Extensions */,
@@ -684,6 +698,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5EEC6752B3E3435001D68F3 /* LoginView.swift in Sources */,
+				B561DB142B479A9B003F6E75 /* ImageStorageService.swift in Sources */,
 				B503AFF52B422A14005FF71E /* UIColor+Additions.swift in Sources */,
 				B5EEC6912B3E7719001D68F3 /* UserProfileView.swift in Sources */,
 				B5D96B532B40FC4400D74847 /* FriendRequestNotification.swift in Sources */,
@@ -719,6 +734,7 @@
 				B5D96B5C2B410B1000D74847 /* Notification.swift in Sources */,
 				B5D96B6D2B41245300D74847 /* ItemDetailsView.swift in Sources */,
 				B5D96B6B2B4123B800D74847 /* CommentSectionView.swift in Sources */,
+				B561DB122B47966E003F6E75 /* TextView.swift in Sources */,
 				B55763142B4649CC0023F348 /* MessageView.swift in Sources */,
 				B55763242B46725B0023F348 /* NewPostView.swift in Sources */,
 				B59C0C1E2B43A7070099E030 /* ChatListViewModel.swift in Sources */,

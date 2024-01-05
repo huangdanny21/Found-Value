@@ -9,8 +9,31 @@ import Foundation
 
 struct Post: Identifiable, Codable {
     let id: String
+    let ownerId: String
+    let name: String
     let content: String
-    let timeStamp: String
+    let timeStamp: String?
     let imageUrls: [String]
     var comments: [Comment]?
+}
+
+extension Post: DatabaseRepresentation {
+    var representation: [String: Any] {
+        var rep: [String: Any] = [
+            "id": id,
+            "ownerId": ownerId,
+            "name": name,
+            "content": content,
+            "imageUrls": imageUrls
+        ]
+        
+        if let timeStamp = timeStamp {
+            rep["timeStamp"] = timeStamp
+        }
+        if let comments = comments {
+            rep["comments"] = comments
+        }
+        
+        return rep
+    }
 }

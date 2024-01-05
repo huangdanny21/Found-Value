@@ -7,6 +7,8 @@
 
 import SwiftUI
 import YPImagePicker
+import FirebaseFirestore
+import FirebaseAuth
 
 class NewPostViewModel: ObservableObject {
     @Published var selectedImages: [UIImage] = []
@@ -36,10 +38,12 @@ class NewPostViewModel: ObservableObject {
     }
 
     // Function to create a new post
-    func createNewPost() {
-        // Perform logic to create a new post using selectedImages and postText
-        // This could involve uploading images to a server, saving post text, etc.
-        // Implementation depends on your backend or storage mechanism
-        // This function will be called when the user wants to publish the post
+    func createNewPost() async {
+        do {
+            let post = Post(id: UUID().uuidString, ownerId: Auth.auth().currentUser?.uid ?? "", name: CurrentUser.shared.username ?? "", content: postText, timeStamp: nil, imageUrls: [])
+            try await service.createPost(with: selectedImages, post: post)
+        } catch {
+            print("Failed to create post")
+        }
     }
 }

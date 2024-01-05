@@ -18,19 +18,23 @@ struct NewPostView: View {
                 GalleryView(images: viewModel.selectedImages)
                     .frame(height: UIScreen.main.bounds.height * 0.4)
                 
-                // Add tags for the post
-                TextField("Add tags for your post", text: $viewModel.postText)
-                    .padding()
+                TextView("Description", text: $viewModel.postText)
                 
-                // Tag users in the post
-                TextField("Tag users in your post", text: $viewModel.postText)
-                    .padding()
+//                // Add tags for the post
+//                TextField("Add tags for your post", text: $viewModel.postText)
+//                    .padding()
+//
+//                // Tag users in the post
+//                TextField("Tag users in your post", text: $viewModel.postText)
+//                    .padding()
                 
                 Divider()
                 
                 // Share button
                 Button(action: {
-                    viewModel.createNewPost()
+                    Task {
+                        await viewModel.createNewPost()
+                    }
                 }) {
                     Text("Share")
                         .frame(maxWidth: .infinity)
