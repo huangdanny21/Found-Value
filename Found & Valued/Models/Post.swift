@@ -18,6 +18,7 @@ struct Post: Identifiable, Codable, Sendable, Equatable {
     let content: String
     let timeStamp: String?
     let imageUrls: [String]
+    var likes: [SimpleUser]?
     var comments: [Comment]?
 }
 

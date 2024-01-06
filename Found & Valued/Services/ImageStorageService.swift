@@ -54,7 +54,7 @@ struct ImageStorageService{
         let storageRef = storage.reference()
         let imageRef = storageRef.child(path)
         
-        let metadata = try await imageRef.putDataAsync(imageData)
+        let _ = try await imageRef.putDataAsync(imageData)
         return try await imageRef.downloadURL()
     }
     
